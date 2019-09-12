@@ -37,7 +37,6 @@ class AuthVC: UIViewController {
             
             let md5Data = self.loginVM.MD5(string: password)
             let md5Password = md5Data.map { String(format: "%02hhx", $0) }.joined()
-            print("password \(md5Password)")
             
             self.loginVM.login(email: email, password: md5Password) { (error) in
                 if error != nil {
@@ -48,7 +47,6 @@ class AuthVC: UIViewController {
             
             self.loginVM.loginBehaviorRelay.skip(1).subscribe(onNext: { (user) in
                 HUD.hide()
-                print("user status " + user.status)
                 if user.status == "ok" {
                     let token = user.token
                     let userType = user.userType
@@ -66,11 +64,7 @@ class AuthVC: UIViewController {
             HUD.hide()
             Alert.displayAlert(title: "Внимание", message: "Заполните все поля!", vc: self)
         }
-        
-        
-        
+
     }
-    
-    
-    
+
 }

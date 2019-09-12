@@ -44,6 +44,7 @@
 		2E6F50162327FCD200B737C0 /* TeacherVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6F50152327FCD200B737C0 /* TeacherVC.swift */; };
 		2E6F501B23280CAB00B737C0 /* GuardRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6F501A23280CAB00B737C0 /* GuardRepository.swift */; };
 		2E6F501D23280CBB00B737C0 /* GuardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6F501C23280CBB00B737C0 /* GuardViewModel.swift */; };
+		2E6F501F2329300D00B737C0 /* QRCodeScanVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6F501E2329300C00B737C0 /* QRCodeScanVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +87,7 @@
 		2E6F50152327FCD200B737C0 /* TeacherVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherVC.swift; sourceTree = "<group>"; };
 		2E6F501A23280CAB00B737C0 /* GuardRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardRepository.swift; sourceTree = "<group>"; };
 		2E6F501C23280CBB00B737C0 /* GuardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardViewModel.swift; sourceTree = "<group>"; };
+		2E6F501E2329300C00B737C0 /* QRCodeScanVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeScanVC.swift; sourceTree = "<group>"; };
 		3935632E36111AA3531FAAFD /* Pods-Bal.kg.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bal.kg.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bal.kg/Pods-Bal.kg.debug.xcconfig"; sourceTree = "<group>"; };
 		554CCC3532222FF431CBD8F1 /* Pods-Bal.kg.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bal.kg.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bal.kg/Pods-Bal.kg.release.xcconfig"; sourceTree = "<group>"; };
 		613737279732F5F6665DE9BD /* Pods_Bal_kg.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bal_kg.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -346,6 +348,7 @@
 			isa = PBXGroup;
 			children = (
 				2E6F50112327F94A00B737C0 /* GuardVC.swift */,
+				2E6F501E2329300C00B737C0 /* QRCodeScanVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -516,6 +519,7 @@
 				2E6F4FF42327DAC900B737C0 /* IQToolbar.swift in Sources */,
 				2E6F50062327ED1200B737C0 /* ApiClient.swift in Sources */,
 				2E6F4FF32327DAC900B737C0 /* IQBarButtonItem.swift in Sources */,
+				2E6F501F2329300D00B737C0 /* QRCodeScanVC.swift in Sources */,
 				2E6F501D23280CBB00B737C0 /* GuardViewModel.swift in Sources */,
 				2E6F501B23280CAB00B737C0 /* GuardRepository.swift in Sources */,
 				2E6F4FF12327DAC900B737C0 /* IQPreviousNextView.swift in Sources */,
