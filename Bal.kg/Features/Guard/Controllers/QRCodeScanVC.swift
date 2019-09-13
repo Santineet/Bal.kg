@@ -9,18 +9,22 @@
 import AVFoundation
 import UIKit
 
+
 class QRCodeScanVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
+   
+    @IBOutlet weak var myView: UIView!
+    @IBOutlet weak var cancelButton: UIButton!
     
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
     var qrCodeFrameView: UIView?
-
+    var guardVC: GuardVC? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        cancelButton.addTarget(self, action: #selector(self.cancelbuttonClicked), for: .touchUpInside)
         view.backgroundColor = UIColor.black
         captureSession = AVCaptureSession()
-        
         guard let videoCaptureDevice = AVCaptureDevice.default(for: .video) else { return }
         let videoInput: AVCaptureDeviceInput
         
@@ -29,9 +33,6 @@ class QRCodeScanVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
             videoInput = try AVCaptureDeviceInput(device: videoCaptureDevice)
             if (captureSession.canAddInput(videoInput)) {
                 captureSession.addInput(videoInput)
-                
-                
-                
             } else {
                 failed()
                 return
@@ -66,8 +67,9 @@ class QRCodeScanVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
             qrCodeView.layer.borderColor = UIColor.red.cgColor
             qrCodeView.layer.borderWidth = 3
             view.addSubview(qrCodeView)
+            view.addSubview(myView)
+            view.bringSubviewToFront(myView)
             view.bringSubviewToFront(qrCodeView)
-      
         }
         captureSession.startRunning()
     }
@@ -96,8 +98,7 @@ class QRCodeScanVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     }
 
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
-//        captureSession.stopRunning()
-        
+        captureSession.stopRunning()
         if let metadataObject = metadataObjects.first {
             guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject else { return }
             guard let stringValue = readableObject.stringValue else { return }
@@ -105,7 +106,6 @@ class QRCodeScanVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
             let barCodeObjc = previewLayer.transformedMetadataObject(for: metadataObject)
             qrCodeFrameView?.frame = barCodeObjc!.bounds
             found(code: stringValue)
-            
         }
         
         dismiss(animated: true)
@@ -115,6 +115,14 @@ class QRCodeScanVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
 
     func found(code: String) {
         print(code)
+        
+        let codeString = code
+
+        let qrId = codeString.components(separatedBy: ";")
+        
+
+        self.guardVC?.qrCodeScanned(info: qrId)
+        dismiss(animated: true, completion: nil)
     }
 
     override var prefersStatusBarHidden: Bool {
@@ -125,6 +133,9 @@ class QRCodeScanVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         return .portrait
     }
     
-
+    @objc func cancelbuttonClicked(){
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     
 }

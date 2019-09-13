@@ -10,8 +10,13 @@ import UIKit
 import RxSwift
 import PKHUD
 
-class GuardVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
+protocol SendDataDelegate {
+    func qrCodeScanned(info: [String])
+}
 
+class GuardVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
+   
+    @IBOutlet weak var addImage: UIImageView!
     @IBOutlet weak var input: UILabel!
     @IBOutlet weak var idField: UITextField!
     @IBOutlet weak var `switch`: UISwitch!
@@ -26,10 +31,38 @@ class GuardVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, U
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-      
+        self.input.textColor = UIColor.blue
+        self.switch.addTarget(self, action: #selector(paramTarget(paramTarget:)) , for: .valueChanged)
+        self.addImage.isHidden = true
         guest.delegate = self
         guest.tintColor = UIColor.clear
+        pressAddimage()
+    }
+    
+    func pressAddimage(){
+        self.addImage.isUserInteractionEnabled = true
+        self.addImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.didTappedProfileImageView)))
+    }
+    
+    @objc func didTappedProfileImageView(){
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.isEditing = true
+        picker.allowsEditing = true
+        present(picker, animated: true, completion: nil)
+    }
+
+    
+    // observer for switch
+    @objc func paramTarget(paramTarget: UISwitch){
+        if paramTarget.isOn {
+            self.exit.textColor = UIColor.blue
+            self.input.textColor = UIColor.black
+        } else {
+            self.exit.textColor = UIColor.black
+            self.input.textColor = UIColor.blue
+        }
+        
     }
     
  
@@ -37,8 +70,9 @@ class GuardVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, U
     @IBAction func scanButton(_ sender: UIButton) {
     
         let scanVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "QRCodeScanVC") as! QRCodeScanVC
-        
-        navigationController?.pushViewController(scanVC, animated: true)
+        scanVC.guardVC = self
+        let navC = UINavigationController(rootViewController: scanVC)
+        present(navC, animated: true, completion: nil)
         
     }
     
@@ -113,11 +147,17 @@ class GuardVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, U
         return pickerData[row]
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if row == 2 {
+            self.addImage.isHidden = false
+        } else {
+            self.addImage.isHidden = true
+        }
         self.guest.text = pickerData[row]
     }
     //MARK:- TextFiled Delegate
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
+        self.guest.text = "Ученик"
         self.pickUp(guest)
     }
     
@@ -129,8 +169,36 @@ class GuardVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, U
     }
     
 
+}
+
+extension GuardVC: SendDataDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    func qrCodeScanned(info: [String]) {
+        self.idField.text = info[0]
+        self.guest.text = info[1]
+    }
     
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        var selectedFromImageFromPicker:UIImage?
+        if let editedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage{
+            selectedFromImageFromPicker = editedImage
+        }else if let originalImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage{
+            selectedFromImageFromPicker = originalImage
+        }
+        if let selectedImage = selectedFromImageFromPicker{
+            
+            setupReviewImageViewStyle()
+            self.addImage.image = selectedImage
+        }
+        self.dismiss(animated: true, completion: nil)
+    }
     
-    
+    //Настройка стиля картинки
+    func setupReviewImageViewStyle(){
+        self.addImage.layer.borderWidth = 1
+        self.addImage.layer.borderColor = UIColor(red: 0.21, green: 0.48, blue: 0.96, alpha: 1).cgColor
+        self.addImage.translatesAutoresizingMaskIntoConstraints = false
+        self.addImage.contentMode = .scaleToFill
+    }
+
     
 }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		24057D9ABBEE079352E1721B /* Pods_Bal_kg.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 613737279732F5F6665DE9BD /* Pods_Bal_kg.framework */; };
+		2E582150232A57EE00B49571 /* add_photo-512.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E58214F232A57ED00B49571 /* add_photo-512.png */; };
 		2E6F4FB42327D2A700B737C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6F4FB32327D2A700B737C0 /* AppDelegate.swift */; };
 		2E6F4FB92327D2A700B737C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E6F4FB72327D2A700B737C0 /* Main.storyboard */; };
 		2E6F4FBB2327D2AA00B737C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E6F4FBA2327D2AA00B737C0 /* Assets.xcassets */; };
@@ -48,6 +49,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2E58214F232A57ED00B49571 /* add_photo-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add_photo-512.png"; sourceTree = "<group>"; };
 		2E6F4FB02327D2A700B737C0 /* Bal.kg.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bal.kg.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E6F4FB32327D2A700B737C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2E6F4FB82327D2A700B737C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -111,6 +113,14 @@
 				613737279732F5F6665DE9BD /* Pods_Bal_kg.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2E58214E232A57E400B49571 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				2E58214F232A57ED00B49571 /* add_photo-512.png */,
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 		2E6F4FA72327D2A600B737C0 = {
@@ -210,6 +220,7 @@
 		2E6F4FCE2327D8CA00B737C0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2E58214E232A57E400B49571 /* Images */,
 				2E6F4FBA2327D2AA00B737C0 /* Assets.xcassets */,
 				2E6F4FBC2327D2AA00B737C0 /* LaunchScreen.storyboard */,
 			);
@@ -439,6 +450,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E6F4FF92327DAC900B737C0 /* IQKeyboardManager.bundle in Resources */,
+				2E582150232A57EE00B49571 /* add_photo-512.png in Resources */,
 				2E6F4FCD2327D8AF00B737C0 /* Auth.storyboard in Resources */,
 				2E6F4FBE2327D2AA00B737C0 /* LaunchScreen.storyboard in Resources */,
 				2E6F4FBB2327D2AA00B737C0 /* Assets.xcassets in Resources */,
