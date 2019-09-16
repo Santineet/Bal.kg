@@ -26,5 +26,25 @@ class GuardRepository: NSObject {
             return Disposables.create()
         })
     }
+    
+    func sendData(id: String, status: Int, type: String, time: String) -> Observable<SendDataModel> {
+        return Observable.create({ (observer) -> Disposable in
+            ServiceManager.sharedInstance.sendData(id: id, status: status, type: type, time: time, completion: { (responseJSON, error) in
+                
+                guard let jsonArray = responseJSON as? [String:Any] else { return }
+                guard let result = Mapper<SendDataModel>().map(JSON: jsonArray) else {
+                    observer.onError(error ?? Constant.BACKEND_ERROR)
+                    return
+                }
+                observer.onNext(result) 
+                observer.onCompleted()
+            })
+            
+            return Disposables.create()
+        })
         
+        
+    }
+    
+    
 }

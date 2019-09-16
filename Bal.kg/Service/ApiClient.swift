@@ -46,6 +46,28 @@ class ServiceManager: NSObject {
         }
     }
     
+    
+    
+    //MARK: Send Data Methods
+    
+    func sendData(id: String, status: Int, type: String, time: String, image: Data, completion: @escaping Completion){
+        guard let url = URL(string: "https://bal.kg/api/move" ) else { return }
+        let token = UserDefaults.standard.value(forKey: "token") as! String
+        let header: HTTPHeaders = ["token": "\(token)"]
+        
+        let params = ["id": id,"status": status, "type": type, "time": time, "token": token] as [String:Any]
+        Alamofire.request(url, method: .post, parameters: params, encoding: URLEncoding.default, headers: header).responseJSON
+            { responseJSON in
+                switch responseJSON.result {
+                case .success:
+                    completion(responseJSON.result.value, nil)
+                case .failure(let error):
+                    completion(nil, error)
+                }
+        }
+    }
+    
+    
 //    //MARK: Запрос новостей
 //    //MARK: News Request
 //    func getNews(completion: @escaping Completion) {

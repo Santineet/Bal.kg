@@ -482,3 +482,10 @@ extension UIButton {
         }
     }
 }
+
+//MARK: extension
+extension Date {
+    static var currentTimeStamp: Int64{
+        return Int64(Date().timeIntervalSince1970)
+    }
+}

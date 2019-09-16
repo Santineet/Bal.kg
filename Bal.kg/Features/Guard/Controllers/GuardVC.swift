@@ -22,28 +22,35 @@ class GuardVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, U
     @IBOutlet weak var `switch`: UISwitch!
     @IBOutlet weak var guest: UITextField!
     @IBOutlet weak var exit: UILabel!
+    @IBOutlet weak var showDataSwitch: UISwitch!
+    @IBOutlet weak var guestInfo: UILabel!
     
-    
-    var loginVM = GuardViewModel()
+    var guardVM = GuardViewModel()
     let disposeBag = DisposeBag()
     var picker : UIPickerView!
     var pickerData = ["Ученик", "Учитель", "Гость"]
-
+    var status = 0
+    
     override func viewDidLoad() {
+      
         super.viewDidLoad()
         self.input.textColor = UIColor.blue
         self.switch.addTarget(self, action: #selector(paramTarget(paramTarget:)) , for: .valueChanged)
-        self.addImage.isHidden = true
+        self.guestInfo.isHidden = true
+        self.showDataSwitch.addTarget(self, action: #selector(swithTarget(paramTarget:)), for: .valueChanged)
         guest.delegate = self
         guest.tintColor = UIColor.clear
         pressAddimage()
+    
     }
     
+    //MARK: press Addimage
     func pressAddimage(){
+        self.addImage.isHidden = true
         self.addImage.isUserInteractionEnabled = true
         self.addImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.didTappedProfileImageView)))
     }
-    
+    //MARK: didTappedProfileImageView
     @objc func didTappedProfileImageView(){
         let picker = UIImagePickerController()
         picker.delegate = self
@@ -51,9 +58,19 @@ class GuardVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, U
         picker.allowsEditing = true
         present(picker, animated: true, completion: nil)
     }
+    
+    //MARK: observer for showDataSwitch
+    @objc func swithTarget(paramTarget: UISwitch){
+        if paramTarget.isOn {
+            self.guestInfo.isHidden = false
+        } else {
+            self.guestInfo.isHidden = true
+            self.guestInfo.text = ""
+        }
+    }
 
     
-    // observer for switch
+    //MARK: observer for switch
     @objc func paramTarget(paramTarget: UISwitch){
         if paramTarget.isOn {
             self.exit.textColor = UIColor.blue
@@ -62,7 +79,6 @@ class GuardVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, U
             self.exit.textColor = UIColor.black
             self.input.textColor = UIColor.blue
         }
-        
     }
     
  
@@ -77,12 +93,65 @@ class GuardVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, U
     }
     
     @IBAction func sendButton(_ sender: UIButton) {
+     
+        let timeStamp = Date.currentTimeStamp
+        
+        guard let id = self.idField.text else {return}
+        guard var type = self.guest.text else {return}
+    
+        var image: UIImage?
+        
+        if self.addImage.image != nil {
+
+        
+        }
+        
+        
+        if type == "Ученик"  {
+            type = "children"
+        } else if type == "Учитель" {
+            type = "teacher"
+        } else if type == "Гость" {
+            type = "guest"
+        }
+        
+        
+        
+        if(!id.isEmpty && !type.isEmpty){
+            HUD.show(.progress)
+            self.guardVM.sendInfo(id: id, status: self.status, type: type, time: String(timeStamp)) { (error) in
+                if error != nil {
+                    HUD.hide()
+                    Alert.displayAlert(title: "Ошибка", message: error?.localizedDescription ?? "Connection error", vc: self)
+                }
+            }
+            
+            self.guardVM.guestInfoBehaviorRelay.skip(1).subscribe(onNext: { (info) in
+                
+                if info.status == "ok" {
+                self.guestInfo.text = info.fio + "   " + info.about
+                self.idField.text = ""
+                self.guest.text = ""
+                Alert.displayAlert(title: "", message: info.message, vc: self)
+                HUD.hide()
+                } else {
+                    Alert.displayAlert(title: "", message: info.message, vc: self)
+                }
+            }).disposed(by: disposeBag)
+            
+            self.guardVM.errorBehaviorRelay.skip(1).subscribe(onNext: { (error) in
+                Alert.displayAlert(title: "Error", message: error.localizedDescription, vc: self)
+            }).disposed(by: disposeBag)
+        } else {
+            Alert.displayAlert(title: "Ошибка", message: "Заполните все поля!", vc: self)
+        }
+
     }
     
     @IBAction func logoutButton(_ sender: Any) {
         HUD.show(.progress)
         
-        self.loginVM.logout { (error) in
+        self.guardVM.logout { (error) in
             if error != nil {
                 HUD.hide()
                 Alert.displayAlert(title: "Ошибка", message: "Для получения данных требуется подключение к интернету", vc: self)
@@ -90,7 +159,7 @@ class GuardVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, U
         }
         
         
-        self.loginVM.logoutBehaviorRelay.skip(1).subscribe(onNext: { (success) in
+        self.guardVM.logoutBehaviorRelay.skip(1).subscribe(onNext: { (success) in
             HUD.hide()
             if success.status == "ok" {
              
@@ -104,13 +173,13 @@ class GuardVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, U
             }
         }).disposed(by: disposeBag)
         
-        self.loginVM.errorBehaviorRelay.skip(1).subscribe(onNext: { (error) in
+        self.guardVM.errorBehaviorRelay.skip(1).subscribe(onNext: { (error) in
             Alert.displayAlert(title: "Error", message: error.localizedDescription, vc: self)
         }).disposed(by: disposeBag)
         
     }
     
-    
+    //MARK: setup UIPickerView
     func pickUp(_ textField : UITextField){
 
         // UIPickerView
@@ -158,6 +227,7 @@ class GuardVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, U
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         self.guest.text = "Ученик"
+        self.addImage.isHidden = true
         self.pickUp(guest)
     }
     
@@ -171,6 +241,7 @@ class GuardVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, U
 
 }
 
+    //MARK: extension
 extension GuardVC: SendDataDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     func qrCodeScanned(info: [String]) {
         self.idField.text = info[0]

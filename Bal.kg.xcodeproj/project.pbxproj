@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07068E52232FCA200053E04A /* SendDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07068E51232FCA200053E04A /* SendDataModel.swift */; };
 		24057D9ABBEE079352E1721B /* Pods_Bal_kg.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 613737279732F5F6665DE9BD /* Pods_Bal_kg.framework */; };
 		2E582150232A57EE00B49571 /* add_photo-512.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E58214F232A57ED00B49571 /* add_photo-512.png */; };
 		2E6F4FB42327D2A700B737C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6F4FB32327D2A700B737C0 /* AppDelegate.swift */; };
@@ -49,6 +50,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		07068E51232FCA200053E04A /* SendDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendDataModel.swift; sourceTree = "<group>"; };
 		2E58214F232A57ED00B49571 /* add_photo-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add_photo-512.png"; sourceTree = "<group>"; };
 		2E6F4FB02327D2A700B737C0 /* Bal.kg.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bal.kg.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E6F4FB32327D2A700B737C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -325,6 +327,7 @@
 			isa = PBXGroup;
 			children = (
 				2E6F500E2327F41400B737C0 /* LoginModel.swift */,
+				07068E51232FCA200053E04A /* SendDataModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -523,6 +526,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E6F500A2327F36400B737C0 /* LoginRepository.swift in Sources */,
+				07068E52232FCA200053E04A /* SendDataModel.swift in Sources */,
 				2E6F50162327FCD200B737C0 /* TeacherVC.swift in Sources */,
 				2E6F4FEE2327DAC900B737C0 /* Extantion.swift in Sources */,
 				2E6F4FF22327DAC900B737C0 /* IQTitleBarButtonItem.swift in Sources */,
@@ -701,8 +705,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = YDG37K9NRQ;
+				DEVELOPMENT_TEAM = P5T8Z6XWL5;
 				INFOPLIST_FILE = Bal.kg/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -720,8 +725,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = YDG37K9NRQ;
+				DEVELOPMENT_TEAM = P5T8Z6XWL5;
 				INFOPLIST_FILE = Bal.kg/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -15,6 +15,7 @@ class GuardViewModel: NSObject {
 
     var errorBehaviorRelay = BehaviorRelay<Error>(value: NSError.init(message: ""))
     let logoutBehaviorRelay = BehaviorRelay<LogInModel>(value: LogInModel())
+    let guestInfoBehaviorRelay = BehaviorRelay<SendDataModel>(value: SendDataModel())
     var reachability:Reachability?
 
     private let disposeBag = DisposeBag()
@@ -32,6 +33,17 @@ class GuardViewModel: NSObject {
         }
     }
     
+    func sendInfo(id: String, status: Int, type: String, time: String, completion: @escaping (Error?) -> ()) {
+        if self.isConnnected() == true {
+            self.repository.sendData(id: id, status: status, type: type, time: time) .subscribe(onNext: { (result) in
+                self.guestInfoBehaviorRelay.accept(result)
+            }, onError: { (error) in
+                self.errorBehaviorRelay.accept(error)
+            }).disposed(by: disposeBag)
+        } else {
+            completion(NSError.init(message: "Нет соединения"))
+        }
+    }
     
     func isConnnected() -> Bool{
         do {
