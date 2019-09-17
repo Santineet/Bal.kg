@@ -15,7 +15,7 @@ protocol SendDataDelegate {
 }
 
 class GuardVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
-   
+    
     @IBOutlet weak var addImage: UIImageView!
     @IBOutlet weak var input: UILabel!
     @IBOutlet weak var idField: UITextField!
@@ -30,9 +30,10 @@ class GuardVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, U
     var picker : UIPickerView!
     var pickerData = ["Ученик", "Учитель", "Гость"]
     var status = 0
+    var imagePicker = UIImagePickerController()
     
     override func viewDidLoad() {
-      
+        
         super.viewDidLoad()
         self.input.textColor = UIColor.blue
         self.switch.addTarget(self, action: #selector(paramTarget(paramTarget:)) , for: .valueChanged)
@@ -41,22 +42,20 @@ class GuardVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, U
         guest.delegate = self
         guest.tintColor = UIColor.clear
         pressAddimage()
-    
+        
     }
     
     //MARK: press Addimage
     func pressAddimage(){
+        imagePicker.sourceType = UIImagePickerController.SourceType.camera
+        imagePicker.delegate = self
         self.addImage.isHidden = true
         self.addImage.isUserInteractionEnabled = true
-        self.addImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.didTappedProfileImageView)))
+        self.addImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.didTappedImageView)))
     }
     //MARK: didTappedProfileImageView
-    @objc func didTappedProfileImageView(){
-        let picker = UIImagePickerController()
-        picker.delegate = self
-        picker.isEditing = true
-        picker.allowsEditing = true
-        present(picker, animated: true, completion: nil)
+    @objc func didTappedImageView(){
+        present(imagePicker, animated: true, completion: nil)
     }
     
     //MARK: observer for showDataSwitch
@@ -68,7 +67,7 @@ class GuardVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, U
             self.guestInfo.text = ""
         }
     }
-
+    
     
     //MARK: observer for switch
     @objc func paramTarget(paramTarget: UISwitch){
@@ -81,10 +80,10 @@ class GuardVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, U
         }
     }
     
- 
+    
     
     @IBAction func scanButton(_ sender: UIButton) {
-    
+        
         let scanVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "QRCodeScanVC") as! QRCodeScanVC
         scanVC.guardVC = self
         let navC = UINavigationController(rootViewController: scanVC)
@@ -93,18 +92,13 @@ class GuardVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, U
     }
     
     @IBAction func sendButton(_ sender: UIButton) {
-     
+        HUD.show(.progress)
         let timeStamp = Date.currentTimeStamp
         
         guard let id = self.idField.text else {return}
         guard var type = self.guest.text else {return}
-    
-        var image: UIImage?
         
-        if self.addImage.image != nil {
-
-        
-        }
+        var image: Data? = nil
         
         
         if type == "Ученик"  {
@@ -113,13 +107,14 @@ class GuardVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, U
             type = "teacher"
         } else if type == "Гость" {
             type = "guest"
+            image = self.addImage.image?.pngData()
         }
         
         
         
         if(!id.isEmpty && !type.isEmpty){
             HUD.show(.progress)
-            self.guardVM.sendInfo(id: id, status: self.status, type: type, time: String(timeStamp)) { (error) in
+            self.guardVM.sendInfo(id: id, status: self.status, type: type, time: String(timeStamp), image: image) { (error) in
                 if error != nil {
                     HUD.hide()
                     Alert.displayAlert(title: "Ошибка", message: error?.localizedDescription ?? "Connection error", vc: self)
@@ -129,28 +124,39 @@ class GuardVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, U
             self.guardVM.guestInfoBehaviorRelay.skip(1).subscribe(onNext: { (info) in
                 
                 if info.status == "ok" {
-                self.guestInfo.text = info.fio + "   " + info.about
-                self.idField.text = ""
-                self.guest.text = ""
-                Alert.displayAlert(title: "", message: info.message, vc: self)
-                HUD.hide()
+                    HUD.hide()
+                    self.guestInfo.text = info.fio + "   " + info.about
+                    self.idField.text = ""
+                    self.guest.text = ""
+                    self.setupImegeAfterSendData()
+                    Alert.displayAlert(title: "", message: info.message, vc: self)
                 } else {
+                    HUD.hide()
                     Alert.displayAlert(title: "", message: info.message, vc: self)
                 }
             }).disposed(by: disposeBag)
             
             self.guardVM.errorBehaviorRelay.skip(1).subscribe(onNext: { (error) in
+                HUD.hide()
                 Alert.displayAlert(title: "Error", message: error.localizedDescription, vc: self)
             }).disposed(by: disposeBag)
         } else {
+            HUD.hide()
             Alert.displayAlert(title: "Ошибка", message: "Заполните все поля!", vc: self)
         }
-
+        
     }
+    
+    func setupImegeAfterSendData(){
+        self.addImage.isHidden = true
+        let image = UIImage(named: "add_photo-512.png")
+        self.addImage.image = image
+        self.addImage.layer.borderWidth = 0
+    }
+    
     
     @IBAction func logoutButton(_ sender: Any) {
         HUD.show(.progress)
-        
         self.guardVM.logout { (error) in
             if error != nil {
                 HUD.hide()
@@ -160,20 +166,21 @@ class GuardVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, U
         
         
         self.guardVM.logoutBehaviorRelay.skip(1).subscribe(onNext: { (success) in
-            HUD.hide()
             if success.status == "ok" {
-             
+                HUD.hide()
                 UserDefaults.standard.removeObject(forKey: "token")
                 UserDefaults.standard.removeObject(forKey: "userType")
                 Alert.displayAlert(title: "", message: success.message, vc: self)
                 LoginLogoutManager.instance.updateRootVC()
-            
+                
             } else if success.status == "error"{
+                HUD.hide()
                 Alert.displayAlert(title: "Ошибка", message: success.message, vc: self)
             }
         }).disposed(by: disposeBag)
         
         self.guardVM.errorBehaviorRelay.skip(1).subscribe(onNext: { (error) in
+            HUD.hide()
             Alert.displayAlert(title: "Error", message: error.localizedDescription, vc: self)
         }).disposed(by: disposeBag)
         
@@ -181,21 +188,21 @@ class GuardVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, U
     
     //MARK: setup UIPickerView
     func pickUp(_ textField : UITextField){
-
+        
         // UIPickerView
         self.picker = UIPickerView(frame:CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 216))
         self.picker.delegate = self
         self.picker.dataSource = self
         self.picker.backgroundColor = UIColor.white
         textField.inputView = self.picker
-
+        
         // ToolBar
         let toolBar = UIToolbar()
         toolBar.barStyle = .default
         toolBar.isTranslucent = true
         toolBar.tintColor = UIColor(red: 92/255, green: 216/255, blue: 255/255, alpha: 1)
         toolBar.sizeToFit()
-
+        
         // Adding Button ToolBar
         let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.doneClick))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
@@ -203,9 +210,9 @@ class GuardVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, U
         toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
         toolBar.isUserInteractionEnabled = true
         textField.inputAccessoryView = toolBar
-
+        
     }
-
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -238,29 +245,23 @@ class GuardVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, U
         guest.resignFirstResponder()
     }
     
-
+    
 }
 
-    //MARK: extension
+//MARK: extension
 extension GuardVC: SendDataDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     func qrCodeScanned(info: [String]) {
         self.idField.text = info[0]
         self.guest.text = info[1]
+        self.addImage.isHidden = true
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        var selectedFromImageFromPicker:UIImage?
-        if let editedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage{
-            selectedFromImageFromPicker = editedImage
-        }else if let originalImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage{
-            selectedFromImageFromPicker = originalImage
-        }
-        if let selectedImage = selectedFromImageFromPicker{
+        picker.dismiss(animated: true, completion: nil)
+        guard let image = info[.originalImage] as? UIImage else { return }
             
-            setupReviewImageViewStyle()
-            self.addImage.image = selectedImage
-        }
-        self.dismiss(animated: true, completion: nil)
+        self.addImage.image = image
+        setupReviewImageViewStyle()
     }
     
     //Настройка стиля картинки
@@ -269,7 +270,8 @@ extension GuardVC: SendDataDelegate,UINavigationControllerDelegate, UIImagePicke
         self.addImage.layer.borderColor = UIColor(red: 0.21, green: 0.48, blue: 0.96, alpha: 1).cgColor
         self.addImage.translatesAutoresizingMaskIntoConstraints = false
         self.addImage.contentMode = .scaleToFill
+        self.addImage.layer.cornerRadius = 6
     }
-
+    
     
 }

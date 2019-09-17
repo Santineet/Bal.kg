@@ -12,5 +12,5 @@ target 'Bal.kg' do
     pod 'RxSwift'
     pod 'RxCocoa'
     pod 'PKHUD'
-
+    pod 'RealmSwift'
 end
