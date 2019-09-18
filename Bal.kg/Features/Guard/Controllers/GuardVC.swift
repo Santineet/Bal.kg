@@ -9,10 +9,12 @@
 import UIKit
 import RxSwift
 import PKHUD
+import RealmSwift
 
 protocol SendDataDelegate {
     func qrCodeScanned(info: [String])
 }
+
 
 class GuardVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
     
@@ -31,7 +33,10 @@ class GuardVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, U
     var pickerData = ["Ученик", "Учитель", "Гость"]
     var status = 0
     var imagePicker = UIImagePickerController()
-    
+    var selectedImage: UIImage?
+    let realm = try! Realm() // Доступ к хранилищу
+    var items: Results<DataBase>! //Контейнер со свойствами обьекта DataBase
+ 
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -53,7 +58,7 @@ class GuardVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, U
         self.addImage.isUserInteractionEnabled = true
         self.addImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.didTappedImageView)))
     }
-    //MARK: didTappedProfileImageView
+    //MARK: didTappedImageView
     @objc func didTappedImageView(){
         present(imagePicker, animated: true, completion: nil)
     }
@@ -69,7 +74,7 @@ class GuardVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, U
     }
     
     
-    //MARK: observer for switch
+    //MARK: observer for login logout switch
     @objc func paramTarget(paramTarget: UISwitch){
         if paramTarget.isOn {
             self.exit.textColor = UIColor.blue
@@ -98,7 +103,8 @@ class GuardVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, U
         guard let id = self.idField.text else {return}
         guard var type = self.guest.text else {return}
         
-        var image: UIImage? = nil
+        var imageData: Data? = nil
+        var imageName: String? = nil
         
         
         if type == "Ученик"  {
@@ -107,18 +113,38 @@ class GuardVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, U
             type = "teacher"
         } else if type == "Гость" {
             type = "guest"
-            image = self.addImage.image
+            imageData = self.selectedImage?.jpegData(compressionQuality: 0)
+            imageName = self.selectedImage?.imageAsset.debugDescription
         }
         
         
         
         if(!id.isEmpty && !type.isEmpty){
             HUD.show(.progress)
-            self.guardVM.sendInfo(id: id, status: self.status, type: type, time: String(timeStamp), image: image) { (error) in
-                if error != nil {
-                    HUD.hide()
-                    Alert.displayAlert(title: "Ошибка", message: error?.localizedDescription ?? "Connection error", vc: self)
-                }
+            
+//            if items.count != 0 {
+//                DispatchQueue.main.sync {
+//                    sendDataFromDataBase()
+//                }
+//            }
+            
+            self.guardVM.sendInfo(id: id, status: self.status, type: type, time: String(timeStamp), imageData: imageData, imageName: imageName) { (error) in
+                    let db = DataBase()
+
+                    db.id = id
+                    db.type = type
+                    db.status = self.status
+//                    db.imageData = imageData
+//                    db.imageName = imageName
+//                    db.time = String(timeStamp)
+                    try! self.realm.write {
+                        self.realm.add(db)
+                   
+                        HUD.hide()
+                        Alert.displayAlert(title: "", message: "Данные сохранены в базу данных", vc: self)
+                    }
+                    
+                
             }
             
             self.guardVM.guestInfoBehaviorRelay.skip(1).subscribe(onNext: { (info) in
@@ -146,14 +172,40 @@ class GuardVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, U
         }
         
     }
+
     
+    func sendDataFromDataBase(){
+
+        for item in self.items {
+
+            let id = item.id
+            let status = item.status
+            let type = item.type
+//            let time = item.time
+//            let imageData = item.imageData
+//            let imageName = item.imageName
+
+//            self.guardVM.sendInfo(id: id, status: status, type: type, time: time, imageData: imageData, imageName: imageName) { (error) in
+//
+//                Alert.displayAlert(title: "", message: error?.localizedDescription ?? "Ошибка соединения", vc: self)
+//
+//            }
+            
+        }
+    
+        
+        
+    }
+    
+    
+    //MARK: setupImegeAfterSendData
     func setupImegeAfterSendData(){
         self.addImage.isHidden = true
         let image = UIImage(named: "add_photo-512.png")
         self.addImage.image = image
         self.addImage.layer.borderWidth = 0
     }
-    
+
     
     @IBAction func logoutButton(_ sender: Any) {
         HUD.show(.progress)
@@ -261,6 +313,7 @@ extension GuardVC: SendDataDelegate,UINavigationControllerDelegate, UIImagePicke
         guard let image = info[.originalImage] as? UIImage else { return }
             
         self.addImage.image = image
+        self.selectedImage = image
         setupReviewImageViewStyle()
     }
     

@@ -24,7 +24,7 @@ class LoginLogoutManager: NSObject {
                 let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GuardVC") as! GuardVC
                 appDelegate.window?.rootViewController = UINavigationController(rootViewController: vc)
             } else if userType == "teacher" {
-                let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TeacherVC") as! TeacherVC
+                let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TeacherVC") as! TeacherTVC
                 appDelegate.window?.rootViewController = UINavigationController(rootViewController: vc)
             }
         }

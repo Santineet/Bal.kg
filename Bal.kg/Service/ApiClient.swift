@@ -50,27 +50,33 @@ class ServiceManager: NSObject {
     
     //MARK: Send Data Methods
     
-    func sendData(id: String, status: Int, type: String, time: String, image: UIImage?, completion: @escaping Completion){
+    func sendData(id: String, status: Int, type: String, time: String, imageData: Data?,imageName: String?, completion: @escaping Completion){
         
         guard let url = URL(string: "https://bal.kg/api/move" ) else { return }
         let token = UserDefaults.standard.value(forKey: "token") as! String
         let header: HTTPHeaders = ["token": "\(token)"]
         let params = ["id": id,"status": status, "type": type, "time": time, "token": token] as [String:Any]
+        let headers: HTTPHeaders = [
+            "token": "\(token)",
+            "Content-type": "multipart/form-data"
+        ]
+
 
         
-        if let image = image {
+        if let imageData = imageData {
             
             //Method для загрузки данных c image
             Alamofire.upload(multipartFormData: { (multipartFormData) in
                 
-                guard let imageData = image.jpegData(compressionQuality: 0.8) else {return}
                 
-                multipartFormData.append(imageData, withName: "file", fileName: "\(image.imageAsset!.description).jpeg", mimeType: "image/jpeg")
+                guard let imageName = imageName else {return}
+                
+                multipartFormData.append(imageData, withName: "file", fileName: "\(imageName).jpeg", mimeType: "image/jpeg")
                 
                 for (key, value) in params {
                     multipartFormData.append((value as AnyObject).data(using: String.Encoding.utf8.rawValue)!, withName: key)
                 }
-            }, to: url, headers: header)
+            }, to: url, headers: headers)
             { (result) in
                 switch result {
                 case .success(let upload,_,_ ):

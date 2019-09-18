@@ -43,10 +43,13 @@
 		2E6F500C2327F37B00B737C0 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6F500B2327F37B00B737C0 /* LoginViewModel.swift */; };
 		2E6F500F2327F41400B737C0 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6F500E2327F41400B737C0 /* LoginModel.swift */; };
 		2E6F50122327F94A00B737C0 /* GuardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6F50112327F94A00B737C0 /* GuardVC.swift */; };
-		2E6F50162327FCD200B737C0 /* TeacherVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6F50152327FCD200B737C0 /* TeacherVC.swift */; };
 		2E6F501B23280CAB00B737C0 /* GuardRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6F501A23280CAB00B737C0 /* GuardRepository.swift */; };
 		2E6F501D23280CBB00B737C0 /* GuardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6F501C23280CBB00B737C0 /* GuardViewModel.swift */; };
 		2E6F501F2329300D00B737C0 /* QRCodeScanVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6F501E2329300C00B737C0 /* QRCodeScanVC.swift */; };
+		2E6FEFDC233276ED00DAF611 /* DataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6FEFDB233276ED00DAF611 /* DataBase.swift */; };
+		2E6FEFE023327BDA00DAF611 /* TeacherTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6FEFDF23327BDA00DAF611 /* TeacherTVC.swift */; };
+		2E6FEFE323327C8300DAF611 /* TeacherListTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6FEFE223327C8300DAF611 /* TeacherListTVCell.swift */; };
+		2E6FEFE523327CCF00DAF611 /* LogoutTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6FEFE423327CCF00DAF611 /* LogoutTVCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,10 +91,13 @@
 		2E6F500B2327F37B00B737C0 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		2E6F500E2327F41400B737C0 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		2E6F50112327F94A00B737C0 /* GuardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardVC.swift; sourceTree = "<group>"; };
-		2E6F50152327FCD200B737C0 /* TeacherVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherVC.swift; sourceTree = "<group>"; };
 		2E6F501A23280CAB00B737C0 /* GuardRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardRepository.swift; sourceTree = "<group>"; };
 		2E6F501C23280CBB00B737C0 /* GuardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardViewModel.swift; sourceTree = "<group>"; };
 		2E6F501E2329300C00B737C0 /* QRCodeScanVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeScanVC.swift; sourceTree = "<group>"; };
+		2E6FEFDB233276ED00DAF611 /* DataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBase.swift; sourceTree = "<group>"; };
+		2E6FEFDF23327BDA00DAF611 /* TeacherTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherTVC.swift; sourceTree = "<group>"; };
+		2E6FEFE223327C8300DAF611 /* TeacherListTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherListTVCell.swift; sourceTree = "<group>"; };
+		2E6FEFE423327CCF00DAF611 /* LogoutTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutTVCell.swift; sourceTree = "<group>"; };
 		3935632E36111AA3531FAAFD /* Pods-Bal.kg.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bal.kg.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bal.kg/Pods-Bal.kg.debug.xcconfig"; sourceTree = "<group>"; };
 		554CCC3532222FF431CBD8F1 /* Pods-Bal.kg.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bal.kg.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bal.kg/Pods-Bal.kg.release.xcconfig"; sourceTree = "<group>"; };
 		613737279732F5F6665DE9BD /* Pods_Bal_kg.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bal_kg.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -186,6 +192,7 @@
 		2E6F4FC82327D82900B737C0 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				2E6FEFDA233276CB00DAF611 /* Data Base */,
 				2E6F50132327FCAB00B737C0 /* Teacher */,
 				2E6F50102327F92000B737C0 /* Guard */,
 				2E6F4FC92327D84300B737C0 /* Auth */,
@@ -345,7 +352,7 @@
 		2E6F50132327FCAB00B737C0 /* Teacher */ = {
 			isa = PBXGroup;
 			children = (
-				2E6F50142327FCBA00B737C0 /* Controllers */,
+				2E6FEFE623327DBD00DAF611 /* MainScreen */,
 			);
 			path = Teacher;
 			sourceTree = "<group>";
@@ -353,7 +360,7 @@
 		2E6F50142327FCBA00B737C0 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				2E6F50152327FCD200B737C0 /* TeacherVC.swift */,
+				2E6FEFDF23327BDA00DAF611 /* TeacherTVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -381,6 +388,32 @@
 				2E6F501C23280CBB00B737C0 /* GuardViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		2E6FEFDA233276CB00DAF611 /* Data Base */ = {
+			isa = PBXGroup;
+			children = (
+				2E6FEFDB233276ED00DAF611 /* DataBase.swift */,
+			);
+			path = "Data Base";
+			sourceTree = "<group>";
+		};
+		2E6FEFE123327BFB00DAF611 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				2E6FEFE223327C8300DAF611 /* TeacherListTVCell.swift */,
+				2E6FEFE423327CCF00DAF611 /* LogoutTVCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		2E6FEFE623327DBD00DAF611 /* MainScreen */ = {
+			isa = PBXGroup;
+			children = (
+				2E6FEFE123327BFB00DAF611 /* Cells */,
+				2E6F50142327FCBA00B737C0 /* Controllers */,
+			);
+			path = MainScreen;
 			sourceTree = "<group>";
 		};
 		9EC14ECD2AFD2DEAD400923E /* Pods */ = {
@@ -470,30 +503,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Bal.kg/Pods-Bal.kg-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
-				"${BUILT_PRODUCTS_DIR}/PKHUD/PKHUD.framework",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-Bal.kg/Pods-Bal.kg-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PKHUD.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-Bal.kg/Pods-Bal.kg-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Bal.kg/Pods-Bal.kg-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Bal.kg/Pods-Bal.kg-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A7327B387797973FD1E4A3B8 /* [CP] Check Pods Manifest.lock */ = {
@@ -527,9 +545,10 @@
 			files = (
 				2E6F500A2327F36400B737C0 /* LoginRepository.swift in Sources */,
 				07068E52232FCA200053E04A /* SendDataModel.swift in Sources */,
-				2E6F50162327FCD200B737C0 /* TeacherVC.swift in Sources */,
 				2E6F4FEE2327DAC900B737C0 /* Extantion.swift in Sources */,
+				2E6FEFDC233276ED00DAF611 /* DataBase.swift in Sources */,
 				2E6F4FF22327DAC900B737C0 /* IQTitleBarButtonItem.swift in Sources */,
+				2E6FEFE523327CCF00DAF611 /* LogoutTVCell.swift in Sources */,
 				2E6F4FED2327DAC900B737C0 /* Alert.swift in Sources */,
 				2E6F50122327F94A00B737C0 /* GuardVC.swift in Sources */,
 				2E6F4FF42327DAC900B737C0 /* IQToolbar.swift in Sources */,
@@ -537,6 +556,7 @@
 				2E6F4FF32327DAC900B737C0 /* IQBarButtonItem.swift in Sources */,
 				2E6F501F2329300D00B737C0 /* QRCodeScanVC.swift in Sources */,
 				2E6F501D23280CBB00B737C0 /* GuardViewModel.swift in Sources */,
+				2E6FEFE323327C8300DAF611 /* TeacherListTVCell.swift in Sources */,
 				2E6F501B23280CAB00B737C0 /* GuardRepository.swift in Sources */,
 				2E6F4FF12327DAC900B737C0 /* IQPreviousNextView.swift in Sources */,
 				2E6F500C2327F37B00B737C0 /* LoginViewModel.swift in Sources */,
@@ -555,6 +575,7 @@
 				2E6F4FF62327DAC900B737C0 /* IQInvocation.swift in Sources */,
 				2E6F500F2327F41400B737C0 /* LoginModel.swift in Sources */,
 				2E6F4FFA2327DAC900B737C0 /* IQKeyboardReturnKeyHandler.swift in Sources */,
+				2E6FEFE023327BDA00DAF611 /* TeacherTVC.swift in Sources */,
 				2E6F4FEC2327DAC900B737C0 /* Constant.swift in Sources */,
 				2E6F4FF72327DAC900B737C0 /* IQKeyboardManagerConstantsInternal.swift in Sources */,
 				2E6F4FF02327DAC900B737C0 /* IQTextView.swift in Sources */,
