@@ -27,7 +27,7 @@ class GuardRepository: NSObject {
         })
     }
     
-    func sendData(id: String, status: Int, type: String, time: String, image: Data?) -> Observable<SendDataModel> {
+    func sendData(id: String, status: Int, type: String, time: String, image: UIImage?) -> Observable<SendDataModel> {
         return Observable.create({ (observer) -> Disposable in
             ServiceManager.sharedInstance.sendData(id: id, status: status, type: type, time: time, image: image, completion: { (responseJSON, error) in
                 

@@ -33,7 +33,7 @@ class GuardViewModel: NSObject {
         }
     }
     
-    func sendInfo(id: String, status: Int, type: String, time: String, image: Data?, completion: @escaping (Error?) -> ()) {
+    func sendInfo(id: String, status: Int, type: String, time: String, image: UIImage?, completion: @escaping (Error?) -> ()) {
         if self.isConnnected() == true {
             self.repository.sendData(id: id, status: status, type: type, time: time, image: image) .subscribe(onNext: { (result) in
                 self.guestInfoBehaviorRelay.accept(result)

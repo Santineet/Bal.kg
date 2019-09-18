@@ -98,7 +98,7 @@ class GuardVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, U
         guard let id = self.idField.text else {return}
         guard var type = self.guest.text else {return}
         
-        var image: Data? = nil
+        var image: UIImage? = nil
         
         
         if type == "Ученик"  {
@@ -107,7 +107,7 @@ class GuardVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, U
             type = "teacher"
         } else if type == "Гость" {
             type = "guest"
-            image = self.addImage.image?.pngData()
+            image = self.addImage.image
         }
         
         
