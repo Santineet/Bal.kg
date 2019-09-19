@@ -417,7 +417,13 @@
                             <outlet property="delegate" destination="uHK-PM-2dA" id="vS5-Tg-KQX"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="qSC-6k-7KN"/>
+                    <navigationItem key="navigationItem" id="qSC-6k-7KN">
+                        <barButtonItem key="rightBarButtonItem" title="Выйти" id="ht3-D9-FnU">
+                            <connections>
+                                <action selector="logout:" destination="uHK-PM-2dA" id="WOh-lC-Fcz"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="22i-r6-Duz" userLabel="First Responder" sceneMemberID="firstResponder"/>

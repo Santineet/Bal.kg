@@ -55,28 +55,23 @@ class ServiceManager: NSObject {
         guard let url = URL(string: "https://bal.kg/api/move" ) else { return }
         let token = UserDefaults.standard.value(forKey: "token") as! String
         let header: HTTPHeaders = ["token": "\(token)"]
-        let params = ["id": id,"status": status, "type": type, "time": time, "token": token] as [String:Any]
-        let headers: HTTPHeaders = [
-            "token": "\(token)",
-            "Content-type": "multipart/form-data"
-        ]
+        let params = ["id": id,"status": String(status), "type": type, "time": time, "token": token] as [String:String]
 
 
-        
         if let imageData = imageData {
             
             //Method для загрузки данных c image
             Alamofire.upload(multipartFormData: { (multipartFormData) in
-                
                 
                 guard let imageName = imageName else {return}
                 
                 multipartFormData.append(imageData, withName: "file", fileName: "\(imageName).jpeg", mimeType: "image/jpeg")
                 
                 for (key, value) in params {
-                    multipartFormData.append((value as AnyObject).data(using: String.Encoding.utf8.rawValue)!, withName: key)
+                    multipartFormData.append(value.data(using: String.Encoding(rawValue: String.Encoding.utf8.rawValue))!, withName: key)
                 }
-            }, to: url, headers: headers)
+                
+            }, to: url, headers: header)
             { (result) in
                 switch result {
                 case .success(let upload,_,_ ):
@@ -98,10 +93,10 @@ class ServiceManager: NSObject {
                     break
                 }
             }
-            
+
             //Method для загрузки данных без image
         } else {
-            Alamofire.request(url, method: .post, parameters: params, encoding: URLEncoding.default, headers: header).responseJSON
+            Alamofire.request(url, method: .post, parameters: nil, encoding: URLEncoding.default, headers: header).responseJSON
                 { responseJSON in
                     switch responseJSON.result {
                     case .success:
@@ -112,9 +107,7 @@ class ServiceManager: NSObject {
                     }
             }
         }
-        
-        
-        
+
     }
     
     

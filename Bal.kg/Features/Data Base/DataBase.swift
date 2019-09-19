@@ -13,9 +13,9 @@ class DataBase: Object {
     @objc dynamic var id = ""
     @objc dynamic var type = ""
     @objc dynamic var status = 0
-    @objc dynamic var image: Data? = nil
-//    @objc dynamic var imageName: String? = nil
-//    @objc dynamic var time = ""
+    @objc dynamic var imageData: Data? = nil
+    @objc dynamic var imageName: String? = nil
+    @objc dynamic var time = ""
 
 }
 

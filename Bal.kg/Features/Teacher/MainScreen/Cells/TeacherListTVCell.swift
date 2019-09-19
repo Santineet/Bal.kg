@@ -23,8 +23,8 @@ class TeacherListTVCell: UITableViewCell {
     }
     
     func dropShadow(label: UILabel) {
-        label.layer.masksToBounds = false
-        label.layer.shadowColor = UIColor(displayP3Red: 0.0, green: 0.64, blue: 1.0, alpha: 0.1).cgColor
+        label.layer.masksToBounds = true
+        label.layer.shadowColor = UIColor.white.cgColor
         label.layer.shadowOpacity = 0.9
         label.layer.shadowOffset = CGSize(width: 0, height: 2)
         label.layer.shadowRadius = 8
