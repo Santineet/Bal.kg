@@ -10,11 +10,12 @@ import UIKit
 
 class TeacherListTVCell: UITableViewCell {
 
-    @IBOutlet weak var listLabel: UILabel!
+    @IBOutlet weak var classesList: UIButton!
+    
    
     override func awakeFromNib() {
         super.awakeFromNib()
-        dropShadow(label: listLabel)
+        dropShadow(button: classesList)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -22,17 +23,17 @@ class TeacherListTVCell: UITableViewCell {
 
     }
     
-    func dropShadow(label: UILabel) {
-        label.layer.masksToBounds = true
-        label.layer.shadowColor = UIColor.white.cgColor
-        label.layer.shadowOpacity = 0.9
-        label.layer.shadowOffset = CGSize(width: 0, height: 2)
-        label.layer.shadowRadius = 8
-        label.layer.shouldRasterize = true
-        label.layer.rasterizationScale = true ? UIScreen.main.scale : 1
+    func dropShadow(button: UIButton) {
+        button.layer.masksToBounds = false
+        button.layer.shadowColor = UIColor.gray.cgColor
+        button.layer.shadowOpacity = 0.9
+        button.layer.shadowOffset = CGSize(width: 0, height: 2)
+        button.layer.shadowRadius = 8
+        button.layer.shouldRasterize = true
+        button.layer.rasterizationScale = true ? UIScreen.main.scale : 1
+        button.showsTouchWhenHighlighted = false
     }
 
-    
     
 
 }

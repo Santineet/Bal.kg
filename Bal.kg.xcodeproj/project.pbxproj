@@ -10,6 +10,16 @@
 		07068E52232FCA200053E04A /* SendDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07068E51232FCA200053E04A /* SendDataModel.swift */; };
 		24057D9ABBEE079352E1721B /* Pods_Bal_kg.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 613737279732F5F6665DE9BD /* Pods_Bal_kg.framework */; };
 		2E5091692333A3C6001FBD41 /* GuardVCExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5091682333A3C6001FBD41 /* GuardVCExtension.swift */; };
+		2E50916E2334CD10001FBD41 /* TeacherRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E50916D2334CD10001FBD41 /* TeacherRepository.swift */; };
+		2E5091702334CD21001FBD41 /* TeacherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E50916F2334CD21001FBD41 /* TeacherViewModel.swift */; };
+		2E5091722334D580001FBD41 /* ClassesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5091712334D580001FBD41 /* ClassesModel.swift */; };
+		2E5091792334F261001FBD41 /* TimetableCV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5091782334F261001FBD41 /* TimetableCV.swift */; };
+		2E50917B2334F2A8001FBD41 /* TimetableCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E50917A2334F2A8001FBD41 /* TimetableCVCell.swift */; };
+		2E50917D23351A5C001FBD41 /* TimeTableTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E50917C23351A5C001FBD41 /* TimeTableTVCell.swift */; };
+		2E509181233525B2001FBD41 /* TimetableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E509180233525B2001FBD41 /* TimetableModel.swift */; };
+		2E5091832335261D001FBD41 /* SubjectsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5091822335261D001FBD41 /* SubjectsModel.swift */; };
+		2E509185233526DD001FBD41 /* TimetableRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E509184233526DD001FBD41 /* TimetableRepository.swift */; };
+		2E50918723352883001FBD41 /* TimetableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E50918623352883001FBD41 /* TimetableViewModel.swift */; };
 		2E582150232A57EE00B49571 /* add_photo-512.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E58214F232A57ED00B49571 /* add_photo-512.png */; };
 		2E6F4FB42327D2A700B737C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6F4FB32327D2A700B737C0 /* AppDelegate.swift */; };
 		2E6F4FB92327D2A700B737C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E6F4FB72327D2A700B737C0 /* Main.storyboard */; };
@@ -56,6 +66,16 @@
 /* Begin PBXFileReference section */
 		07068E51232FCA200053E04A /* SendDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendDataModel.swift; sourceTree = "<group>"; };
 		2E5091682333A3C6001FBD41 /* GuardVCExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardVCExtension.swift; sourceTree = "<group>"; };
+		2E50916D2334CD10001FBD41 /* TeacherRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherRepository.swift; sourceTree = "<group>"; };
+		2E50916F2334CD21001FBD41 /* TeacherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherViewModel.swift; sourceTree = "<group>"; };
+		2E5091712334D580001FBD41 /* ClassesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassesModel.swift; sourceTree = "<group>"; };
+		2E5091782334F261001FBD41 /* TimetableCV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableCV.swift; sourceTree = "<group>"; };
+		2E50917A2334F2A8001FBD41 /* TimetableCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableCVCell.swift; sourceTree = "<group>"; };
+		2E50917C23351A5C001FBD41 /* TimeTableTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableTVCell.swift; sourceTree = "<group>"; };
+		2E509180233525B2001FBD41 /* TimetableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableModel.swift; sourceTree = "<group>"; };
+		2E5091822335261D001FBD41 /* SubjectsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectsModel.swift; sourceTree = "<group>"; };
+		2E509184233526DD001FBD41 /* TimetableRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableRepository.swift; sourceTree = "<group>"; };
+		2E50918623352883001FBD41 /* TimetableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableViewModel.swift; sourceTree = "<group>"; };
 		2E58214F232A57ED00B49571 /* add_photo-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add_photo-512.png"; sourceTree = "<group>"; };
 		2E6F4FB02327D2A700B737C0 /* Bal.kg.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bal.kg.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E6F4FB32327D2A700B737C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -123,6 +143,66 @@
 				613737279732F5F6665DE9BD /* Pods_Bal_kg.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2E50916B2333DF49001FBD41 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				2E50916F2334CD21001FBD41 /* TeacherViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		2E50916C2333DF54001FBD41 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				2E50916D2334CD10001FBD41 /* TeacherRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		2E5091732334F1EC001FBD41 /* Timetable */ = {
+			isa = PBXGroup;
+			children = (
+				2E5091742334F20C001FBD41 /* Cells */,
+				2E5091752334F215001FBD41 /* Repository */,
+				2E5091762334F21F001FBD41 /* ViewModel */,
+				2E5091772334F227001FBD41 /* Controllers */,
+			);
+			path = Timetable;
+			sourceTree = "<group>";
+		};
+		2E5091742334F20C001FBD41 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				2E50917A2334F2A8001FBD41 /* TimetableCVCell.swift */,
+				2E50917C23351A5C001FBD41 /* TimeTableTVCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		2E5091752334F215001FBD41 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				2E509184233526DD001FBD41 /* TimetableRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		2E5091762334F21F001FBD41 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				2E50918623352883001FBD41 /* TimetableViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		2E5091772334F227001FBD41 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				2E5091782334F261001FBD41 /* TimetableCV.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		2E58214E232A57E400B49571 /* Images */ = {
@@ -337,6 +417,9 @@
 			children = (
 				2E6F500E2327F41400B737C0 /* LoginModel.swift */,
 				07068E51232FCA200053E04A /* SendDataModel.swift */,
+				2E5091712334D580001FBD41 /* ClassesModel.swift */,
+				2E509180233525B2001FBD41 /* TimetableModel.swift */,
+				2E5091822335261D001FBD41 /* SubjectsModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -354,6 +437,7 @@
 		2E6F50132327FCAB00B737C0 /* Teacher */ = {
 			isa = PBXGroup;
 			children = (
+				2E5091732334F1EC001FBD41 /* Timetable */,
 				2E6FEFE623327DBD00DAF611 /* MainScreen */,
 			);
 			path = Teacher;
@@ -414,6 +498,8 @@
 			isa = PBXGroup;
 			children = (
 				2E6FEFE123327BFB00DAF611 /* Cells */,
+				2E50916C2333DF54001FBD41 /* Repository */,
+				2E50916B2333DF49001FBD41 /* ViewModel */,
 				2E6F50142327FCBA00B737C0 /* Controllers */,
 			);
 			path = MainScreen;
@@ -548,7 +634,9 @@
 			files = (
 				2E6F500A2327F36400B737C0 /* LoginRepository.swift in Sources */,
 				07068E52232FCA200053E04A /* SendDataModel.swift in Sources */,
+				2E5091792334F261001FBD41 /* TimetableCV.swift in Sources */,
 				2E6F4FEE2327DAC900B737C0 /* Extantion.swift in Sources */,
+				2E50917D23351A5C001FBD41 /* TimeTableTVCell.swift in Sources */,
 				2E6FEFDC233276ED00DAF611 /* DataBase.swift in Sources */,
 				2E6F4FF22327DAC900B737C0 /* IQTitleBarButtonItem.swift in Sources */,
 				2E6FEFE523327CCF00DAF611 /* LogoutTVCell.swift in Sources */,
@@ -556,16 +644,21 @@
 				2E6F50122327F94A00B737C0 /* GuardVC.swift in Sources */,
 				2E6F4FF42327DAC900B737C0 /* IQToolbar.swift in Sources */,
 				2E6F50062327ED1200B737C0 /* ApiClient.swift in Sources */,
+				2E509185233526DD001FBD41 /* TimetableRepository.swift in Sources */,
 				2E6F4FF32327DAC900B737C0 /* IQBarButtonItem.swift in Sources */,
 				2E5091692333A3C6001FBD41 /* GuardVCExtension.swift in Sources */,
 				2E6F501F2329300D00B737C0 /* QRCodeScanVC.swift in Sources */,
+				2E5091702334CD21001FBD41 /* TeacherViewModel.swift in Sources */,
 				2E6F501D23280CBB00B737C0 /* GuardViewModel.swift in Sources */,
 				2E6FEFE323327C8300DAF611 /* TeacherListTVCell.swift in Sources */,
 				2E6F501B23280CAB00B737C0 /* GuardRepository.swift in Sources */,
 				2E6F4FF12327DAC900B737C0 /* IQPreviousNextView.swift in Sources */,
 				2E6F500C2327F37B00B737C0 /* LoginViewModel.swift in Sources */,
+				2E50918723352883001FBD41 /* TimetableViewModel.swift in Sources */,
 				2E6F4FB42327D2A700B737C0 /* AppDelegate.swift in Sources */,
+				2E5091832335261D001FBD41 /* SubjectsModel.swift in Sources */,
 				2E6F4FEF2327DAC900B737C0 /* Reachability.swift in Sources */,
+				2E50916E2334CD10001FBD41 /* TeacherRepository.swift in Sources */,
 				2E6F4FFF2327DAC900B737C0 /* IQUIView+Hierarchy.swift in Sources */,
 				2E6F4FFE2327DAC900B737C0 /* IQUITextFieldView+Additions.swift in Sources */,
 				2E6F4FFC2327DAC900B737C0 /* IQUIScrollView+Additions.swift in Sources */,
@@ -579,8 +672,11 @@
 				2E6F4FF62327DAC900B737C0 /* IQInvocation.swift in Sources */,
 				2E6F500F2327F41400B737C0 /* LoginModel.swift in Sources */,
 				2E6F4FFA2327DAC900B737C0 /* IQKeyboardReturnKeyHandler.swift in Sources */,
+				2E50917B2334F2A8001FBD41 /* TimetableCVCell.swift in Sources */,
 				2E6FEFE023327BDA00DAF611 /* TeacherTVC.swift in Sources */,
+				2E5091722334D580001FBD41 /* ClassesModel.swift in Sources */,
 				2E6F4FEC2327DAC900B737C0 /* Constant.swift in Sources */,
+				2E509181233525B2001FBD41 /* TimetableModel.swift in Sources */,
 				2E6F4FF72327DAC900B737C0 /* IQKeyboardManagerConstantsInternal.swift in Sources */,
 				2E6F4FF02327DAC900B737C0 /* IQTextView.swift in Sources */,
 			);

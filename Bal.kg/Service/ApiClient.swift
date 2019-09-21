@@ -46,6 +46,44 @@ class ServiceManager: NSObject {
         }
     }
     
+    //MARK: Get Classes
+    
+    func getClasses(completion: @escaping Completion){
+        guard let url = URL(string: "https://bal.kg/api/classes" ) else { return }
+        let token = UserDefaults.standard.value(forKey: "token") as! String
+        let header: HTTPHeaders = ["token": "\(token)"]
+        
+        let params = ["token": token] as [String:Any]
+        Alamofire.request(url, method: .get, parameters: params, encoding: URLEncoding.default, headers: header).responseJSON
+            { responseJSON in
+                switch responseJSON.result {
+                case .success:
+                    completion(responseJSON.result.value, nil)
+                case .failure(let error):
+                    completion(nil, error)
+                }
+        }
+    }
+    
+    //MARK: Get Timetable
+    
+    func getTimetable(classId: String, completion: @escaping Completion){
+        guard let url = URL(string: "https://bal.kg/api/childschedule" ) else { return }
+        let token = UserDefaults.standard.value(forKey: "token") as! String
+        let header: HTTPHeaders = ["token": "\(token)"]
+        
+        let params = ["token": token, "class_id": classId] as [String:Any]
+        Alamofire.request(url, method: .get, parameters: params, encoding: URLEncoding.default, headers: header).responseJSON
+            { responseJSON in
+                switch responseJSON.result {
+                case .success:
+                    completion(responseJSON.result.value, nil)
+                case .failure(let error):
+                    completion(nil, error)
+                }
+        }
+    }
+    
     
     
     //MARK: Send Data Methods

@@ -1,25 +1,24 @@
 //
-//  GuardViewModel.swift
+//  TeacherViewModel.swift
 //  Bal.kg
 //
-//  Created by Mairambek on 10/09/2019.
+//  Created by Mairambek on 9/20/19.
 //  Copyright © 2019 Sunrise. All rights reserved.
 //
 
-import Foundation
 import UIKit
 import RxSwift
 import RxCocoa
 
-class GuardViewModel: NSObject {
-
+class TeacherViewModel: NSObject {
+    
     var errorBehaviorRelay = BehaviorRelay<Error>(value: NSError.init(message: ""))
     let logoutBehaviorRelay = BehaviorRelay<LogInModel>(value: LogInModel())
-    let guestInfoBehaviorRelay = BehaviorRelay<SendDataModel>(value: SendDataModel())
+    let classesBehaviorRelay = BehaviorRelay<[ClassesModel]>(value: [])
     var reachability:Reachability?
-
+    
     private let disposeBag = DisposeBag()
-    private let repository = GuardRepository()
+    private let repository = TeacherRepository()
     
     func logout(completion: @escaping (Error?) -> ()) {
         if self.isConnnected() == true {
@@ -27,16 +26,16 @@ class GuardViewModel: NSObject {
                 self.logoutBehaviorRelay.accept(result)
             }, onError: { (error) in
                 self.errorBehaviorRelay.accept(error)
-            }).disposed(by: disposeBag) 
+            }).disposed(by: disposeBag)
         } else {
             completion(NSError.init(message: "Для получения данных требуется подключение к интернету"))
         }
     }
     
-    func sendInfo(id: String, status: Int, type: String, time: String, imageData: Data?,imageName: String?, completion: @escaping (Error?) -> ()) {
+    func getClasses(completion: @escaping (Error?) -> ()) {
         if self.isConnnected() == true {
-            self.repository.sendData(id: id, status: status, type: type, time: time, imageData: imageData, imageName: imageName) .subscribe(onNext: { (result) in
-                self.guestInfoBehaviorRelay.accept(result)
+            self.repository.getClasses().subscribe(onNext: { (classes) in
+                self.classesBehaviorRelay.accept(classes)
             }, onError: { (error) in
                 self.errorBehaviorRelay.accept(error)
             }).disposed(by: disposeBag)
@@ -44,6 +43,7 @@ class GuardViewModel: NSObject {
             completion(NSError.init(message: "Для получения данных требуется подключение к интернету"))
         }
     }
+    
     
     func isConnnected() -> Bool{
         do {
@@ -62,8 +62,8 @@ class GuardViewModel: NSObject {
             return false
         }
     }
-
-
+    
+    
 }
 
 
