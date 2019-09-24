@@ -84,7 +84,44 @@ class ServiceManager: NSObject {
         }
     }
     
+    //MARK: Get Childrens List
     
+    func getChildrens(classId: String, completion: @escaping Completion){
+        guard let url = URL(string: "https://bal.kg/api/childrens" ) else { return }
+        let token = UserDefaults.standard.value(forKey: "token") as! String
+        
+        let params = ["token": token, "class_id": classId] as [String:Any]
+        Alamofire.request(url, method: .get, parameters: params, encoding: URLEncoding.default, headers: nil).responseJSON
+            { responseJSON in
+                switch responseJSON.result {
+                case .success:
+                    completion(responseJSON.result.value, nil)
+                case .failure(let error):
+                    completion(nil, error)
+                }
+        }
+    }
+    
+    //MARK: Post Homework
+    
+    func postHomework(classId: String, subjectId: String, date: String, text: String, completion: @escaping Completion){
+        guard let url = URL(string: "https://bal.kg/api/homework" ) else { return }
+        let token = UserDefaults.standard.value(forKey: "token") as! String
+     
+        let params = ["token": token, "class_id" : classId, "subject_id": subjectId, "date": date, "text": text] as [String: String]
+        
+        Alamofire.request(url, method: .post, parameters: params, encoding: URLEncoding.default, headers: nil).responseJSON
+            { responseJSON in
+                switch responseJSON.result {
+                case .success:
+                    completion(responseJSON.result.value, nil)
+                    break
+                case .failure(let error):
+                    completion(nil,error)
+                }
+        }
+        
+    }
     
     //MARK: Send Data Methods
     

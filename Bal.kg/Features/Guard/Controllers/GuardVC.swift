@@ -126,9 +126,7 @@ class GuardVC: UIViewController {
             
             if self.guardVM.isConnnected() == true {
                 if items.count > 0 {
-                    print("items > 0")
                     if sendDataFromDataBase() == true {
-                        print("true 2")
                         try! realm.write {
                             self.realm.deleteAll()
                         }
@@ -136,12 +134,10 @@ class GuardVC: UIViewController {
                         self.postGuestData(id: id, type: type, imageData: imageData, imageName: imageName)
                     }
                 } else {
-                    print("connect is true")
                     self.postGuestData(id: id, type: type, imageData: imageData, imageName: imageName)
                 }
                 
             } else {
-                print("no connect")
                 self.postGuestData(id: id, type: type, imageData: imageData, imageName: imageName)
             }
             
@@ -210,12 +206,11 @@ class GuardVC: UIViewController {
             let imageData = item.imageData
             let imageName = item.imageName
 
-            print("id \(id)")
             
             
             self.guardVM.sendInfo(id: id, status: status, type: type, time: time, imageData: imageData, imageName: imageName) { (error) in
                 if error != nil {
-//                    Alert.displayAlert(title: "", message: error?.localizedDescription ?? "Ошибка соединения", vc: self)
+                    Alert.displayAlert(title: "", message: error?.localizedDescription ?? "Ошибка соединения", vc: self)
                     return
                 }
             }
@@ -223,7 +218,6 @@ class GuardVC: UIViewController {
             usleep(200000)
         }
         
-        print("true")
         return true
     }
     

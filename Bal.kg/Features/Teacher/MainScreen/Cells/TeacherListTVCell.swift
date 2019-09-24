@@ -26,8 +26,8 @@ class TeacherListTVCell: UITableViewCell {
     func dropShadow(button: UIButton) {
         button.layer.masksToBounds = false
         button.layer.shadowColor = UIColor.gray.cgColor
-        button.layer.shadowOpacity = 0.9
-        button.layer.shadowOffset = CGSize(width: 0, height: 2)
+        button.layer.shadowOpacity = 0.7
+        button.layer.shadowOffset = CGSize(width: 0, height: 1)
         button.layer.shadowRadius = 8
         button.layer.shouldRasterize = true
         button.layer.rasterizationScale = true ? UIScreen.main.scale : 1

@@ -11,7 +11,7 @@ import RxSwift
 import PKHUD
 
 class TimetableCV: UICollectionViewController, UICollectionViewDelegateFlowLayout { 
-
+    
     let timetableVM = TimetableViewModel()
     let disposeBag = DisposeBag()
     var subjectsList = [TimetableModel]()
@@ -19,13 +19,14 @@ class TimetableCV: UICollectionViewController, UICollectionViewDelegateFlowLayou
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
+        
+        navigationItem.title = "Расписание"
         getTimetable()
-
+        
     }
-
-
+    
+    
     func getTimetable(){
         HUD.show(.progress)
         
@@ -40,7 +41,7 @@ class TimetableCV: UICollectionViewController, UICollectionViewDelegateFlowLayou
         self.timetableVM.timetableBehaviorRelay.skip(1).subscribe(onNext: { (subjectsList) in
             self.subjectsList = subjectsList
             HUD.hide()
-           self.collectionView.reloadData()
+            self.collectionView.reloadData()
             
         }).disposed(by: disposeBag)
         
@@ -55,12 +56,12 @@ class TimetableCV: UICollectionViewController, UICollectionViewDelegateFlowLayou
     
     
     // MARK: UICollectionViewDataSource
-
-
+    
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return subjectsList.count
     }
-
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let subject = subjectsList[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TimetableCVCell", for: indexPath) as! TimetableCVCell
@@ -70,14 +71,16 @@ class TimetableCV: UICollectionViewController, UICollectionViewDelegateFlowLayou
         cell.tableView.tag = indexPath.row
         cell.tableView.tableFooterView = UIView()
         cell.tableView.isScrollEnabled = false
+        
+        if subject.subjects.count == 0 {
+            cell.tableView.allowsSelection = false
+        }
         return cell
     }
     
     //MARK: collectionViewLayout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,sizeForItemAt indexPath:IndexPath) -> CGSize {
         let subjects = self.subjectsList[indexPath.row].subjects.count
-        
-
         if indexPath.row % 2 == 0 {
             if subjectsList[indexPath.row].subjects.count == 0 &&  subjectsList[indexPath.row + 1].subjects.count == 0 {
                 return CGSize(width: view.bounds.width/2 - 20, height: CGFloat(68+28))
@@ -101,13 +104,13 @@ class TimetableCV: UICollectionViewController, UICollectionViewDelegateFlowLayou
                 let count = subjectsList[indexPath.row - 1].subjects.count
                 return CGSize(width: view.bounds.width/2 - 20, height: CGFloat(count*68+28))
             }
-
+            
         }
-
+        
     }
-
-
-
+    
+    
+    
 }
 
 
@@ -135,10 +138,11 @@ extension TimetableCV: UITableViewDelegate, UITableViewDataSource {
             
         }
         
-let subjects = list.subjects[indexPath.row]
+        
+        let subjects = list.subjects[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "TimeTableTVCell", for: indexPath) as! TimeTableTVCell
         
-         cell.timeLesson.text = subjects.timeStart
+        cell.timeLesson.text = subjects.timeStart
         cell.nameLesson.text = subjects.nameSubject
         
         
@@ -148,6 +152,28 @@ let subjects = list.subjects[indexPath.row]
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 68
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let subjectId = subjectsList[tableView.tag].subjects[indexPath.row].id
+        
+        let popUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PopUpVC") as! PopUpVC
+        
+   
+        
+        popUpVC.classId = classId
+        popUpVC.subjectId = subjectId
+        
+        self.addChild(popUpVC) // 2
+        popUpVC.view.frame = self.view.frame  // 3
+        self.view.addSubview(popUpVC.view) // 4
+        popUpVC.didMove(toParent: self) // 5
+        
+        
+    }
+    
     
     
     

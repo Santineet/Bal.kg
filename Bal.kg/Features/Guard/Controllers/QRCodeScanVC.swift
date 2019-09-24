@@ -114,7 +114,6 @@ class QRCodeScanVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
 
     func found(code: String) {
-        print(code)
         
         let codeString = code
 

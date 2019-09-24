@@ -118,7 +118,7 @@ class TeacherTVC: UITableViewController {
             return 110
         }
         
-        return 80
+        return 70
     }
     
     @objc func didTappedButton(button: UIButton){

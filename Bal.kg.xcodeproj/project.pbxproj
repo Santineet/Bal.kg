@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		07068E52232FCA200053E04A /* SendDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07068E51232FCA200053E04A /* SendDataModel.swift */; };
 		24057D9ABBEE079352E1721B /* Pods_Bal_kg.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 613737279732F5F6665DE9BD /* Pods_Bal_kg.framework */; };
+		2E4C68D523391542000BF437 /* MarksTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4C68D423391542000BF437 /* MarksTVC.swift */; };
+		2E4C68DB233915B0000BF437 /* MarkCommentTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4C68DA233915AF000BF437 /* MarkCommentTVCell.swift */; };
+		2E4C68DD233915F0000BF437 /* ChildListForMarkTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4C68DC233915F0000BF437 /* ChildListForMarkTVCell.swift */; };
+		2E4C68DF233917A0000BF437 /* ChildsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4C68DE233917A0000BF437 /* ChildsModel.swift */; };
+		2E4C68E123391872000BF437 /* MarksRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4C68E023391872000BF437 /* MarksRepository.swift */; };
+		2E4C68E323391A06000BF437 /* MarksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4C68E223391A06000BF437 /* MarksViewModel.swift */; };
 		2E5091692333A3C6001FBD41 /* GuardVCExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5091682333A3C6001FBD41 /* GuardVCExtension.swift */; };
 		2E50916E2334CD10001FBD41 /* TeacherRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E50916D2334CD10001FBD41 /* TeacherRepository.swift */; };
 		2E5091702334CD21001FBD41 /* TeacherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E50916F2334CD21001FBD41 /* TeacherViewModel.swift */; };
@@ -21,6 +27,9 @@
 		2E509185233526DD001FBD41 /* TimetableRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E509184233526DD001FBD41 /* TimetableRepository.swift */; };
 		2E50918723352883001FBD41 /* TimetableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E50918623352883001FBD41 /* TimetableViewModel.swift */; };
 		2E582150232A57EE00B49571 /* add_photo-512.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E58214F232A57ED00B49571 /* add_photo-512.png */; };
+		2E631BBD233A610B00922611 /* HomeworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E631BBC233A610B00922611 /* HomeworkModel.swift */; };
+		2E631BBF233A617E00922611 /* HomeworkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E631BBE233A617E00922611 /* HomeworkViewModel.swift */; };
+		2E631BC1233A71BB00922611 /* SendHomeworkTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E631BC0233A71BB00922611 /* SendHomeworkTVCell.swift */; };
 		2E6F4FB42327D2A700B737C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6F4FB32327D2A700B737C0 /* AppDelegate.swift */; };
 		2E6F4FB92327D2A700B737C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E6F4FB72327D2A700B737C0 /* Main.storyboard */; };
 		2E6F4FBB2327D2AA00B737C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E6F4FBA2327D2AA00B737C0 /* Assets.xcassets */; };
@@ -61,10 +70,19 @@
 		2E6FEFE023327BDA00DAF611 /* TeacherTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6FEFDF23327BDA00DAF611 /* TeacherTVC.swift */; };
 		2E6FEFE323327C8300DAF611 /* TeacherListTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6FEFE223327C8300DAF611 /* TeacherListTVCell.swift */; };
 		2E6FEFE523327CCF00DAF611 /* LogoutTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6FEFE423327CCF00DAF611 /* LogoutTVCell.swift */; };
+		2EDB66A12336639600967994 /* PopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDB66A02336639600967994 /* PopUpVC.swift */; };
+		2EDB66A4233676D300967994 /* HomeworkVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDB66A3233676D300967994 /* HomeworkVC.swift */; };
+		2EDB66A92337D66F00967994 /* HomeworkRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDB66A82337D66F00967994 /* HomeworkRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		07068E51232FCA200053E04A /* SendDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendDataModel.swift; sourceTree = "<group>"; };
+		2E4C68D423391542000BF437 /* MarksTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarksTVC.swift; sourceTree = "<group>"; };
+		2E4C68DA233915AF000BF437 /* MarkCommentTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkCommentTVCell.swift; sourceTree = "<group>"; };
+		2E4C68DC233915F0000BF437 /* ChildListForMarkTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildListForMarkTVCell.swift; sourceTree = "<group>"; };
+		2E4C68DE233917A0000BF437 /* ChildsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildsModel.swift; sourceTree = "<group>"; };
+		2E4C68E023391872000BF437 /* MarksRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarksRepository.swift; sourceTree = "<group>"; };
+		2E4C68E223391A06000BF437 /* MarksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarksViewModel.swift; sourceTree = "<group>"; };
 		2E5091682333A3C6001FBD41 /* GuardVCExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardVCExtension.swift; sourceTree = "<group>"; };
 		2E50916D2334CD10001FBD41 /* TeacherRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherRepository.swift; sourceTree = "<group>"; };
 		2E50916F2334CD21001FBD41 /* TeacherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherViewModel.swift; sourceTree = "<group>"; };
@@ -77,6 +95,9 @@
 		2E509184233526DD001FBD41 /* TimetableRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableRepository.swift; sourceTree = "<group>"; };
 		2E50918623352883001FBD41 /* TimetableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableViewModel.swift; sourceTree = "<group>"; };
 		2E58214F232A57ED00B49571 /* add_photo-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add_photo-512.png"; sourceTree = "<group>"; };
+		2E631BBC233A610B00922611 /* HomeworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkModel.swift; sourceTree = "<group>"; };
+		2E631BBE233A617E00922611 /* HomeworkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkViewModel.swift; sourceTree = "<group>"; };
+		2E631BC0233A71BB00922611 /* SendHomeworkTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendHomeworkTVCell.swift; sourceTree = "<group>"; };
 		2E6F4FB02327D2A700B737C0 /* Bal.kg.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bal.kg.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E6F4FB32327D2A700B737C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2E6F4FB82327D2A700B737C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -120,6 +141,9 @@
 		2E6FEFDF23327BDA00DAF611 /* TeacherTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherTVC.swift; sourceTree = "<group>"; };
 		2E6FEFE223327C8300DAF611 /* TeacherListTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherListTVCell.swift; sourceTree = "<group>"; };
 		2E6FEFE423327CCF00DAF611 /* LogoutTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutTVCell.swift; sourceTree = "<group>"; };
+		2EDB66A02336639600967994 /* PopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpVC.swift; sourceTree = "<group>"; };
+		2EDB66A3233676D300967994 /* HomeworkVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkVC.swift; sourceTree = "<group>"; };
+		2EDB66A82337D66F00967994 /* HomeworkRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkRepository.swift; sourceTree = "<group>"; };
 		3935632E36111AA3531FAAFD /* Pods-Bal.kg.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bal.kg.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bal.kg/Pods-Bal.kg.debug.xcconfig"; sourceTree = "<group>"; };
 		554CCC3532222FF431CBD8F1 /* Pods-Bal.kg.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bal.kg.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bal.kg/Pods-Bal.kg.release.xcconfig"; sourceTree = "<group>"; };
 		613737279732F5F6665DE9BD /* Pods_Bal_kg.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bal_kg.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -143,6 +167,51 @@
 				613737279732F5F6665DE9BD /* Pods_Bal_kg.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2E4C68D3233914FE000BF437 /* Marks */ = {
+			isa = PBXGroup;
+			children = (
+				2E4C68D92339156F000BF437 /* Cells */,
+				2E4C68D823391567000BF437 /* Repository */,
+				2E4C68D723391560000BF437 /* ViewModel */,
+				2E4C68D623391558000BF437 /* Controllers */,
+				2E4C68D423391542000BF437 /* MarksTVC.swift */,
+			);
+			path = Marks;
+			sourceTree = "<group>";
+		};
+		2E4C68D623391558000BF437 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		2E4C68D723391560000BF437 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				2E4C68E223391A06000BF437 /* MarksViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		2E4C68D823391567000BF437 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				2E4C68E023391872000BF437 /* MarksRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		2E4C68D92339156F000BF437 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				2E4C68DA233915AF000BF437 /* MarkCommentTVCell.swift */,
+				2E4C68DC233915F0000BF437 /* ChildListForMarkTVCell.swift */,
+				2E631BC0233A71BB00922611 /* SendHomeworkTVCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		2E50916B2333DF49001FBD41 /* ViewModel */ = {
@@ -201,6 +270,7 @@
 			isa = PBXGroup;
 			children = (
 				2E5091782334F261001FBD41 /* TimetableCV.swift */,
+				2EDB66A02336639600967994 /* PopUpVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -420,6 +490,8 @@
 				2E5091712334D580001FBD41 /* ClassesModel.swift */,
 				2E509180233525B2001FBD41 /* TimetableModel.swift */,
 				2E5091822335261D001FBD41 /* SubjectsModel.swift */,
+				2E4C68DE233917A0000BF437 /* ChildsModel.swift */,
+				2E631BBC233A610B00922611 /* HomeworkModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -437,6 +509,8 @@
 		2E6F50132327FCAB00B737C0 /* Teacher */ = {
 			isa = PBXGroup;
 			children = (
+				2E4C68D3233914FE000BF437 /* Marks */,
+				2EDB66A2233676A000967994 /* Homework */,
 				2E5091732334F1EC001FBD41 /* Timetable */,
 				2E6FEFE623327DBD00DAF611 /* MainScreen */,
 			);
@@ -503,6 +577,40 @@
 				2E6F50142327FCBA00B737C0 /* Controllers */,
 			);
 			path = MainScreen;
+			sourceTree = "<group>";
+		};
+		2EDB66A2233676A000967994 /* Homework */ = {
+			isa = PBXGroup;
+			children = (
+				2EDB66A72337D63A00967994 /* Repository */,
+				2EDB66A62337D63100967994 /* ViewModel */,
+				2EDB66A52337D61A00967994 /* Controllers */,
+			);
+			path = Homework;
+			sourceTree = "<group>";
+		};
+		2EDB66A52337D61A00967994 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				2EDB66A3233676D300967994 /* HomeworkVC.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		2EDB66A62337D63100967994 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				2E631BBE233A617E00922611 /* HomeworkViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		2EDB66A72337D63A00967994 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				2EDB66A82337D66F00967994 /* HomeworkRepository.swift */,
+			);
+			path = Repository;
 			sourceTree = "<group>";
 		};
 		9EC14ECD2AFD2DEAD400923E /* Pods */ = {
@@ -638,35 +746,45 @@
 				2E6F4FEE2327DAC900B737C0 /* Extantion.swift in Sources */,
 				2E50917D23351A5C001FBD41 /* TimeTableTVCell.swift in Sources */,
 				2E6FEFDC233276ED00DAF611 /* DataBase.swift in Sources */,
+				2E631BBF233A617E00922611 /* HomeworkViewModel.swift in Sources */,
 				2E6F4FF22327DAC900B737C0 /* IQTitleBarButtonItem.swift in Sources */,
 				2E6FEFE523327CCF00DAF611 /* LogoutTVCell.swift in Sources */,
 				2E6F4FED2327DAC900B737C0 /* Alert.swift in Sources */,
 				2E6F50122327F94A00B737C0 /* GuardVC.swift in Sources */,
+				2E4C68DB233915B0000BF437 /* MarkCommentTVCell.swift in Sources */,
+				2EDB66A4233676D300967994 /* HomeworkVC.swift in Sources */,
 				2E6F4FF42327DAC900B737C0 /* IQToolbar.swift in Sources */,
 				2E6F50062327ED1200B737C0 /* ApiClient.swift in Sources */,
 				2E509185233526DD001FBD41 /* TimetableRepository.swift in Sources */,
 				2E6F4FF32327DAC900B737C0 /* IQBarButtonItem.swift in Sources */,
 				2E5091692333A3C6001FBD41 /* GuardVCExtension.swift in Sources */,
+				2E4C68E323391A06000BF437 /* MarksViewModel.swift in Sources */,
 				2E6F501F2329300D00B737C0 /* QRCodeScanVC.swift in Sources */,
 				2E5091702334CD21001FBD41 /* TeacherViewModel.swift in Sources */,
 				2E6F501D23280CBB00B737C0 /* GuardViewModel.swift in Sources */,
 				2E6FEFE323327C8300DAF611 /* TeacherListTVCell.swift in Sources */,
 				2E6F501B23280CAB00B737C0 /* GuardRepository.swift in Sources */,
 				2E6F4FF12327DAC900B737C0 /* IQPreviousNextView.swift in Sources */,
+				2EDB66A12336639600967994 /* PopUpVC.swift in Sources */,
 				2E6F500C2327F37B00B737C0 /* LoginViewModel.swift in Sources */,
+				2E4C68DD233915F0000BF437 /* ChildListForMarkTVCell.swift in Sources */,
 				2E50918723352883001FBD41 /* TimetableViewModel.swift in Sources */,
 				2E6F4FB42327D2A700B737C0 /* AppDelegate.swift in Sources */,
 				2E5091832335261D001FBD41 /* SubjectsModel.swift in Sources */,
 				2E6F4FEF2327DAC900B737C0 /* Reachability.swift in Sources */,
 				2E50916E2334CD10001FBD41 /* TeacherRepository.swift in Sources */,
+				2EDB66A92337D66F00967994 /* HomeworkRepository.swift in Sources */,
 				2E6F4FFF2327DAC900B737C0 /* IQUIView+Hierarchy.swift in Sources */,
 				2E6F4FFE2327DAC900B737C0 /* IQUITextFieldView+Additions.swift in Sources */,
 				2E6F4FFC2327DAC900B737C0 /* IQUIScrollView+Additions.swift in Sources */,
 				2E6F4FFB2327DAC900B737C0 /* IQKeyboardManager.swift in Sources */,
 				2E6F4FF82327DAC900B737C0 /* IQKeyboardManagerConstants.swift in Sources */,
+				2E631BBD233A610B00922611 /* HomeworkModel.swift in Sources */,
 				2E6F4FF52327DAC900B737C0 /* IQUIView+IQKeyboardToolbar.swift in Sources */,
+				2E631BC1233A71BB00922611 /* SendHomeworkTVCell.swift in Sources */,
 				2E6F50002327DAC900B737C0 /* IQNSArray+Sort.swift in Sources */,
 				2E6F4FFD2327DAC900B737C0 /* IQUIViewController+Additions.swift in Sources */,
+				2E4C68DF233917A0000BF437 /* ChildsModel.swift in Sources */,
 				2E6F50072327ED1200B737C0 /* LoginLogoutManager.swift in Sources */,
 				2E6F50022327EC5300B737C0 /* AuthVC.swift in Sources */,
 				2E6F4FF62327DAC900B737C0 /* IQInvocation.swift in Sources */,
@@ -674,10 +792,12 @@
 				2E6F4FFA2327DAC900B737C0 /* IQKeyboardReturnKeyHandler.swift in Sources */,
 				2E50917B2334F2A8001FBD41 /* TimetableCVCell.swift in Sources */,
 				2E6FEFE023327BDA00DAF611 /* TeacherTVC.swift in Sources */,
+				2E4C68D523391542000BF437 /* MarksTVC.swift in Sources */,
 				2E5091722334D580001FBD41 /* ClassesModel.swift in Sources */,
 				2E6F4FEC2327DAC900B737C0 /* Constant.swift in Sources */,
 				2E509181233525B2001FBD41 /* TimetableModel.swift in Sources */,
 				2E6F4FF72327DAC900B737C0 /* IQKeyboardManagerConstantsInternal.swift in Sources */,
+				2E4C68E123391872000BF437 /* MarksRepository.swift in Sources */,
 				2E6F4FF02327DAC900B737C0 /* IQTextView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
