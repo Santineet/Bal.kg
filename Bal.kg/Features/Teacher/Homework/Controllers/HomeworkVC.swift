@@ -112,9 +112,9 @@ class HomeworkVC: UIViewController, UITextFieldDelegate {
     }
     
     @objc func datePickerValueChanged(sender:UIDatePicker) {
-        let timeFormatter = DateFormatter()
-        timeFormatter.dateFormat = "dd.MM.YYYY"
-        self.dateField.text = timeFormatter.string(from: datePicker.date)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.YYYY"
+        self.dateField.text = dateFormatter.string(from: datePicker.date)
     }
     
     

@@ -15,6 +15,8 @@ class MarksViewModel: NSObject {
     
     var errorBehaviorRelay = BehaviorRelay<Error>(value: NSError.init(message: ""))
     let childsListBehaviorRelay = BehaviorRelay<[ChildsModel]>(value: [])
+    let postResultBehaviorRelay = BehaviorRelay<HomeworkModel>(value: HomeworkModel())
+
     var reachability:Reachability?
     
     private let disposeBag = DisposeBag()
@@ -32,6 +34,17 @@ class MarksViewModel: NSObject {
         }
     }
     
+    func postMarks(marksObjc: [String: String], subjectId: String, date: String, comment: String, part: String, typeMark: String, completion: @escaping (Error?) -> ()) {
+        if self.isConnnected() == true {
+            self.repository.postMarks(marksObjc: marksObjc, subjectId: subjectId, date: date, comment: comment, part: part, typeMark: typeMark).subscribe(onNext: { (result) in
+                self.postResultBehaviorRelay.accept(result)
+            }, onError: { (error) in
+                self.errorBehaviorRelay.accept(error)
+            }).disposed(by: disposeBag)
+        } else {
+            completion(NSError.init(message: "Для получения данных требуется подключение к интернету"))
+        }
+    }
     
     func isConnnected() -> Bool{
         do {

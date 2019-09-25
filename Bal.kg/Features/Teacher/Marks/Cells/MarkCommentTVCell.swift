@@ -13,7 +13,7 @@ class MarkCommentTVCell: UITableViewCell {
     @IBOutlet weak var markSwitch: UISwitch!
     @IBOutlet weak var termButton: UIButton!
     @IBOutlet weak var markComment: UITextView!
-    
+    var comment: String = ""
     var link: MarksTVC?
     
     override func awakeFromNib() {
@@ -24,7 +24,8 @@ class MarkCommentTVCell: UITableViewCell {
         markComment.delegate = self
         markSwitch.addTarget(self, action: #selector(switchTarget(paramTarget:)), for: .valueChanged)
         dropShadow(button: termButton)
-        textViewShadow(txtView: markComment)
+        comment = markComment.text
+        
     }
     @objc func switchTarget(paramTarget: UISwitch){
         self.link?.switchTarget(sender: paramTarget)
@@ -47,13 +48,7 @@ class MarkCommentTVCell: UITableViewCell {
         button.showsTouchWhenHighlighted = false
     }
     
-    func textViewShadow(txtView: UITextView) {
-        txtView.layer.masksToBounds = false
-        txtView.layer.cornerRadius = 6
-        txtView.clipsToBounds = false
-        txtView.layer.shadowOpacity=0.7
-        txtView.layer.shadowOffset = CGSize(width: 3, height: 3)
-    }
+
     
     
 
@@ -74,6 +69,9 @@ extension MarkCommentTVCell: UITextViewDelegate {
             textView.text = "Комментарий..."
             textView.textColor = UIColor.lightGray
         }
+        
+        self.comment = textView.text
+        
         textView.resignFirstResponder()
     }
 

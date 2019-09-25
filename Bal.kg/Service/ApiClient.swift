@@ -123,6 +123,42 @@ class ServiceManager: NSObject {
         
     }
     
+    //MARK: Post Marks
+    
+    func postMarks(marksObjc: [String: String], subjectId: String, date: String, comment: String, part: String, typeMark: String, completion: @escaping Completion){
+        guard let url = URL(string: "https://bal.kg/api/homework" ) else { return }
+        let token = UserDefaults.standard.value(forKey: "token") as! String
+        
+        for i in 0..<marksObjc.count {
+            let id = Array(marksObjc)[i].key
+            let mark = Array(marksObjc)[i].value
+            print("id \(id)")
+            print("mark \(mark)")
+            print("------------------")
+
+            let params = ["token": token, "id" : id, "subject_id": subjectId, "mark": mark, "part": part,"type_mark": typeMark, "date": date, "comm": comment] as [String: Any]
+            //Задержка для масства в 200 миллисекунд
+            Alamofire.request(url, method: .post, parameters: params, encoding: URLEncoding.default, headers: nil).responseJSON
+                { responseJSON in
+                    if i == marksObjc.count - 1 {
+                        switch responseJSON.result {
+                        case .success:
+                            completion(responseJSON.result.value, nil)
+                            break
+                        case .failure(let error):
+                            completion(nil,error)
+                        }
+                    }
+            }
+
+            usleep(200000)
+
+        }
+        
+        
+
+    }
+    
     //MARK: Send Data Methods
     
     func sendData(id: String, status: Int, type: String, time: String, imageData: Data?,imageName: String?, completion: @escaping Completion){

@@ -39,7 +39,22 @@ class MarksRepository: NSObject {
         })
     }
     
-    
-    
+    func postMarks(marksObjc: [String: String], subjectId: String, date: String, comment: String, part: String, typeMark: String) -> Observable<HomeworkModel> {
+        return Observable.create({ (observer) -> Disposable in
+            ServiceManager.sharedInstance.postMarks(marksObjc: marksObjc, subjectId: subjectId, date: date, comment: comment, part: part, typeMark: typeMark, completion: { (responseJSON, error) in
+            
+                guard let jsonArray = responseJSON as? [String:Any] else { return }
+                guard let result = Mapper<HomeworkModel>().map(JSON: jsonArray) else {
+                    observer.onError(error ?? Constant.BACKEND_ERROR)
+                    return
+                }
+                observer.onNext(result)
+                observer.onCompleted()
+            })
+            
+            return Disposables.create()
+        })
+        
+    }
     
 }

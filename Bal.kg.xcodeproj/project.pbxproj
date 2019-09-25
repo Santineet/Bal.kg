@@ -176,7 +176,6 @@
 				2E4C68D823391567000BF437 /* Repository */,
 				2E4C68D723391560000BF437 /* ViewModel */,
 				2E4C68D623391558000BF437 /* Controllers */,
-				2E4C68D423391542000BF437 /* MarksTVC.swift */,
 			);
 			path = Marks;
 			sourceTree = "<group>";
@@ -184,6 +183,7 @@
 		2E4C68D623391558000BF437 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				2E4C68D423391542000BF437 /* MarksTVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
