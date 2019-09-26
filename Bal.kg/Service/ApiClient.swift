@@ -126,7 +126,7 @@ class ServiceManager: NSObject {
     //MARK: Post Marks
     
     func postMarks(marksObjc: [String: String], subjectId: String, date: String, comment: String, part: String, typeMark: String, completion: @escaping Completion){
-        guard let url = URL(string: "https://bal.kg/api/homework" ) else { return }
+        guard let url = URL(string: "https://bal.kg/api/marks" ) else { return }
         let token = UserDefaults.standard.value(forKey: "token") as! String
         
         for i in 0..<marksObjc.count {
@@ -135,8 +135,17 @@ class ServiceManager: NSObject {
             print("id \(id)")
             print("mark \(mark)")
             print("------------------")
+            print("part \(part)")
+            print("comment \(comment)")
+            print("subjectId \(subjectId)")
+            print("typeMark \(typeMark)")
+            print("date \(date)")
+
 
             let params = ["token": token, "id" : id, "subject_id": subjectId, "mark": mark, "part": part,"type_mark": typeMark, "date": date, "comm": comment] as [String: Any]
+            
+            print(params.count)
+            
             //Задержка для масства в 200 миллисекунд
             Alamofire.request(url, method: .post, parameters: params, encoding: URLEncoding.default, headers: nil).responseJSON
                 { responseJSON in
@@ -146,6 +155,8 @@ class ServiceManager: NSObject {
                             completion(responseJSON.result.value, nil)
                             break
                         case .failure(let error):
+                            print(error.localizedDescription)
+                            print("error")
                             completion(nil,error)
                         }
                     }

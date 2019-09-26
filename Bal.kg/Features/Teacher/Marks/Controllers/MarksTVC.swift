@@ -20,7 +20,8 @@ class MarksTVC: UITableViewController {
     var termStatus = 0
     var marksObject: [String: String] = [:]
     var part: String = ""
-    
+    var comment: String = ""
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -76,6 +77,12 @@ class MarksTVC: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "MarkCommentTVCell") as! MarkCommentTVCell
             cell.link = self
             cell.termButton.addTarget(self, action: #selector(self.termButtonTarget(button:)), for: .touchUpInside)
+            
+            cell.markComment.text = "Комментарий..."
+            cell.markComment.textColor = UIColor.lightGray
+            cell.markComment.delegate = self
+            cell.termButton.setTitle("Четверть:", for: .normal)
+            
             return cell
         } else if indexPath.row == childsList.count + 1 {
             
@@ -84,14 +91,15 @@ class MarksTVC: UITableViewController {
             return cell
         }
         
-        
         let childInfo = childsList[indexPath.row - 1]
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ChildListForMarkTVCell", for: indexPath) as! ChildListForMarkTVCell
         cell.markButton.tag = indexPath.row - 1
         cell.childName.text = childInfo.fio
-        cell.markButton.addTarget(self, action: #selector(marksButtonTarget(button:)), for: .touchUpInside)
         
+        cell.markButton.setTitle("", for: .normal)
+        
+        cell.markButton.addTarget(self, action: #selector(marksButtonTarget(button:)), for: .touchUpInside)
         return cell
     }
     
@@ -121,38 +129,64 @@ class MarksTVC: UITableViewController {
 
     @objc func sendButtonTarget(){
 
+       print(self.marksObject.count)
+        
+        HUD.show(.progress)
+        //Date
         let date = Date()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.YYYY"
         let dateFormat = dateFormatter.string(from: date)
-        print(dateFormat)
-
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MarkCommentTVCell") as! MarkCommentTVCell
-        
-        let comment = cell.comment
+        guard let subjectId = subjectId else {return}
         var typeMark = "0"
         
         if self.termStatus == 1 {
             typeMark = "part"
         }
         
-        print(typeMark)
-        print(comment)
-        print(part)
-
-        
         if part == "" {
+            HUD.hide()
             Alert.displayAlert(title: "", message: "Выберите четверть", vc: self)
             return
-        } else if comment == "Комментарий..." {
+        } else if self.comment == "" {
+            HUD.hide()
             Alert.displayAlert(title: "", message: "Введите комментарий", vc: self)
             return
+        } else if marksObject.count == 0 {
+            HUD.hide()
+            Alert.displayAlert(title: "", message: "Поставьте оценки для отправки", vc: self)
+            return
         }
+        
+        self.marksVM.postMarks(marksObjc: marksObject, subjectId: subjectId, date: dateFormat, comment: self.comment, part: self.part, typeMark: typeMark) { (error) in
+            if let error = error {
+                HUD.hide()
+                Alert.displayAlert(title: "", message: error.localizedDescription, vc: self)
+            }
+        }
+        
+        self.marksVM.postResultBehaviorRelay.skip(1).subscribe(onNext: { (result) in
+            if result.status == "ok" {
+                self.marksObject = [:]
+                self.tableView.reloadData()
+                self.comment = ""
+                
+                HUD.hide()
+                
+                Alert.displayAlert(title: "", message: result.message, vc: self)
+            } else {
+                HUD.hide()
+                Alert.displayAlert(title: "", message: result.message, vc: self)
+            }
+        }).disposed(by: disposeBag)
+        
+        self.marksVM.errorBehaviorRelay.skip(1).subscribe(onNext: { (error) in
+            HUD.hide()
+            Alert.displayAlert(title: "", message: error.localizedDescription, vc: self)
+            
+        }).disposed(by: disposeBag)
     
-        
-        
-        
-    }
+ }
     
     //MARK: term Button Target
 
@@ -240,14 +274,36 @@ class MarksTVC: UITableViewController {
         actionSheetController.addAction(cancelAction)
         
         
-        actionSheetController.popoverPresentationController?.sourceView = view // works for both iPhone & iPad
-        
+        actionSheetController.popoverPresentationController?.sourceView = view
         present(actionSheetController, animated: true) {
         }
         
     }
     
     
-    
 }
 
+
+extension MarksTVC: UITextViewDelegate {
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty
+        {
+            textView.text = "Комментарий..."
+            textView.textColor = UIColor.lightGray
+        } else {
+            self.comment = textView.text
+        }
+        
+        textView.resignFirstResponder()
+        
+    }
+    
+}

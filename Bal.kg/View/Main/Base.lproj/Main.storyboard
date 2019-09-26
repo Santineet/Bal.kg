@@ -772,7 +772,7 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </button>
-                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Комментарий..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="izN-fN-2YF">
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="r" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="izN-fN-2YF">
                                             <rect key="frame" x="20" y="121" width="374" height="75"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
