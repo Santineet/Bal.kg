@@ -26,6 +26,10 @@ class LoginLogoutManager: NSObject {
             } else if userType == "teacher" {
                 let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TeacherTVC") as! TeacherTVC
                 appDelegate.window?.rootViewController = UINavigationController(rootViewController: vc)
+            } else if userType == "parent" {
+                
+                let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MyChildrensTVC") as! MyChildrensTVC
+                appDelegate.window?.rootViewController = UINavigationController(rootViewController: vc)
             }
         }
         appDelegate.window?.makeKeyAndVisible()

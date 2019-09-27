@@ -46,6 +46,8 @@ class ServiceManager: NSObject {
         }
     }
     
+    //MARK: TEACHER -------------------////////////////-------------------
+    
     //MARK: Get Classes
     
     func getClasses(completion: @escaping Completion){
@@ -170,6 +172,8 @@ class ServiceManager: NSObject {
 
     }
     
+    //MARK: GUARD ---------------/////////////////-----------------
+    
     //MARK: Send Data Methods
     
     func sendData(id: String, status: Int, type: String, time: String, imageData: Data?,imageName: String?, completion: @escaping Completion){
@@ -231,6 +235,49 @@ class ServiceManager: NSObject {
         }
 
     }
+    
+    
+    //MARK: PARENT --------------////////////////--------------
+    
+    //MARK: get kids
+    
+    func getMyChildrens(completion: @escaping Completion){
+        
+        guard let url = URL(string: "https://bal.kg/api/mychildrens" ) else { return }
+        let token = UserDefaults.standard.value(forKey: "token") as! String
+        let params = ["token": token] as [String: String]
+        
+        Alamofire.request(url, method: .get, parameters: params, encoding: URLEncoding.default, headers: nil).responseJSON
+            { responseJSON in
+                switch responseJSON.result {
+                case .success:
+                    completion(responseJSON.result.value, nil)
+                    break
+                case .failure(let error):
+                    completion(nil,error)
+                }
+        }
+    }
+    
+    func getNotifictions(completion: @escaping Completion){
+        
+        guard let url = URL(string: "https://bal.kg/api/mychildrens" ) else { return }
+        let token = UserDefaults.standard.value(forKey: "token") as! String
+        let params = ["token": token] as [String: String]
+        
+        Alamofire.request(url, method: .get, parameters: params, encoding: URLEncoding.default, headers: nil).responseJSON
+            { responseJSON in
+                switch responseJSON.result {
+                case .success:
+                    completion(responseJSON.result.value, nil)
+                    break
+                case .failure(let error):
+                    completion(nil,error)
+                }
+        }
+    }
+    
+    
     
     
 }
