@@ -277,7 +277,26 @@ class ServiceManager: NSObject {
         }
     }
     
+    //MARK: get childs info
     
+    func getChildsInfo(id: String, completion: @escaping Completion){
+        
+        guard let url = URL(string: "https://bal.kg/api/childinfo" ) else { return }
+        let token = UserDefaults.standard.value(forKey: "token") as! String
+        let params = ["token": token, "id": id] as [String: String]
+        
+        Alamofire.request(url, method: .get, parameters: params, encoding: URLEncoding.default, headers: nil).responseJSON
+            { responseJSON in
+                
+                switch responseJSON.result {
+                case .success:
+                    completion(responseJSON.result.value, nil)
+                    break
+                case .failure(let error):
+                    completion(nil,error)
+                }
+        }
+    }
     
     
 }

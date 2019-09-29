@@ -36,7 +36,7 @@ class ParentRepository: NSObject {
             ServiceManager.sharedInstance.getMyChildrens(completion: { (responseJSON, error) in 
                 
                 if error != nil {
-                    observer.onError(error ?? Constant.BACKEND_ERROR)
+                    observer.onError(Constant.BACKEND_ERROR)
                 } else {
                     
                     guard let jsonArray = responseJSON as? [[String:Any]] else { return }

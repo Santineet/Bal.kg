@@ -27,10 +27,11 @@ class MyChildrensTVC: UITableViewController {
         getMyhChildrens()
         self.tableView.tableFooterView = UIView()
 
+        self.tableView.allowsSelection = false
     }
 
     //MARK: getMyhChildrens
-
+    
     func getMyhChildrens(){
         
         HUD.show(.progress)
@@ -39,7 +40,6 @@ class MyChildrensTVC: UITableViewController {
             HUD.hide()
             if let error = error {
                 Alert.displayAlert(title: "", message: error.localizedDescription, vc: self)
-                
             }
         }
         
@@ -56,27 +56,27 @@ class MyChildrensTVC: UITableViewController {
             Alert.displayAlert(title: "", message: error.localizedDescription, vc: self)
         }).disposed(by: disposeBag)
         
-            }
+    }
     
     
-
+    
     //MARK: numberOfRowsInSection
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return self.myChildrens.count + 1
     }
-
+    
     //MARK: cellForRowAt
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.row == self.myChildrens.count {
-
+            
             let cell = tableView.dequeueReusableCell(withIdentifier: "ParentLogoutTVCell", for: indexPath) as! ParentLogoutTVCell
-
+            
             cell.logoutButton.addTarget(self, action: #selector(logout), for: .touchUpInside)
-
+            
             return cell
         }
         
@@ -85,25 +85,20 @@ class MyChildrensTVC: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyChildrensListTVCell", for: indexPath) as! MyChildrensListTVCell
         
         cell.childrenNameButton.setTitle( name, for: .normal)
+        cell.childrenNameButton.tag = indexPath.row
+        cell.childrenNameButton.addTarget(self, action: #selector(pressedButton(button:)), for: .touchUpInside)
         
         return cell
     }
     
-    //MARK: didSelectRowAt
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        let childInfo = self.myChildrens[indexPath.row]
-        
-        print(childInfo.id)
-        
-        
-    }
+    //MARK: heightForRowAt
     
-
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }
+    
+    //MARK: logout
     
     @objc func logout(){
         
@@ -113,7 +108,7 @@ class MyChildrensTVC: UITableViewController {
                 HUD.hide()
                 Alert.displayAlert(title: "Ошибка", message: "Для получения данных требуется подключение к интернету", vc: self)
             }
-   
+            
         }
         
         self.parentVM.logoutBehaviorRelay.skip(1).subscribe(onNext: { (success) in
@@ -134,22 +129,31 @@ class MyChildrensTVC: UITableViewController {
             HUD.hide()
             UserDefaults.standard.removeObject(forKey: "token")
             UserDefaults.standard.removeObject(forKey: "userType")
-            Alert.displayAlert(title: "Ошибка", message: "Token is nil", vc: self)
             LoginLogoutManager.instance.updateRootVC()
             
         }).disposed(by: disposeBag)
     }
-
-
+    
+    //MARK: pressed Button
+    
+    @objc func pressedButton(button: UIButton){
+        
+        let index = button.tag
+        let id = self.myChildrens[index].id
+        let childInfovc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ChildInfoTVC") as! ChildInfoTVC
+        
+        childInfovc.id = id
+        
+        navigationController?.pushViewController(childInfovc, animated: true)
+        
+    }
+    
+    
 }
 
 
 
 
-// Uncomment the following line to preserve selection between presentations
-// self.clearsSelectionOnViewWillAppear = false
 
-// Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-// self.navigationItem.rightBarButtonItem = self.editButtonItem
 
 

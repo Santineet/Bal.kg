@@ -27,6 +27,11 @@
 		2E509185233526DD001FBD41 /* TimetableRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E509184233526DD001FBD41 /* TimetableRepository.swift */; };
 		2E50918723352883001FBD41 /* TimetableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E50918623352883001FBD41 /* TimetableViewModel.swift */; };
 		2E582150232A57EE00B49571 /* add_photo-512.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E58214F232A57ED00B49571 /* add_photo-512.png */; };
+		2E62315C2340D459009E27C7 /* ChildInfoTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E62315B2340D459009E27C7 /* ChildInfoTVC.swift */; };
+		2E62315E2340D4D5009E27C7 /* ChildInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E62315D2340D4D5009E27C7 /* ChildInfoViewModel.swift */; };
+		2E6231602340D4EA009E27C7 /* ChildInfoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E62315F2340D4EA009E27C7 /* ChildInfoRepository.swift */; };
+		2E6231622340D527009E27C7 /* ChildInfoTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6231612340D527009E27C7 /* ChildInfoTVCell.swift */; };
+		2E6231642340DA88009E27C7 /* ChildInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6231632340DA88009E27C7 /* ChildInfoModel.swift */; };
 		2E631BBD233A610B00922611 /* HomeworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E631BBC233A610B00922611 /* HomeworkModel.swift */; };
 		2E631BBF233A617E00922611 /* HomeworkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E631BBE233A617E00922611 /* HomeworkViewModel.swift */; };
 		2E631BC1233A71BB00922611 /* SendHomeworkTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E631BC0233A71BB00922611 /* SendHomeworkTVCell.swift */; };
@@ -105,6 +110,11 @@
 		2E509184233526DD001FBD41 /* TimetableRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableRepository.swift; sourceTree = "<group>"; };
 		2E50918623352883001FBD41 /* TimetableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableViewModel.swift; sourceTree = "<group>"; };
 		2E58214F232A57ED00B49571 /* add_photo-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add_photo-512.png"; sourceTree = "<group>"; };
+		2E62315B2340D459009E27C7 /* ChildInfoTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildInfoTVC.swift; sourceTree = "<group>"; };
+		2E62315D2340D4D5009E27C7 /* ChildInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildInfoViewModel.swift; sourceTree = "<group>"; };
+		2E62315F2340D4EA009E27C7 /* ChildInfoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildInfoRepository.swift; sourceTree = "<group>"; };
+		2E6231612340D527009E27C7 /* ChildInfoTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildInfoTVCell.swift; sourceTree = "<group>"; };
+		2E6231632340DA88009E27C7 /* ChildInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildInfoModel.swift; sourceTree = "<group>"; };
 		2E631BBC233A610B00922611 /* HomeworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkModel.swift; sourceTree = "<group>"; };
 		2E631BBE233A617E00922611 /* HomeworkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkViewModel.swift; sourceTree = "<group>"; };
 		2E631BC0233A71BB00922611 /* SendHomeworkTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendHomeworkTVCell.swift; sourceTree = "<group>"; };
@@ -514,6 +524,7 @@
 				2E4C68DE233917A0000BF437 /* ChildsModel.swift */,
 				2E631BBC233A610B00922611 /* HomeworkModel.swift */,
 				2ECB1940233E2857007B532D /* MyChildrensModel.swift */,
+				2E6231632340DA88009E27C7 /* ChildInfoModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -712,6 +723,7 @@
 		2ECB1954233E61BB007B532D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				2E62315B2340D459009E27C7 /* ChildInfoTVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -719,6 +731,7 @@
 		2ECB1955233E61C9007B532D /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				2E62315D2340D4D5009E27C7 /* ChildInfoViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -726,6 +739,7 @@
 		2ECB1956233E61D0007B532D /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				2E62315F2340D4EA009E27C7 /* ChildInfoRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -733,6 +747,7 @@
 		2ECB1957233E61DC007B532D /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				2E6231612340D527009E27C7 /* ChildInfoTVCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -912,11 +927,14 @@
 				2E6F50122327F94A00B737C0 /* GuardVC.swift in Sources */,
 				2E4C68DB233915B0000BF437 /* MarkCommentTVCell.swift in Sources */,
 				2EDB66A4233676D300967994 /* HomeworkVC.swift in Sources */,
+				2E6231642340DA88009E27C7 /* ChildInfoModel.swift in Sources */,
 				2E6F4FF42327DAC900B737C0 /* IQToolbar.swift in Sources */,
 				2E6F50062327ED1200B737C0 /* ApiClient.swift in Sources */,
 				2E509185233526DD001FBD41 /* TimetableRepository.swift in Sources */,
 				2E6F4FF32327DAC900B737C0 /* IQBarButtonItem.swift in Sources */,
+				2E62315E2340D4D5009E27C7 /* ChildInfoViewModel.swift in Sources */,
 				2E5091692333A3C6001FBD41 /* GuardVCExtension.swift in Sources */,
+				2E6231622340D527009E27C7 /* ChildInfoTVCell.swift in Sources */,
 				2E4C68E323391A06000BF437 /* MarksViewModel.swift in Sources */,
 				2E6F501F2329300D00B737C0 /* QRCodeScanVC.swift in Sources */,
 				2ECB1950233E5F9C007B532D /* NotificationViewModel.swift in Sources */,
@@ -924,6 +942,7 @@
 				2E5091702334CD21001FBD41 /* TeacherViewModel.swift in Sources */,
 				2ECB194C233E5E8D007B532D /* NotificationTVC.swift in Sources */,
 				2E6F501D23280CBB00B737C0 /* GuardViewModel.swift in Sources */,
+				2E62315C2340D459009E27C7 /* ChildInfoTVC.swift in Sources */,
 				2E6FEFE323327C8300DAF611 /* TeacherListTVCell.swift in Sources */,
 				2E6F501B23280CAB00B737C0 /* GuardRepository.swift in Sources */,
 				2E6F4FF12327DAC900B737C0 /* IQPreviousNextView.swift in Sources */,
@@ -948,6 +967,7 @@
 				2ECB194E233E5ED4007B532D /* NotificationTVCell.swift in Sources */,
 				2E6F4FF52327DAC900B737C0 /* IQUIView+IQKeyboardToolbar.swift in Sources */,
 				2E631BC1233A71BB00922611 /* SendHomeworkTVCell.swift in Sources */,
+				2E6231602340D4EA009E27C7 /* ChildInfoRepository.swift in Sources */,
 				2E6F50002327DAC900B737C0 /* IQNSArray+Sort.swift in Sources */,
 				2E6F4FFD2327DAC900B737C0 /* IQUIViewController+Additions.swift in Sources */,
 				2E4C68DF233917A0000BF437 /* ChildsModel.swift in Sources */,
