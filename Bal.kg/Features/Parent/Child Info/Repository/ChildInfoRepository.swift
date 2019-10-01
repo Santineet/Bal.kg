@@ -21,8 +21,6 @@ class ChildInfoRepository: NSObject {
                 } else {
                     guard let jsonArray = responseJSON as? [String:Any] else { return }
                     guard let childInfo = Mapper<ChildInfoModel>().map(JSON: jsonArray) else { return }
-                    print(childInfo.firstName)
-                    print("wdsfs")
                     observer.onNext(childInfo)
                     observer.onCompleted()
                     

@@ -30,6 +30,16 @@ class MyChildrensTVC: UITableViewController {
         self.tableView.allowsSelection = false
     }
 
+    @IBAction func notificationBarButton(_ sender: UIBarButtonItem) {
+    
+        let notifVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NotificationTVC") as! NotificationTVC
+        
+        navigationController?.pushViewController(notifVC, animated: true)
+ 
+    }
+    
+    
+    
     //MARK: getMyhChildrens
     
     func getMyhChildrens(){
@@ -147,6 +157,8 @@ class MyChildrensTVC: UITableViewController {
         navigationController?.pushViewController(childInfovc, animated: true)
         
     }
+    
+    
     
     
 }

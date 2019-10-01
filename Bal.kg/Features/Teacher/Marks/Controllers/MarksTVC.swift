@@ -128,8 +128,6 @@ class MarksTVC: UITableViewController {
     //MARK: send Button Target
 
     @objc func sendButtonTarget(){
-
-       print(self.marksObject.count)
         
         HUD.show(.progress)
         //Date
@@ -262,7 +260,6 @@ class MarksTVC: UITableViewController {
         
         let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
             
-            print(self.marksObject.count)
             
         }
         // add actions

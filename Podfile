@@ -13,4 +13,6 @@ target 'Bal.kg' do
     pod 'RxCocoa'
     pod 'PKHUD'
     pod 'RealmSwift'
+    pod 'SDWebImage'
+
 end

@@ -22,7 +22,7 @@ class ChildInfoTVCell: UITableViewCell {
     @IBOutlet weak var marksButton: UIButton!
     @IBOutlet weak var homeworksButton: UIButton!
     @IBOutlet weak var notificationsButton: UIButton!
-    
+    @IBOutlet weak var parent_2: UILabel!
     @IBOutlet weak var childImage: UIImageView!
     
     

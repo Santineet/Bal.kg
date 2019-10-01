@@ -134,16 +134,7 @@ class ServiceManager: NSObject {
         for i in 0..<marksObjc.count {
             let id = Array(marksObjc)[i].key
             let mark = Array(marksObjc)[i].value
-            print("id \(id)")
-            print("mark \(mark)")
-            print("------------------")
-            print("part \(part)")
-            print("comment \(comment)")
-            print("subjectId \(subjectId)")
-            print("typeMark \(typeMark)")
-            print("date \(date)")
-
-
+         
             let params = ["token": token, "id" : id, "subject_id": subjectId, "mark": mark, "part": part,"type_mark": typeMark, "date": date, "comm": comment] as [String: Any]
             
             print(params.count)
@@ -261,7 +252,7 @@ class ServiceManager: NSObject {
     
     func getNotifictions(completion: @escaping Completion){
         
-        guard let url = URL(string: "https://bal.kg/api/mychildrens" ) else { return }
+        guard let url = URL(string: "https://bal.kg/api/note" ) else { return }
         let token = UserDefaults.standard.value(forKey: "token") as! String
         let params = ["token": token] as [String: String]
         
@@ -297,6 +288,66 @@ class ServiceManager: NSObject {
                 }
         }
     }
+    
+    //MARK: get child move
+    
+    func getChildMove(id: String, completion: @escaping Completion){
+        
+        guard let url = URL(string: "https://bal.kg/api/childmove" ) else { return }
+        let token = UserDefaults.standard.value(forKey: "token") as! String
+        let params = ["token": token, "id": id] as [String: String]
+        
+        Alamofire.request(url, method: .get, parameters: params, encoding: URLEncoding.default, headers: nil).responseJSON
+            { responseJSON in
+                
+                switch responseJSON.result {
+                case .success:
+                    completion(responseJSON.result.value, nil)
+                    break
+                case .failure(let error):
+                    completion(nil,error)
+                }
+        }
+    }
+    
+    //MARK: Get My Children Timetable
+    
+    func getMyChildTimetable(id: String, completion: @escaping Completion){
+        guard let url = URL(string: "https://bal.kg/api/childschedule" ) else { return }
+        let token = UserDefaults.standard.value(forKey: "token") as! String
+        let header: HTTPHeaders = ["token": "\(token)"]
+        
+        let params = ["token": token, "id": id] as [String:Any]
+        Alamofire.request(url, method: .get, parameters: params, encoding: URLEncoding.default, headers: header).responseJSON
+            { responseJSON in
+                switch responseJSON.result {
+                case .success:
+                    completion(responseJSON.result.value, nil)
+                case .failure(let error):
+                    completion(nil, error)
+                }
+        }
+    }
+    
+    //MARK: Get My Marks
+    
+    func getMyMarks(id: String, subject_id: String, completion: @escaping Completion){
+        guard let url = URL(string: "https://bal.kg/api/marks" ) else { return }
+        let token = UserDefaults.standard.value(forKey: "token") as! String
+        let header: HTTPHeaders = ["token": "\(token)"]
+        
+        let params = ["token": token, "id": id, "subject_id": subject_id] as [String:Any]
+        Alamofire.request(url, method: .get, parameters: params, encoding: URLEncoding.default, headers: header).responseJSON
+            { responseJSON in
+                switch responseJSON.result {
+                case .success:
+                    completion(responseJSON.result.value, nil)
+                case .failure(let error):
+                    completion(nil, error)
+                }
+        }
+    }
+    
     
     
 }

@@ -22,7 +22,6 @@ class ChildInfoViewModel: NSObject {
     func getChildInfo(id: String, completion: @escaping (Error?) -> ()) {
         if self.isConnnected() == true {
             self.repository.getChildInfo(id: id).subscribe(onNext: { (childInfo) in
-                print("id \(childInfo.firstName)")
                 self.childInfoBehaviorRelay.accept(childInfo)
             }, onError: { (error) in
                 self.errorBehaviorRelay.accept(error)
