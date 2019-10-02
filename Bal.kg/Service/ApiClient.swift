@@ -250,6 +250,8 @@ class ServiceManager: NSObject {
         }
     }
     
+    //MARK: get Notifictions
+
     func getNotifictions(completion: @escaping Completion){
         
         guard let url = URL(string: "https://bal.kg/api/note" ) else { return }
@@ -348,6 +350,25 @@ class ServiceManager: NSObject {
         }
     }
     
+    //MARK: get My Homework
+    
+    func getMyHomework(id: String, subject_id: String, completion: @escaping Completion){
+        
+        guard let url = URL(string: "https://bal.kg/api/homework" ) else { return }
+        let token = UserDefaults.standard.value(forKey: "token") as! String
+        let params = ["token": token, "id": id, "subject_id": subject_id] as [String: String]
+        
+        Alamofire.request(url, method: .get, parameters: params, encoding: URLEncoding.default, headers: nil).responseJSON
+            { responseJSON in
+                switch responseJSON.result {
+                case .success:
+                    completion(responseJSON.result.value, nil)
+                    break
+                case .failure(let error):
+                    completion(nil,error)
+                }
+        }
+    }
     
     
 }

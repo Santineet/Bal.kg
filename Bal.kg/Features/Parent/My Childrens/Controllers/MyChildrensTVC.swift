@@ -135,7 +135,7 @@ class MyChildrensTVC: UITableViewController {
             }
         }).disposed(by: disposeBag)
         
-        self.parentVM.errorBehaviorRelay.skip(1).subscribe(onNext: { (error) in
+        self.parentVM.logouterrorBehaviorRelay.skip(1).subscribe(onNext: { (error) in
             HUD.hide()
             UserDefaults.standard.removeObject(forKey: "token")
             UserDefaults.standard.removeObject(forKey: "userType")

@@ -1,20 +1,18 @@
 //
-//  MyMarksTVCell.swift
+//  MyHomeworkTVCell.swift
 //  Bal.kg
 //
-//  Created by Mairambek on 9/30/19.
+//  Created by Mairambek on 10/1/19.
 //  Copyright © 2019 Sunrise. All rights reserved.
 //
 
 import UIKit
 
-class MyMarksTVCell: UITableViewCell {
+class MyHomeworkTVCell: UITableViewCell {
 
     @IBOutlet weak var date: UILabel!
-    @IBOutlet weak var mark: UILabel!
-    @IBOutlet weak var comment: UILabel!
-   
-    @IBOutlet weak var partLabel: UILabel!
+    @IBOutlet weak var subject_name: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

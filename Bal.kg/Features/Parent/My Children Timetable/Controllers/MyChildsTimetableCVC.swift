@@ -24,7 +24,6 @@ class MyChildsTimetableCVC: UICollectionViewController, UICollectionViewDelegate
         super.viewDidLoad()
         
         getChildTimetable(id: id)
-        navigationItem.title = "Расписание"
         
     }
     
@@ -168,12 +167,13 @@ extension MyChildsTimetableCVC: UITableViewDelegate, UITableViewDataSource {
         
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let subjectId = subjectList[tableView.tag].subjects[indexPath.row].id
+        let subject = subjectList[tableView.tag].subjects[indexPath.row]
     
         let myMark = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MyMarksTVC") as! MyMarksTVC
         
+        myMark.title = subject.nameSubject
         myMark.id = self.id
-        myMark.subject_id = subjectId
+        myMark.subject_id = subject.id
         
         navigationController?.pushViewController(myMark, animated: true)
         

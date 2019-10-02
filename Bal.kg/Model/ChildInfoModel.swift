@@ -23,7 +23,7 @@ class ChildInfoModel: NSObject, Mappable {
     var school: String = ""
     var image: String = ""
     var move_about: String = ""
-    var move_status: String = ""
+    var move_status: Int = 0
 
     required convenience init?(map: Map) {
         self.init()

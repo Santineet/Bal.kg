@@ -70,6 +70,17 @@ class ChildInfoTVC: UITableViewController {
         cell.parent_2.text = self.childInfo.parent_2
         cell.schoolName.text = self.childInfo.school
         cell.moveAbout.text = self.childInfo.move_about
+        
+        print("self.childInfo.move_status \(self.childInfo.move_status)")
+        
+        if self.childInfo.move_status == 0 {
+            cell.moveAbout.textColor = UIColor.black
+        } else if self.childInfo.move_status == 1 {
+            cell.moveAbout.textColor = UIColor.green
+        } else if self.childInfo.move_status == 2 {
+            cell.moveAbout.textColor = UIColor.red
+        }
+        
         let childImage = "https://bal.kg/" + self.childInfo.image
 
         cell.childImage.sd_setImage(with: URL(string: childImage), placeholderImage: UIImage(named: ""))
@@ -78,6 +89,8 @@ class ChildInfoTVC: UITableViewController {
         cell.timetableButton.addTarget(self, action: #selector(self.timetableButtonPressed), for: .touchUpInside) 
         cell.marksButton.addTarget(self, action: #selector(self.marksButtonPressed), for: .touchUpInside)
         cell.notificationsButton.addTarget(self, action: #selector(self.notificationsButtonPressed), for: .touchUpInside)
+        cell.homeworksButton.addTarget(self, action: #selector(self.homeworkButtonPressed), for: .touchUpInside)
+        
         return cell
     }
     
@@ -99,7 +112,7 @@ class ChildInfoTVC: UITableViewController {
         let timetablevc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MyChildsTimetableCVC") as! MyChildsTimetableCVC
         
         timetablevc.id = self.childInfo.id
-        
+        timetablevc.title = "Расписание"
         navigationController?.pushViewController(timetablevc, animated: true)
         
     }
@@ -110,7 +123,7 @@ class ChildInfoTVC: UITableViewController {
         timetablevc.id = self.childInfo.id
         print(self.childInfo.id)
         timetablevc.isMarksVC = true
-        
+        timetablevc.title = "Оценки"
         navigationController?.pushViewController(timetablevc, animated: true)
         
     }
@@ -120,7 +133,14 @@ class ChildInfoTVC: UITableViewController {
         let notificationvc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NotificationTVC") as! NotificationTVC
         
         navigationController?.pushViewController(notificationvc, animated: true)
-
     }
 
+    @objc func homeworkButtonPressed(){
+        let homeworkvc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MyHomeworkCVC") as! MyHomeworkCVC
+        
+        homeworkvc.id = self.childInfo.id
+        navigationController?.pushViewController(homeworkvc, animated: true)
+    }
+    
+    
 }

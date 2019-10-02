@@ -4,7 +4,6 @@
 //
 //  Created by Mairambek on 9/20/19.
 //  Copyright © 2019 Sunrise. All rights reserved.
-//
 
 import UIKit
 import RxSwift

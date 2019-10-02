@@ -64,6 +64,14 @@ class MyMarksTVC: UITableViewController {
         let mark = self.myMarks[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyMarksTVCell", for: indexPath) as! MyMarksTVCell
 
+        if mark.type_mark == "part" {
+            
+            cell.partLabel.text = mark.part
+        } else if mark.type_mark == "0" {
+            
+            cell.partLabel.text = "---"
+        }
+        
         cell.date.text = mark.date
         cell.mark.text = mark.mark
         cell.comment.text = mark.comment
@@ -79,7 +87,7 @@ class MyMarksTVC: UITableViewController {
         let labelWidth: CGFloat = UIScreen.main.bounds.width - 125.0
         let originalLabelHeight: CGFloat = 24.0
         let labelLines: CGFloat = CGFloat(ceil(Float(stringSizeAsText.width/labelWidth)))
-        let height =  120.0 - originalLabelHeight + CGFloat(labelLines*24)
+        let height =  135.0 - originalLabelHeight + CGFloat(labelLines*24)
         return height
         
     }

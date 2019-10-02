@@ -1,8 +1,8 @@
 //
-//  ParentViewModel.swift
+//  MyHomeworkViewModel.swift
 //  Bal.kg
 //
-//  Created by Mairambek on 9/27/19.
+//  Created by Mairambek on 10/1/19.
 //  Copyright © 2019 Sunrise. All rights reserved.
 //
 
@@ -10,25 +10,19 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class ParentViewModel: NSObject {
+class MyHomeworkViewModel: NSObject {
     
     var errorBehaviorRelay = BehaviorRelay<Error>(value: NSError.init(message: ""))
-    let logouterrorBehaviorRelay = BehaviorRelay<Error>(value: NSError.init(message: ""))
-
-    let myChildsListBehaviorRelay = BehaviorRelay<[MyChildrensModel]>(value: [])
-    let logoutBehaviorRelay = BehaviorRelay<LogInModel>(value: LogInModel())
-
-    
+    var myHomeworkBehaviorRelay = BehaviorRelay<[MyHomeworkModel]>(value: [])
     var reachability:Reachability?
     
     private let disposeBag = DisposeBag()
-    private let repository = ParentRepository()
+    private let repository = MyHomeworkRepository()
     
-    func getMyChildrens(completion: @escaping (Error?) -> ()) {
+    func getMyHomework(id: String, subject_id: String, completion: @escaping (Error?) -> ()) {
         if self.isConnnected() == true {
-            self.repository.getMyChildrens().subscribe(onNext: { (childsList) in
-             
-                self.myChildsListBehaviorRelay.accept(childsList)
+            self.repository.getMyHomework(id: id, subject_id: subject_id) .subscribe(onNext: { (homeworkList) in
+                self.myHomeworkBehaviorRelay.accept(homeworkList)
             }, onError: { (error) in
                 self.errorBehaviorRelay.accept(error)
             }).disposed(by: disposeBag)
@@ -37,21 +31,6 @@ class ParentViewModel: NSObject {
         }
     }
     
-    func logout(completion: @escaping (Error?) -> ()) {
-        if self.isConnnected() == true {
-            self.repository.logout().subscribe(onNext: { (result) in
-                self.logoutBehaviorRelay.accept(result) 
-            }, onError: { (error) in
-                self.logouterrorBehaviorRelay.accept(error)
-            }).disposed(by: disposeBag)
-        } else {
-            completion(NSError.init(message: "Для получения данных требуется подключение к интернету"))
-        }
-    }
-    
-
-    
- 
     
     func isConnnected() -> Bool{
         do {
