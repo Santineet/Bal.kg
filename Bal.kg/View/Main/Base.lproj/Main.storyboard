@@ -1075,7 +1075,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.93000000000000005" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="6lQ-JN-pWA">
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="19" id="6lQ-JN-pWA">
                             <size key="itemSize" width="216" height="228"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -1382,7 +1382,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SoH-2c-kds" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5573.913043478261" y="1345.9821428571429"/>
+            <point key="canvasLocation" x="5493" y="1346"/>
         </scene>
         <!--My MarksTVC-->
         <scene sceneID="Rcb-KQ-l36">
@@ -1505,7 +1505,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ETT-pz-Uxt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5573.913043478261" y="678.34821428571422"/>
+            <point key="canvasLocation" x="5493" y="662"/>
         </scene>
         <!--Child MoveTVC-->
         <scene sceneID="LGR-xz-eM2">

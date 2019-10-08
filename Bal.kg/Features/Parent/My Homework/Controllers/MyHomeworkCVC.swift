@@ -146,7 +146,8 @@ extension MyHomeworkCVC: UITableViewDelegate, UITableViewDataSource {
 
         let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeworkCommentTVC") as! HomeworkCommentTVC
         
-        vc.homeworkObject = homework 
+        vc.homeworkObject = homework
+        vc.title = homework[indexPath.row].name_subject
         
         navigationController?.pushViewController(vc, animated: true)
         

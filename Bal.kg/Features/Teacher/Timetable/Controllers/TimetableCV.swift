@@ -171,7 +171,6 @@ extension TimetableCV: UITableViewDelegate, UITableViewDataSource {
         self.view.addSubview(popUpVC.view) // 4
         popUpVC.didMove(toParent: self) // 5
         
-        
     }
     
     

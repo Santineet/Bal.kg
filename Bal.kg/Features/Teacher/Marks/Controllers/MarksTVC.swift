@@ -28,6 +28,7 @@ class MarksTVC: UITableViewController {
         navigationItem.title = "Поставить оценку"
         if let classId = classId {
             getChildsList(slassId: classId)
+        
         }
         
         self.tableView.allowsSelection = false

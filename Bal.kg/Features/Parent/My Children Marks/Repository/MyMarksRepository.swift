@@ -18,6 +18,10 @@ class MyMarksRepository: NSObject {
                 
                 if error != nil {
                     observer.onError(Constant.BACKEND_ERROR)
+                } else if !(responseJSON is [[String: Any]]) {
+                    
+                    observer.onError(NSError.init(message: "Нет Оценок"))
+                    
                 } else {
                     
                     guard let jsonArray = responseJSON as? [[String:Any]] else { return }

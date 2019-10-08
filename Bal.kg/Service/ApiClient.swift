@@ -148,8 +148,7 @@ class ServiceManager: NSObject {
                             completion(responseJSON.result.value, nil)
                             break
                         case .failure(let error):
-                            print(error.localizedDescription)
-                            print("error")
+
                             completion(nil,error)
                         }
                     }

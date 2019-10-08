@@ -110,6 +110,7 @@
 		2ECB1952233E5FEE007B532D /* NotificationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECB1951233E5FEE007B532D /* NotificationRepository.swift */; };
 		2ECC87A42344B68C006B04A2 /* HomeworkCommentTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECC87A32344B68C006B04A2 /* HomeworkCommentTVC.swift */; };
 		2ECC87A62344B6B3006B04A2 /* HomeworkCommentTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECC87A52344B6B3006B04A2 /* HomeworkCommentTVCell.swift */; };
+		2ECC87A82344F732006B04A2 /* image (1).png in Resources */ = {isa = PBXBuildFile; fileRef = 2ECC87A72344F732006B04A2 /* image (1).png */; };
 		2EDB66A12336639600967994 /* PopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDB66A02336639600967994 /* PopUpVC.swift */; };
 		2EDB66A4233676D300967994 /* HomeworkVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDB66A3233676D300967994 /* HomeworkVC.swift */; };
 		2EDB66A92337D66F00967994 /* HomeworkRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDB66A82337D66F00967994 /* HomeworkRepository.swift */; };
@@ -221,6 +222,7 @@
 		2ECB1951233E5FEE007B532D /* NotificationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationRepository.swift; sourceTree = "<group>"; };
 		2ECC87A32344B68C006B04A2 /* HomeworkCommentTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkCommentTVC.swift; sourceTree = "<group>"; };
 		2ECC87A52344B6B3006B04A2 /* HomeworkCommentTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkCommentTVCell.swift; sourceTree = "<group>"; };
+		2ECC87A72344F732006B04A2 /* image (1).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "image (1).png"; sourceTree = "<group>"; };
 		2EDB66A02336639600967994 /* PopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpVC.swift; sourceTree = "<group>"; };
 		2EDB66A3233676D300967994 /* HomeworkVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkVC.swift; sourceTree = "<group>"; };
 		2EDB66A82337D66F00967994 /* HomeworkRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkRepository.swift; sourceTree = "<group>"; };
@@ -488,6 +490,7 @@
 		2E58214E232A57E400B49571 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				2ECC87A72344F732006B04A2 /* image (1).png */,
 				2E58214F232A57ED00B49571 /* add_photo-512.png */,
 			);
 			path = Images;
@@ -1090,6 +1093,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2ECC87A82344F732006B04A2 /* image (1).png in Resources */,
 				2E6F4FF92327DAC900B737C0 /* IQKeyboardManager.bundle in Resources */,
 				2E582150232A57EE00B49571 /* add_photo-512.png in Resources */,
 				2E6F4FCD2327D8AF00B737C0 /* Auth.storyboard in Resources */,

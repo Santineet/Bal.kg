@@ -21,6 +21,8 @@ class MyMarksTVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        print("subject_id \(subject_id)")
+        
         getMyMarks(id: id, subject_id: subject_id)
         tableView.allowsSelection = false
         self.tableView.tableFooterView = UIView()

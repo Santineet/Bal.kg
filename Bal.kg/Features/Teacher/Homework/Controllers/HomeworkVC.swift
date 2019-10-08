@@ -38,6 +38,9 @@ class HomeworkVC: UIViewController, UITextFieldDelegate {
         guard let date = self.dateField.text else {return}
         guard let text = self.homeworkTextView.text else {return}
         
+        print(classId)
+        print(subjectId)
+        
         if date == "ДАТА:" {
             HUD.hide()
             Alert.displayAlert(title: "", message: "Выберите дату", vc: self)
@@ -95,7 +98,6 @@ class HomeworkVC: UIViewController, UITextFieldDelegate {
         self.dateField.delegate = self
         self.dateField.font = UIFont.boldSystemFont(ofSize: 24)
         self.dateField.sizeToFit()
-        
     }
     
     func alertCancel(title: String, message: String) {

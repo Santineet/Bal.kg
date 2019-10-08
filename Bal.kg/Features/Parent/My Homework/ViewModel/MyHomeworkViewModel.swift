@@ -49,8 +49,6 @@ class MyHomeworkViewModel: NSObject {
             return false
         }
     }
-    
-    
-    
+
     
 }

@@ -18,7 +18,6 @@ class HomeworkCommentTVC: UITableViewController {
 
         self.tableView.allowsSelection = false
         
-        navigationItem.title = homeworkObject.first?.name_subject
     }
 
 
