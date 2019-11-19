@@ -31,6 +31,9 @@ class MyMarksTVC: UITableViewController {
     func getMyMarks(id: String, subject_id: String){
         HUD.show(.progress)
 
+        let token = UserDefaults.standard.value(forKey: "token")
+        print(token)
+        print("id \(id)")
         self.myMarksVM.getMyMarks(id: id, subject_id: subject_id) { (error) in
             if let error = error {
                 HUD.hide()

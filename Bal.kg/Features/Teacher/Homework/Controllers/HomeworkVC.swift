@@ -14,6 +14,8 @@ class HomeworkVC: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var homeworkTextView: UITextView!
     @IBOutlet weak var dateField: UITextField!
+    @IBOutlet weak var todayButton: UIButton!
+    
     var datePicker = UIDatePicker()
     let disposeBag = DisposeBag()
     let homeworkVM = HomeworkViewModel()
@@ -28,7 +30,10 @@ class HomeworkVC: UIViewController, UITextFieldDelegate {
         self.homeworkTextView.text = "Домашнее задание..."
         self.homeworkTextView.textColor = UIColor.lightGray
 
+        setupTodayButton()
     }
+    
+    
     
     @IBAction func sendButton(_ sender: UIButton) {
         
@@ -79,6 +84,20 @@ class HomeworkVC: UIViewController, UITextFieldDelegate {
         
     }
     
+    func setupTodayButton(){
+        
+        self.todayButton.addTarget(self, action: #selector(pressedTodayButton), for: .touchUpInside)
+    }
+    
+    @objc func pressedTodayButton(){
+        
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.YYYY"
+        let result = formatter.string(from: date)
+        self.dateField.text = result
+    }
+    
     func createDatePicker(){
         let datePickerToolBar = UIToolbar()
         let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
@@ -88,6 +107,7 @@ class HomeworkVC: UIViewController, UITextFieldDelegate {
         datePickerToolBar.tintColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
         datePickerToolBar.sizeToFit()
         datePickerToolBar.setItems([spaceButton,spaceButton,doneButtonDate], animated: true)
+        
         datePickerToolBar.isUserInteractionEnabled = true
         datePicker.datePickerMode = .date
         datePicker.addTarget(self, action: #selector(self.datePickerValueChanged(sender:)),  for: .valueChanged)

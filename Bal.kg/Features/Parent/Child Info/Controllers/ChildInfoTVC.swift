@@ -66,7 +66,10 @@ class ChildInfoTVC: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ChildInfoTVCell", for: indexPath) as! ChildInfoTVCell
         
-        cell.firstLastName.text = self.childInfo.firstName + " " + self.childInfo.lastName
+        cell.firstLastName.text = self.childInfo.lastName + " " + self.childInfo.firstName
+        
+        print(self.childInfo.firstName)
+        print(self.childInfo.lastName)
         cell.secondName.text = self.childInfo.secondName
         cell.childClass.text = self.childInfo.child_class
         cell.number.text = self.childInfo.phone

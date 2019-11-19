@@ -13,7 +13,6 @@ struct Constant{
     static let MAIN_STORYBOARD = "Main"
     static let ADMIN_STORYBOARD = "Auth"
     static let USER_TOKEN_KEY = "token"
-    static let BACKEND_ERROR = NSError.init(message: "Произошла ошибка, пожалуйста переавторизуйтесь")
+    static let BACKEND_ERROR = NSError.init(message: "Пожалуйста авторизуйтесь")
 
-    
 }

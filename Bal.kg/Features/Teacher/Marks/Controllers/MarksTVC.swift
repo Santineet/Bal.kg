@@ -262,11 +262,17 @@ class MarksTVC: UITableViewController {
             button.setTitle("н", for: .normal)
         }
         
-        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
+        let emptyAction: UIAlertAction = UIAlertAction(title: "", style: .default) { action -> Void in
+            self.marksObject.removeValue(forKey: childId)
+            button.setTitle("", for: .normal)
+        }
+        
+        let cancelAction: UIAlertAction = UIAlertAction(title: "Отменить", style: .cancel) { action -> Void in
             
             
         }
         // add actions
+        actionSheetController.addAction(emptyAction)
         actionSheetController.addAction(fourthAction)
         actionSheetController.addAction(thirdtion)
         actionSheetController.addAction(secondAction)
@@ -280,7 +286,6 @@ class MarksTVC: UITableViewController {
         }
         
     }
-    
     
 }
 
