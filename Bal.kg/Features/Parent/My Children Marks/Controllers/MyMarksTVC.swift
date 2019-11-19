@@ -20,8 +20,6 @@ class MyMarksTVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        print("subject_id \(subject_id)")
         
         getMyMarks(id: id, subject_id: subject_id)
         tableView.allowsSelection = false
@@ -32,7 +30,7 @@ class MyMarksTVC: UITableViewController {
     
     func getMyMarks(id: String, subject_id: String){
         HUD.show(.progress)
-        
+
         self.myMarksVM.getMyMarks(id: id, subject_id: subject_id) { (error) in
             if let error = error {
                 HUD.hide()
@@ -47,8 +45,13 @@ class MyMarksTVC: UITableViewController {
         }).disposed(by: disposeBag)
         
         self.myMarksVM.errorBehaviorRelay.skip(1).subscribe(onNext: { (error) in
+          
             HUD.hide()
+            UserDefaults.standard.removeObject(forKey: "token")
+            UserDefaults.standard.removeObject(forKey: "userType")
             Alert.displayAlert(title: "", message: error.localizedDescription, vc: self)
+            LoginLogoutManager.instance.updateRootVC()
+            
         }).disposed(by: disposeBag)
         
     }
@@ -67,11 +70,12 @@ class MyMarksTVC: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyMarksTVCell", for: indexPath) as! MyMarksTVCell
 
         if mark.type_mark == "part" {
-            
+            cell.partOutlet.isHidden = false
+            cell.partLabel.isHidden = false
             cell.partLabel.text = mark.part
         } else if mark.type_mark == "0" {
-            
-            cell.partLabel.text = "---"
+            cell.partOutlet.isHidden = true
+            cell.partLabel.isHidden = true
         }
         
         cell.date.text = mark.date

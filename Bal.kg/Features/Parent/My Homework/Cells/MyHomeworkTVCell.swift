@@ -10,6 +10,7 @@ import UIKit
 
 class MyHomeworkTVCell: UITableViewCell {
 
+    @IBOutlet weak var commentHomeworkLabel: UILabel!
     @IBOutlet weak var date: UILabel!
     @IBOutlet weak var subject_name: UILabel!
     

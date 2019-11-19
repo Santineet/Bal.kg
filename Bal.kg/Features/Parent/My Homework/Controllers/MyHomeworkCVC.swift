@@ -17,29 +17,29 @@ class MyHomeworkCVC: UICollectionViewController, UICollectionViewDelegateFlowLay
     let disposeBag = DisposeBag()
     var homeworkList = [MyHomeworkModel]()
     var id: String = ""
-    var subjectId: String = ""
+//    var subjectId: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.getMyHomework(id: id, subject_id: subjectId)
+        self.getShedulesHomework(id: id)
         self.navigationItem.title = "Домашнее задание"
         self.collectionView.allowsSelection = false
     }
 
 
-    func getMyHomework(id: String, subject_id: String){
+    func getShedulesHomework(id: String){
         
         HUD.show(.progress)
-        
-        self.myHomeworkVM.getMyHomework(id: id, subject_id: subject_id) { (error) in
+
+
+        self.myHomeworkVM.getShedulesHomework(id: id) { (error) in
             if let error = error {
                 HUD.hide()
                 Alert.displayAlert(title: "", message: error.localizedDescription, vc: self)
             }
         }
-        
-        self.myHomeworkVM.myHomeworkBehaviorRelay.skip(1).subscribe(onNext: { (homework) in
+        self.myHomeworkVM.shedulesHomeworkBehaviorRelay.skip(1).subscribe(onNext: { (homework) in
             HUD.hide()
             self.homeworkList = homework
             self.collectionView.reloadData()
@@ -49,7 +49,10 @@ class MyHomeworkCVC: UICollectionViewController, UICollectionViewDelegateFlowLay
         self.myHomeworkVM.errorBehaviorRelay.skip(1).subscribe(onNext: { (error) in
             
             HUD.hide()
+            UserDefaults.standard.removeObject(forKey: "token")
+            UserDefaults.standard.removeObject(forKey: "userType")
             Alert.displayAlert(title: "", message: error.localizedDescription, vc: self)
+            LoginLogoutManager.instance.updateRootVC()
             
         }).disposed(by: disposeBag)
     }
@@ -90,7 +93,6 @@ class MyHomeworkCVC: UICollectionViewController, UICollectionViewDelegateFlowLay
         return CGSize(width: view.bounds.width - 20, height: CGFloat(subjects.count*63 + 28))
     }
         
-    
 
 }
 
@@ -119,7 +121,7 @@ extension MyHomeworkCVC: UITableViewDelegate, UITableViewDataSource {
             cell?.textLabel?.text = "Нет домашних заданий"
             cell?.textLabel?.textColor = UIColor.darkGray
             cell?.textLabel?.textAlignment = .center
-            
+            cell?.isUserInteractionEnabled = false
             return cell ?? UITableViewCell()
         }
         
@@ -129,7 +131,7 @@ extension MyHomeworkCVC: UITableViewDelegate, UITableViewDataSource {
         
         cell.date.text = subjectInfo.time_start
         cell.subject_name.text = subjectInfo.name_subject
-        
+        cell.commentHomeworkLabel.text = subjectInfo.homework
         return cell
     }
     
@@ -146,7 +148,9 @@ extension MyHomeworkCVC: UITableViewDelegate, UITableViewDataSource {
 
         let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeworkCommentTVC") as! HomeworkCommentTVC
         
-        vc.homeworkObject = homework
+        vc.subjectId = homework.first?.id ?? ""
+        vc.id = self.id
+        
         vc.title = homework[indexPath.row].name_subject
         
         navigationController?.pushViewController(vc, animated: true)

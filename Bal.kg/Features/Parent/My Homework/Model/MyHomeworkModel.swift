@@ -21,7 +21,6 @@ class MyHomeworkModel: NSObject, Mappable {
     func mapping(map: Map) {
         day_name <- map["day_name"]
         list_subjects <- map["list_subjects"]
-        
     }
     
 }

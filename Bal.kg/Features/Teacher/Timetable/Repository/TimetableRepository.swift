@@ -16,20 +16,23 @@ class TimetableRepository: NSObject {
         return Observable.create({ (observer) -> Disposable in
             ServiceManager.sharedInstance.getTimetable(classId: classId, completion: { (responseJSON, error) in
                
-                guard let jsonArray = responseJSON as? [[String:Any]] else { return }
-
-                var subjects = [TimetableModel]()
-                for i in 0..<jsonArray.count{
-                    guard let subject = Mapper<TimetableModel>().map(JSON: jsonArray[i]) else {
-                        observer.onError(error ?? Constant.BACKEND_ERROR)
-                        return
-                    }
+                if error != nil {
+                    observer.onError(Constant.BACKEND_ERROR)
+                } else {
+                    guard let jsonArray = responseJSON as? [[String:Any]] else { return }
                     
-                    subjects.append(subject)
-                    
-                    if subjects.count == jsonArray.count {
-                        observer.onNext(subjects)
-                        observer.onCompleted()
+                    var subjects = [TimetableModel]()
+                    for i in 0..<jsonArray.count{
+                        guard let subject = Mapper<TimetableModel>().map(JSON: jsonArray[i]) else {
+                            return
+                        }
+                        
+                        subjects.append(subject)
+                        
+                        if subjects.count == jsonArray.count {
+                            observer.onNext(subjects)
+                            observer.onCompleted()
+                        }
                     }
                 }
                 

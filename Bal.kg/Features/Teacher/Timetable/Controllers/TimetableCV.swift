@@ -20,7 +20,6 @@ class TimetableCV: UICollectionViewController, UICollectionViewDelegateFlowLayou
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         navigationItem.title = "Расписание"
         getTimetable()
         
@@ -32,7 +31,6 @@ class TimetableCV: UICollectionViewController, UICollectionViewDelegateFlowLayou
         
         self.timetableVM.getTimetable(class_id: self.classId) { (error) in
             if error != nil {
-                
                 HUD.hide()
                 Alert.displayAlert(title: "", message: error?.localizedDescription ?? "Connection error", vc: self)
             }
@@ -47,7 +45,11 @@ class TimetableCV: UICollectionViewController, UICollectionViewDelegateFlowLayou
         
         self.timetableVM.errorBehaviorRelay.skip(1).subscribe(onNext: { (error) in
             HUD.hide()
+            UserDefaults.standard.removeObject(forKey: "token")
+            UserDefaults.standard.removeObject(forKey: "userType")
             Alert.displayAlert(title: "", message: error.localizedDescription, vc: self)
+            LoginLogoutManager.instance.updateRootVC()
+    
         }).disposed(by: disposeBag)
         
         

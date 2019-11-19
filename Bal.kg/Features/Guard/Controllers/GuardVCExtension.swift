@@ -11,14 +11,21 @@ import UIKit
 
 extension GuardVC: SendDataDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     func qrCodeScanned(info: [String]) {
+        if  info[1] == "guest" {
+             self.addImage.isHidden = false
+        } else {
+            self.addImage.isHidden = true
+        }
+        
         self.idField.text = info[0]
         self.guest.text = info[1]
-        self.addImage.isHidden = true
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true, completion: nil)
         guard let image = info[.originalImage] as? UIImage else { return }
+        
+//        print(image.description)
         
         self.addImage.image = image
         self.selectedImage = image

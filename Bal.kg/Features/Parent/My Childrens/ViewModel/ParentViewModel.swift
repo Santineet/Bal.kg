@@ -13,10 +13,9 @@ import RxCocoa
 class ParentViewModel: NSObject {
     
     var errorBehaviorRelay = BehaviorRelay<Error>(value: NSError.init(message: ""))
-    let logouterrorBehaviorRelay = BehaviorRelay<Error>(value: NSError.init(message: ""))
-
     let myChildsListBehaviorRelay = BehaviorRelay<[MyChildrensModel]>(value: [])
     let logoutBehaviorRelay = BehaviorRelay<LogInModel>(value: LogInModel())
+    let logouterrorBehaviorRelay = BehaviorRelay<Error>(value: NSError.init(message: ""))
 
     
     var reachability:Reachability?

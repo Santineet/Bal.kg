@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		07068E52232FCA200053E04A /* SendDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07068E51232FCA200053E04A /* SendDataModel.swift */; };
 		24057D9ABBEE079352E1721B /* Pods_Bal_kg.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 613737279732F5F6665DE9BD /* Pods_Bal_kg.framework */; };
+		2E41638C237EB05A001F896F /* HomeworkListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E41638B237EB05A001F896F /* HomeworkListModel.swift */; };
 		2E4C68D523391542000BF437 /* MarksTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4C68D423391542000BF437 /* MarksTVC.swift */; };
 		2E4C68DB233915B0000BF437 /* MarkCommentTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4C68DA233915AF000BF437 /* MarkCommentTVCell.swift */; };
 		2E4C68DD233915F0000BF437 /* ChildListForMarkTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4C68DC233915F0000BF437 /* ChildListForMarkTVCell.swift */; };
@@ -118,6 +119,7 @@
 
 /* Begin PBXFileReference section */
 		07068E51232FCA200053E04A /* SendDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendDataModel.swift; sourceTree = "<group>"; };
+		2E41638B237EB05A001F896F /* HomeworkListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkListModel.swift; sourceTree = "<group>"; };
 		2E4C68D423391542000BF437 /* MarksTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarksTVC.swift; sourceTree = "<group>"; };
 		2E4C68DA233915AF000BF437 /* MarkCommentTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkCommentTVCell.swift; sourceTree = "<group>"; };
 		2E4C68DC233915F0000BF437 /* ChildListForMarkTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildListForMarkTVCell.swift; sourceTree = "<group>"; };
@@ -254,6 +256,7 @@
 		2E4C68D3233914FE000BF437 /* Marks */ = {
 			isa = PBXGroup;
 			children = (
+				2E8885E723774A2200B9CB62 /* Model */,
 				2E4C68D92339156F000BF437 /* Cells */,
 				2E4C68D823391567000BF437 /* Repository */,
 				2E4C68D723391560000BF437 /* ViewModel */,
@@ -315,6 +318,7 @@
 		2E5091732334F1EC001FBD41 /* Timetable */ = {
 			isa = PBXGroup;
 			children = (
+				2E8885E5237749F500B9CB62 /* Model */,
 				2E5091742334F20C001FBD41 /* Cells */,
 				2E5091752334F215001FBD41 /* Repository */,
 				2E5091762334F21F001FBD41 /* ViewModel */,
@@ -360,6 +364,7 @@
 		2E557E152341F44A005C0D0D /* Child Move */ = {
 			isa = PBXGroup;
 			children = (
+				2E8885EB23774A9500B9CB62 /* Model */,
 				2E557E162341F452005C0D0D /* Cells */,
 				2E557E1A2341F46D005C0D0D /* Repository */,
 				2E557E182341F460005C0D0D /* ViewModel */,
@@ -447,6 +452,7 @@
 		2E557E3323424F02005C0D0D /* My Children Marks */ = {
 			isa = PBXGroup;
 			children = (
+				2E8885ED23774AD100B9CB62 /* Model */,
 				2E557E3723424F2E005C0D0D /* Cells */,
 				2E557E3623424F20005C0D0D /* Repository */,
 				2E557E3523424F1A005C0D0D /* ViewModel */,
@@ -499,6 +505,7 @@
 		2E6C7F6E23439857004278A2 /* My Homework */ = {
 			isa = PBXGroup;
 			children = (
+				2E8885E223771EE000B9CB62 /* Model */,
 				2E6C7F722343988A004278A2 /* Cells */,
 				2E6C7F7123439880004278A2 /* Repository */,
 				2E6C7F7023439878004278A2 /* ViewModel */,
@@ -565,7 +572,6 @@
 			children = (
 				2E6F50032327ED1100B737C0 /* Service */,
 				2E6F4FCF2327DAC900B737C0 /* Helper */,
-				2E6F500D2327F3DF00B737C0 /* Model */,
 				2E6F4FC52327D80B00B737C0 /* View */,
 				2E6F4FC82327D82900B737C0 /* Features */,
 				2E6F4FCE2327D8CA00B737C0 /* Resources */,
@@ -615,6 +621,7 @@
 		2E6F4FC92327D84300B737C0 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				2E8885E123771E9700B9CB62 /* Model */,
 				2E6F50082327F34400B737C0 /* Repository */,
 				2E6F4FCA2327D85000B737C0 /* ViewModel */,
 				2E6F4FCB2327D85F00B737C0 /* Controllers */,
@@ -742,30 +749,10 @@
 			path = Repository;
 			sourceTree = "<group>";
 		};
-		2E6F500D2327F3DF00B737C0 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				2E6F500E2327F41400B737C0 /* LoginModel.swift */,
-				07068E51232FCA200053E04A /* SendDataModel.swift */,
-				2E5091712334D580001FBD41 /* ClassesModel.swift */,
-				2E509180233525B2001FBD41 /* TimetableModel.swift */,
-				2E5091822335261D001FBD41 /* SubjectsModel.swift */,
-				2E4C68DE233917A0000BF437 /* ChildsModel.swift */,
-				2E631BBC233A610B00922611 /* HomeworkModel.swift */,
-				2ECB1940233E2857007B532D /* MyChildrensModel.swift */,
-				2E6231632340DA88009E27C7 /* ChildInfoModel.swift */,
-				2E557E132341F371005C0D0D /* ChildMoveModel.swift */,
-				2E557E402342556F005C0D0D /* MyMarksModel.swift */,
-				2E6C7F6B23434DEC004278A2 /* NotificationModel.swift */,
-				2E6C7F7B23439F19004278A2 /* MyHomeworkModel.swift */,
-				2E6C7F7D23439F77004278A2 /* SubjectsListModel.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		2E6F50102327F92000B737C0 /* Guard */ = {
 			isa = PBXGroup;
 			children = (
+				2E8885E32377498800B9CB62 /* Model */,
 				2E6F501823280C8400B737C0 /* Repository */,
 				2E6F501923280C8C00B737C0 /* ViewModel */,
 				2E6F50172327FCD600B737C0 /* Controllers */,
@@ -838,12 +825,112 @@
 		2E6FEFE623327DBD00DAF611 /* MainScreen */ = {
 			isa = PBXGroup;
 			children = (
+				2E8885E4237749CE00B9CB62 /* Model */,
 				2E6FEFE123327BFB00DAF611 /* Cells */,
 				2E50916C2333DF54001FBD41 /* Repository */,
 				2E50916B2333DF49001FBD41 /* ViewModel */,
 				2E6F50142327FCBA00B737C0 /* Controllers */,
 			);
 			path = MainScreen;
+			sourceTree = "<group>";
+		};
+		2E8885E123771E9700B9CB62 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2E6F500E2327F41400B737C0 /* LoginModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2E8885E223771EE000B9CB62 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2E6C7F7D23439F77004278A2 /* SubjectsListModel.swift */,
+				2E6C7F7B23439F19004278A2 /* MyHomeworkModel.swift */,
+				2E41638B237EB05A001F896F /* HomeworkListModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2E8885E32377498800B9CB62 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				07068E51232FCA200053E04A /* SendDataModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2E8885E4237749CE00B9CB62 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2E5091712334D580001FBD41 /* ClassesModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2E8885E5237749F500B9CB62 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2E5091822335261D001FBD41 /* SubjectsModel.swift */,
+				2E509180233525B2001FBD41 /* TimetableModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2E8885E623774A0B00B9CB62 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2E631BBC233A610B00922611 /* HomeworkModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2E8885E723774A2200B9CB62 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2E4C68DE233917A0000BF437 /* ChildsModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2E8885E823774A5300B9CB62 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2ECB1940233E2857007B532D /* MyChildrensModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2E8885E923774A6800B9CB62 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2E6C7F6B23434DEC004278A2 /* NotificationModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2E8885EA23774A8400B9CB62 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2E6231632340DA88009E27C7 /* ChildInfoModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2E8885EB23774A9500B9CB62 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2E557E132341F371005C0D0D /* ChildMoveModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2E8885ED23774AD100B9CB62 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2E557E402342556F005C0D0D /* MyMarksModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		2ECB1932233E1F19007B532D /* Parent */ = {
@@ -863,6 +950,7 @@
 		2ECB1933233E1F2A007B532D /* My Childrens */ = {
 			isa = PBXGroup;
 			children = (
+				2E8885E823774A5300B9CB62 /* Model */,
 				2ECB1936233E1F4F007B532D /* Cells */,
 				2ECB1934233E1F39007B532D /* Repository */,
 				2ECB1935233E1F46007B532D /* ViewModel */,
@@ -907,6 +995,7 @@
 		2ECB1946233E5B29007B532D /* Notification */ = {
 			isa = PBXGroup;
 			children = (
+				2E8885E923774A6800B9CB62 /* Model */,
 				2ECB1947233E5B46007B532D /* Cells */,
 				2ECB194A233E5B76007B532D /* Repository */,
 				2ECB1949233E5B70007B532D /* ViewModel */,
@@ -950,6 +1039,7 @@
 		2ECB1953233E61AE007B532D /* Child Info */ = {
 			isa = PBXGroup;
 			children = (
+				2E8885EA23774A8400B9CB62 /* Model */,
 				2ECB1957233E61DC007B532D /* Cells */,
 				2ECB1956233E61D0007B532D /* Repository */,
 				2ECB1955233E61C9007B532D /* ViewModel */,
@@ -993,6 +1083,7 @@
 		2EDB66A2233676A000967994 /* Homework */ = {
 			isa = PBXGroup;
 			children = (
+				2E8885E623774A0B00B9CB62 /* Model */,
 				2EDB66A72337D63A00967994 /* Repository */,
 				2EDB66A62337D63100967994 /* ViewModel */,
 				2EDB66A52337D61A00967994 /* Controllers */,
@@ -1155,6 +1246,7 @@
 				2E557E3D23424F76005C0D0D /* MyMarksRepository.swift in Sources */,
 				2E6F500A2327F36400B737C0 /* LoginRepository.swift in Sources */,
 				07068E52232FCA200053E04A /* SendDataModel.swift in Sources */,
+				2E41638C237EB05A001F896F /* HomeworkListModel.swift in Sources */,
 				2E5091792334F261001FBD41 /* TimetableCV.swift in Sources */,
 				2E6F4FEE2327DAC900B737C0 /* Extantion.swift in Sources */,
 				2ECB1943233E3532007B532D /* ParentLogoutTVCell.swift in Sources */,
@@ -1398,14 +1490,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = YDG37K9NRQ;
+				DEVELOPMENT_TEAM = UA2Z42JU4S;
 				INFOPLIST_FILE = Bal.kg/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "pro.sunrise.Bal-kg";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.AlanaandNazar.Bal-kg";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1418,14 +1510,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = YDG37K9NRQ;
+				DEVELOPMENT_TEAM = UA2Z42JU4S;
 				INFOPLIST_FILE = Bal.kg/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "pro.sunrise.Bal-kg";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.AlanaandNazar.Bal-kg";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -16,20 +16,24 @@ class MarksRepository: NSObject {
         return Observable.create({ (observer) -> Disposable in
             ServiceManager.sharedInstance.getChildrens(classId: classId, completion: { (responseJSON, error) in
         
-                guard let jsonArray = responseJSON as? [[String:Any]] else { return }
-                
-                var childs = [ChildsModel]()
-                for i in 0..<jsonArray.count{
-                    guard let child = Mapper<ChildsModel>().map(JSON: jsonArray[i]) else {
-                        observer.onError(error ?? Constant.BACKEND_ERROR)
-                        return
-                    }
+                if error != nil {
+                    observer.onError(error ?? Constant.BACKEND_ERROR)
+ 
+                } else { 
+                    guard let jsonArray = responseJSON as? [[String:Any]] else { return }
                     
-                    childs.append(child)
-                    
-                    if childs.count == jsonArray.count {
-                        observer.onNext(childs)
-                        observer.onCompleted()
+                    var childs = [ChildsModel]()
+                    for i in 0..<jsonArray.count{
+                        guard let child = Mapper<ChildsModel>().map(JSON: jsonArray[i]) else {
+                            return
+                        }
+                        
+                        childs.append(child)
+                        
+                        if childs.count == jsonArray.count {
+                            observer.onNext(childs)
+                            observer.onCompleted()
+                        }
                     }
                 }
                 
@@ -43,13 +47,17 @@ class MarksRepository: NSObject {
         return Observable.create({ (observer) -> Disposable in
             ServiceManager.sharedInstance.postMarks(marksObjc: marksObjc, subjectId: subjectId, date: date, comment: comment, part: part, typeMark: typeMark, completion: { (responseJSON, error) in
             
-                guard let jsonArray = responseJSON as? [String:Any] else { return }
-                guard let result = Mapper<HomeworkModel>().map(JSON: jsonArray) else {
+                if error != nil {
                     observer.onError(error ?? Constant.BACKEND_ERROR)
-                    return
+                } else {
+                    
+                    guard let jsonArray = responseJSON as? [String:Any] else { return }
+                    guard let result = Mapper<HomeworkModel>().map(JSON: jsonArray) else {
+                        return
+                    }
+                    observer.onNext(result)
+                    observer.onCompleted()
                 }
-                observer.onNext(result)
-                observer.onCompleted()
             })
             
             return Disposables.create()

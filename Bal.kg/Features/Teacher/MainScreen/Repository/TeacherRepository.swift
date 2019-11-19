@@ -15,13 +15,16 @@ class TeacherRepository: NSObject {
     func logout() -> Observable<LogInModel> {
         return Observable.create({ (observer) -> Disposable in
             ServiceManager.sharedInstance.logout(completion: { (responseJSON, error) in
-                guard let jsonArray = responseJSON as? [String:Any] else { return }
-                guard let result = Mapper<LogInModel>().map(JSON: jsonArray) else {
-                    observer.onError(error ?? Constant.BACKEND_ERROR)
-                    return
+                if error != nil {
+                    observer.onError(Constant.BACKEND_ERROR)
+                } else {
+                    guard let jsonArray = responseJSON as? [String:Any] else { return }
+                    guard let result = Mapper<LogInModel>().map(JSON: jsonArray) else {
+                        return
+                    }
+                    observer.onNext(result)
+                    observer.onCompleted()
                 }
-                observer.onNext(result)
-                observer.onCompleted()
             })
             return Disposables.create()
         })
@@ -32,7 +35,7 @@ class TeacherRepository: NSObject {
             ServiceManager.sharedInstance.getClasses(completion: { (responseJSON, error) in
                 
                 if error != nil {
-                    observer.onError(error ?? Constant.BACKEND_ERROR)
+                    observer.onError(Constant.BACKEND_ERROR)
                 } else {
                     guard let jsonArray = responseJSON as? [[String:Any]] else { return }
                     var classes = [ClassesModel]()

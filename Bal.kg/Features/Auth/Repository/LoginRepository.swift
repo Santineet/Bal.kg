@@ -15,13 +15,16 @@ class LoginRepository: NSObject {
     func login(email: String, password: String) -> Observable<LogInModel> {
         return Observable.create({ (observer) -> Disposable in
             ServiceManager.sharedInstance.login(email: email, password: password, completion: { (responseJSON, error) in
-                guard let jsonArray = responseJSON as? [String:Any] else { return }
-                guard let user = Mapper<LogInModel>().map(JSON: jsonArray) else {
-                    observer.onError(error ?? Constant.BACKEND_ERROR)
-                    return
+                if error != nil {
+                    observer.onError(error ?? NSError.init(message: "Произошла ошибка, попробуйте позже"))
+                } else {
+                    guard let jsonArray = responseJSON as? [String:Any] else { return }
+                    guard let user = Mapper<LogInModel>().map(JSON: jsonArray) else {
+                        return
+                    }
+                    observer.onNext(user)
+                    observer.onCompleted()
                 }
-                observer.onNext(user)
-                observer.onCompleted()
             })
             return Disposables.create()
         })

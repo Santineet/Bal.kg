@@ -16,6 +16,8 @@ class MarksViewModel: NSObject {
     var errorBehaviorRelay = BehaviorRelay<Error>(value: NSError.init(message: ""))
     let childsListBehaviorRelay = BehaviorRelay<[ChildsModel]>(value: [])
     let postResultBehaviorRelay = BehaviorRelay<HomeworkModel>(value: HomeworkModel())
+    var errorPostResultBehaviorRelay = BehaviorRelay<Error>(value: NSError.init(message: ""))
+
 
     var reachability:Reachability?
     
@@ -39,7 +41,7 @@ class MarksViewModel: NSObject {
             self.repository.postMarks(marksObjc: marksObjc, subjectId: subjectId, date: date, comment: comment, part: part, typeMark: typeMark).subscribe(onNext: { (result) in
                 self.postResultBehaviorRelay.accept(result)
             }, onError: { (error) in
-                self.errorBehaviorRelay.accept(error)
+                self.errorPostResultBehaviorRelay.accept(error)
             }).disposed(by: disposeBag)
         } else {
             completion(NSError.init(message: "Для получения данных требуется подключение к интернету"))

@@ -13,6 +13,8 @@ import RxCocoa
 class TeacherViewModel: NSObject {
     
     var errorBehaviorRelay = BehaviorRelay<Error>(value: NSError.init(message: ""))
+    var errorLogoutBehaviorRelay = BehaviorRelay<Error>(value: NSError.init(message: ""))
+
     let logoutBehaviorRelay = BehaviorRelay<LogInModel>(value: LogInModel())
     let classesBehaviorRelay = BehaviorRelay<[ClassesModel]>(value: [])
     var reachability:Reachability?
@@ -25,7 +27,7 @@ class TeacherViewModel: NSObject {
             self.repository.logout().subscribe(onNext: { (result) in
                 self.logoutBehaviorRelay.accept(result)
             }, onError: { (error) in
-                self.errorBehaviorRelay.accept(error)
+                self.errorLogoutBehaviorRelay.accept(error)
             }).disposed(by: disposeBag)
         } else {
             completion(NSError.init(message: "Для получения данных требуется подключение к интернету"))

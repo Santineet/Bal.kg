@@ -31,7 +31,6 @@ class ChildMoveTVC: UITableViewController {
     func getChildMove(id: String){
         
         HUD.show(.progress)
-        
         self.childMoveVM.getMyChildrens(id: id) { (error) in
             if let error = error {
                 HUD.hide()
@@ -42,17 +41,24 @@ class ChildMoveTVC: UITableViewController {
         self.childMoveVM.childMoveBehaviorRelay.skip(1).subscribe(onNext: { (moveInfo) in
             
             HUD.hide()
-            
             self.childMove = moveInfo
             self.tableView.reloadData()
-            
             
         }).disposed(by: disposeBag)
         
         self.childMoveVM.errorBehaviorRelay.skip(1).subscribe(onNext: { (error) in
             
-            HUD.hide()
-            Alert.displayAlert(title: "", message: error.localizedDescription, vc: self)
+            if error.localizedDescription == "Нет посещений" {
+                HUD.hide()
+                Alert.displayAlert(title: "", message: error.localizedDescription, vc: self)
+                
+            } else {
+                HUD.hide()
+                UserDefaults.standard.removeObject(forKey: "token")
+                UserDefaults.standard.removeObject(forKey: "userType")
+                Alert.displayAlert(title: "", message: error.localizedDescription, vc: self)
+                LoginLogoutManager.instance.updateRootVC()
+            }
             
         }).disposed(by: disposeBag)
         

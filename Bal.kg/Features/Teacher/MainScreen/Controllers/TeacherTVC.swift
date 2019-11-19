@@ -23,9 +23,9 @@ class TeacherTVC: UITableViewController {
         self.tableView.allowsSelection = false
         
         getClasses()
-        
-        let token = UserDefaults.standard.value(forKey: "token") as! String
-        print("token \(token)") 
+//        
+//        let token = UserDefaults.standard.value(forKey: "token") as! String
+//        print("token \(token)") 
         
     }
     
@@ -48,7 +48,11 @@ class TeacherTVC: UITableViewController {
         
         self.teacherVM.errorBehaviorRelay.skip(1).subscribe(onNext: { (error) in
             HUD.hide()
+            UserDefaults.standard.removeObject(forKey: "token")
+            UserDefaults.standard.removeObject(forKey: "userType")
             Alert.displayAlert(title: "", message: error.localizedDescription, vc: self)
+            LoginLogoutManager.instance.updateRootVC()
+            
         }).disposed(by: disposeBag)
         
     }
@@ -79,16 +83,18 @@ class TeacherTVC: UITableViewController {
             }
         }).disposed(by: disposeBag)
         
-        self.teacherVM.errorBehaviorRelay.skip(1).subscribe(onNext: { (error) in
+        self.teacherVM.errorLogoutBehaviorRelay.skip(1).subscribe(onNext: { (error) in
             HUD.hide()
-            Alert.displayAlert(title: "Error", message: error.localizedDescription, vc: self)
+            UserDefaults.standard.removeObject(forKey: "token")
+            UserDefaults.standard.removeObject(forKey: "userType")
+            LoginLogoutManager.instance.updateRootVC()
         }).disposed(by: disposeBag)
         
     }
 
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
+
         return self.classesList.count + 1
     }
 

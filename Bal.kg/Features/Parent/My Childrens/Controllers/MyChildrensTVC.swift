@@ -21,9 +21,9 @@ class MyChildrensTVC: UITableViewController {
         super.viewDidLoad()
         
         navigationItem.title = "Родитель"
-        
-        let token = UserDefaults.standard.value(forKey: "token") as! String
-        print("token \(token)")
+//        
+//        let token = UserDefaults.standard.value(forKey: "token") as! String
+//        print("token \(token)")
         getMyhChildrens()
         self.tableView.tableFooterView = UIView()
 
@@ -63,7 +63,11 @@ class MyChildrensTVC: UITableViewController {
         
         self.parentVM.errorBehaviorRelay.skip(1).subscribe(onNext: { (error) in
             HUD.hide()
+            UserDefaults.standard.removeObject(forKey: "token")
+            UserDefaults.standard.removeObject(forKey: "userType")
             Alert.displayAlert(title: "", message: error.localizedDescription, vc: self)
+            LoginLogoutManager.instance.updateRootVC()
+            
         }).disposed(by: disposeBag)
         
     }
@@ -91,10 +95,12 @@ class MyChildrensTVC: UITableViewController {
         }
         
         let child = self.myChildrens[indexPath.row]
-        let name = child.firstName + " " + child.lastName
+        
+        let name = child.lastName + " " + child.firstName
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyChildrensListTVCell", for: indexPath) as! MyChildrensListTVCell
         
-        cell.childrenNameButton.setTitle( name, for: .normal)
+        let fullName = name + " " + child.secondName
+        cell.childrenNameButton.setTitle(fullName, for: .normal)
         cell.childrenNameButton.tag = indexPath.row
         cell.childrenNameButton.addTarget(self, action: #selector(pressedButton(button:)), for: .touchUpInside)
         
@@ -140,7 +146,6 @@ class MyChildrensTVC: UITableViewController {
             UserDefaults.standard.removeObject(forKey: "token")
             UserDefaults.standard.removeObject(forKey: "userType")
             LoginLogoutManager.instance.updateRootVC()
-            
         }).disposed(by: disposeBag)
     }
     

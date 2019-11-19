@@ -19,7 +19,7 @@ class NotificationTVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        navigationItem.title = "Уведомления"
         self.getNotifications()
         self.tableView.tableFooterView = UIView()
         self.tableView.allowsSelection = false
@@ -45,9 +45,12 @@ class NotificationTVC: UITableViewController {
         }).disposed(by: disposeBag)
         
         self.notificatonsVM.errorBehaviorRelay.skip(1).subscribe(onNext: { (error) in
-            
+           
             HUD.hide()
+            UserDefaults.standard.removeObject(forKey: "token")
+            UserDefaults.standard.removeObject(forKey: "userType")
             Alert.displayAlert(title: "", message: error.localizedDescription, vc: self)
+            LoginLogoutManager.instance.updateRootVC()
             
         }).disposed(by: disposeBag)
         

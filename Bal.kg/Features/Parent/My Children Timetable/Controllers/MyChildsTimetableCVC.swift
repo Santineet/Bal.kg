@@ -48,8 +48,13 @@ class MyChildsTimetableCVC: UICollectionViewController, UICollectionViewDelegate
         }).disposed(by: disposeBag)
         
         self.childTimetableVM.errorBehaviorRelay.skip(1).subscribe(onNext: { (error) in
+         
             HUD.hide()
+            UserDefaults.standard.removeObject(forKey: "token")
+            UserDefaults.standard.removeObject(forKey: "userType")
             Alert.displayAlert(title: "", message: error.localizedDescription, vc: self)
+            LoginLogoutManager.instance.updateRootVC()
+            
         }).disposed(by: disposeBag)
         
     }
@@ -142,7 +147,8 @@ extension MyChildsTimetableCVC: UITableViewDelegate, UITableViewDataSource {
             cell?.textLabel?.text = "Нет уроков"
             cell?.textLabel?.textAlignment = .center
             cell?.textLabel?.textColor = UIColor.gray
-            
+            cell?.isUserInteractionEnabled = false
+
             return cell ?? UITableViewCell()
             
         }

@@ -14,6 +14,8 @@ class MyMarksTVCell: UITableViewCell {
     @IBOutlet weak var mark: UILabel!
     @IBOutlet weak var comment: UILabel!
    
+    @IBOutlet weak var partOutlet: UILabel!
+   
     @IBOutlet weak var partLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -31,7 +31,7 @@ class GuardVC: UIViewController {
     let disposeBag = DisposeBag()
     var picker : UIPickerView!
     var pickerData = ["Ученик", "Учитель", "Гость"]
-    var status = 0
+    var status = 1
     var imagePicker = UIImagePickerController()
     var selectedImage: UIImage?
     let realm = try! Realm() // Доступ к хранилищу
@@ -50,6 +50,9 @@ class GuardVC: UIViewController {
         guest.tintColor = UIColor.clear
         pressAddimage()
         
+//        let token = UserDefaults.standard.value(forKey: Constant.USER_TOKEN_KEY)
+//        print(token)
+//        
     }
     
     //MARK: press Addimage
@@ -80,9 +83,11 @@ class GuardVC: UIViewController {
     //MARK: observer for login logout switch
     @objc func paramTarget(paramTarget: UISwitch){
         if paramTarget.isOn {
+            self.status = 0 // exit
             self.exit.textColor = UIColor.blue
             self.input.textColor = UIColor.black
         } else {
+            self.status = 1 // enter
             self.exit.textColor = UIColor.black
             self.input.textColor = UIColor.blue
         }
@@ -102,8 +107,14 @@ class GuardVC: UIViewController {
        
         self.items = realm.objects(DataBase.self)
 
-        guard let id = self.idField.text else {return}
-        guard var type = self.guest.text else {return}
+        guard let id = self.idField.text else {
+            HUD.hide()
+            return
+        }
+        guard var type = self.guest.text else {
+            HUD.hide()
+            return
+        }
       
         var imageData: Data? = nil
         var imageName: String? = nil
@@ -113,16 +124,15 @@ class GuardVC: UIViewController {
             type = "children"
         } else if type == "Учитель" {
             type = "teacher"
-        } else if type == "Гость" {
+        } else if type == "Гость" || type == "guest" {
             type = "guest"
-            imageData = self.selectedImage?.jpegData(compressionQuality: 1)
+            imageData = self.selectedImage?.jpegData(compressionQuality: 0.9)
             imageName = self.selectedImage?.imageAsset.debugDescription
         }
         
         
         
-        if(!id.isEmpty && !type.isEmpty){
-            HUD.show(.progress)
+        if !(id.isEmpty && type.isEmpty){
             
             if self.guardVM.isConnnected() == true {
                 if items.count > 0 {
@@ -130,7 +140,6 @@ class GuardVC: UIViewController {
                         try! realm.write {
                             self.realm.deleteAll()
                         }
-                        
                         self.postGuestData(id: id, type: type, imageData: imageData, imageName: imageName)
                     }
                 } else {
@@ -140,6 +149,10 @@ class GuardVC: UIViewController {
             } else {
                 self.postGuestData(id: id, type: type, imageData: imageData, imageName: imageName)
             }
+            
+        } else {
+            HUD.hide()
+            Alert.displayAlert(title: "", message: "Заполните поля", vc: self)
             
         }
         
@@ -169,7 +182,6 @@ class GuardVC: UIViewController {
                 return
             }
             
-            
         }
         
         self.guardVM.guestInfoBehaviorRelay.skip(1).subscribe(onNext: { (info) in
@@ -179,7 +191,9 @@ class GuardVC: UIViewController {
                 self.guestInfo.text = info.fio + "   " + info.about
                 
                 self.setupViewAfterSendData()
-                Alert.displayAlert(title: "", message: info.message, vc: self)
+//                print(info.status)
+//                print(info.message)
+//                Alert.displayAlert(title: "", message: info.message, vc: self)
             } else {
                 HUD.hide()
                 Alert.displayAlert(title: "", message: info.message, vc: self)
@@ -188,7 +202,16 @@ class GuardVC: UIViewController {
         
         self.guardVM.errorBehaviorRelay.skip(1).subscribe(onNext: { (error) in
             HUD.hide()
-            Alert.displayAlert(title: "Error", message: error.localizedDescription, vc: self)
+            
+            if error.localizedDescription == "error" {
+                Alert.displayAlert(title: "", message: error.localizedDescription, vc: self)
+            }
+            
+            UserDefaults.standard.removeObject(forKey: "token")
+            UserDefaults.standard.removeObject(forKey: "userType")
+            Alert.displayAlert(title: "", message: error.localizedDescription, vc: self)
+            LoginLogoutManager.instance.updateRootVC()
+            
         }).disposed(by: disposeBag)
         
     }
@@ -205,8 +228,6 @@ class GuardVC: UIViewController {
             let time = item.time
             let imageData = item.imageData
             let imageName = item.imageName
-
-            
             
             self.guardVM.sendInfo(id: id, status: status, type: type, time: time, imageData: imageData, imageName: imageName) { (error) in
                 if error != nil {
@@ -255,9 +276,13 @@ class GuardVC: UIViewController {
             }
         }).disposed(by: disposeBag)
         
-        self.guardVM.errorBehaviorRelay.skip(1).subscribe(onNext: { (error) in
+        self.guardVM.errorLogoutBehaviorRelay.skip(1).subscribe(onNext: { (error) in
+            
             HUD.hide()
-            Alert.displayAlert(title: "Error", message: error.localizedDescription, vc: self)
+            UserDefaults.standard.removeObject(forKey: "token")
+            UserDefaults.standard.removeObject(forKey: "userType")
+            LoginLogoutManager.instance.updateRootVC()
+            
         }).disposed(by: disposeBag)
         
     }

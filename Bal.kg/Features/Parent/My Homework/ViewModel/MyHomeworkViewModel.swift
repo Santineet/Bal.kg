@@ -13,19 +13,37 @@ import RxCocoa
 class MyHomeworkViewModel: NSObject {
     
     var errorBehaviorRelay = BehaviorRelay<Error>(value: NSError.init(message: ""))
-    var myHomeworkBehaviorRelay = BehaviorRelay<[MyHomeworkModel]>(value: [])
+    var shedulesHomeworkBehaviorRelay = BehaviorRelay<[MyHomeworkModel]>(value: [])
+    var errorHomeworkListBehaviorRelay = BehaviorRelay<Error>(value: NSError.init(message: ""))
+
+    var homeworkListBehaviorRelay = BehaviorRelay<[HomeworkListModel]>(value: [])
+
     var reachability:Reachability?
     
     private let disposeBag = DisposeBag()
     private let repository = MyHomeworkRepository()
     
-    func getMyHomework(id: String, subject_id: String, completion: @escaping (Error?) -> ()) {
+    func getShedulesHomework(id: String, completion: @escaping (Error?) -> ()) {
         if self.isConnnected() == true {
-            self.repository.getMyHomework(id: id, subject_id: subject_id) .subscribe(onNext: { (homeworkList) in
-                self.myHomeworkBehaviorRelay.accept(homeworkList)
+            self.repository.getShedulesHomework(id: id).subscribe(onNext: { (homeworkList) in
+                self.shedulesHomeworkBehaviorRelay.accept(homeworkList)
             }, onError: { (error) in
                 self.errorBehaviorRelay.accept(error)
             }).disposed(by: disposeBag)
+        } else {
+            completion(NSError.init(message: "Для получения данных требуется подключение к интернету"))
+        }
+    }
+    
+    func getHomeworkList(id: String, subject_id: String, completion: @escaping (Error?) -> ()) {
+        if self.isConnnected() == true {
+            self.repository.getHomeworkList(id: id, subject_id:  subject_id).subscribe(onNext: { (homeworkList) in
+                
+                self.homeworkListBehaviorRelay.accept(homeworkList)
+            }, onError: { (error) in
+                self.errorHomeworkListBehaviorRelay.accept(error)
+            }).disposed(by: disposeBag)
+            
         } else {
             completion(NSError.init(message: "Для получения данных требуется подключение к интернету"))
         }

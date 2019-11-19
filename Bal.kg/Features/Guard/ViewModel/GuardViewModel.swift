@@ -14,6 +14,7 @@ import RxCocoa
 class GuardViewModel: NSObject {
 
     var errorBehaviorRelay = BehaviorRelay<Error>(value: NSError.init(message: ""))
+    var errorLogoutBehaviorRelay = BehaviorRelay<Error>(value: NSError.init(message: ""))
     let logoutBehaviorRelay = BehaviorRelay<LogInModel>(value: LogInModel())
     let guestInfoBehaviorRelay = BehaviorRelay<SendDataModel>(value: SendDataModel())
     var reachability:Reachability?
@@ -26,7 +27,7 @@ class GuardViewModel: NSObject {
             self.repository.logout().subscribe(onNext: { (result) in
                 self.logoutBehaviorRelay.accept(result)
             }, onError: { (error) in
-                self.errorBehaviorRelay.accept(error)
+                self.errorLogoutBehaviorRelay.accept(error)
             }).disposed(by: disposeBag) 
         } else {
             completion(NSError.init(message: "Для получения данных требуется подключение к интернету"))
@@ -36,6 +37,7 @@ class GuardViewModel: NSObject {
     func sendInfo(id: String, status: Int, type: String, time: String, imageData: Data?,imageName: String?, completion: @escaping (Error?) -> ()) {
         if self.isConnnected() == true {
             self.repository.sendData(id: id, status: status, type: type, time: time, imageData: imageData, imageName: imageName) .subscribe(onNext: { (result) in
+                print(result)
                 self.guestInfoBehaviorRelay.accept(result)
             }, onError: { (error) in
                 self.errorBehaviorRelay.accept(error)

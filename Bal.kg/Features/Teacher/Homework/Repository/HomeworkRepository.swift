@@ -16,13 +16,16 @@ class HomeworkRepository: NSObject {
         return Observable.create({ (observer) -> Disposable in
             ServiceManager.sharedInstance.postHomework(classId: classId, subjectId: subjectId, date: date, text: text, completion: { (responseJSON, error) in
 
-                guard let jsonArray = responseJSON as? [String:Any] else { return }
-                guard let result = Mapper<HomeworkModel>().map(JSON: jsonArray) else {
-                    observer.onError(error ?? Constant.BACKEND_ERROR)
-                    return
+                if error != nil {
+                    observer.onError(Constant.BACKEND_ERROR)
+                } else {
+                    guard let jsonArray = responseJSON as? [String:Any] else { return }
+                    guard let result = Mapper<HomeworkModel>().map(JSON: jsonArray) else {
+                        return
+                    }
+                    observer.onNext(result)
+                    observer.onCompleted()
                 }
-                observer.onNext(result)
-                observer.onCompleted()
             })
 
             return Disposables.create()

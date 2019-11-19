@@ -15,13 +15,16 @@ class GuardRepository: NSObject {
     func logout() -> Observable<LogInModel> {
         return Observable.create({ (observer) -> Disposable in
             ServiceManager.sharedInstance.logout(completion: { (responseJSON, error) in
-                guard let jsonArray = responseJSON as? [String:Any] else { return }
-                guard let result = Mapper<LogInModel>().map(JSON: jsonArray) else {
-                    observer.onError(error ?? Constant.BACKEND_ERROR)
-                    return
+                if error != nil {
+                    observer.onError(Constant.BACKEND_ERROR)
+                } else {
+                    guard let jsonArray = responseJSON as? [String:Any] else { return }
+                    guard let result = Mapper<LogInModel>().map(JSON: jsonArray) else {
+                        return
+                    }
+                    observer.onNext(result)
+                    observer.onCompleted()
                 }
-                observer.onNext(result)
-                observer.onCompleted()
             })
             return Disposables.create()
         })
@@ -31,13 +34,16 @@ class GuardRepository: NSObject {
         return Observable.create({ (observer) -> Disposable in
             ServiceManager.sharedInstance.sendData(id: id, status: status, type: type, time: time, imageData: imageData,imageName: imageName, completion: { (responseJSON, error) in
                 
-                guard let jsonArray = responseJSON as? [String:Any] else { return }
-                guard let result = Mapper<SendDataModel>().map(JSON: jsonArray) else {
+                if error != nil {
                     observer.onError(error ?? Constant.BACKEND_ERROR)
-                    return
+                } else {
+                    guard let jsonArray = responseJSON as? [String:Any] else { return }
+                    guard let result = Mapper<SendDataModel>().map(JSON: jsonArray) else {
+                        return
+                    }
+                    observer.onNext(result)
+                    observer.onCompleted()
                 }
-                observer.onNext(result)
-                observer.onCompleted()
             })
             
             return Disposables.create()

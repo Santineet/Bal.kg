@@ -34,10 +34,6 @@ class MarksTVC: UITableViewController {
         self.tableView.allowsSelection = false
         self.tableView.tableFooterView = UIView()
         
-
-        
-        
-        
     }
     
     //MARK: Get Childs List
@@ -59,7 +55,11 @@ class MarksTVC: UITableViewController {
         
         self.marksVM.errorBehaviorRelay.skip(1).subscribe(onNext: { (error) in
             HUD.hide()
+            UserDefaults.standard.removeObject(forKey: "token")
+            UserDefaults.standard.removeObject(forKey: "userType")
             Alert.displayAlert(title: "", message: error.localizedDescription, vc: self)
+            LoginLogoutManager.instance.updateRootVC()
+            
         }).disposed(by: disposeBag)
     }
     
@@ -179,9 +179,12 @@ class MarksTVC: UITableViewController {
             }
         }).disposed(by: disposeBag)
         
-        self.marksVM.errorBehaviorRelay.skip(1).subscribe(onNext: { (error) in
+        self.marksVM.errorPostResultBehaviorRelay.skip(1).subscribe(onNext: { (error) in
             HUD.hide()
+            UserDefaults.standard.removeObject(forKey: "token")
+            UserDefaults.standard.removeObject(forKey: "userType")
             Alert.displayAlert(title: "", message: error.localizedDescription, vc: self)
+            LoginLogoutManager.instance.updateRootVC()
             
         }).disposed(by: disposeBag)
     
@@ -215,10 +218,10 @@ class MarksTVC: UITableViewController {
         
         let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in }
         // add actions
-        actionSheetController.addAction(fourthAction)
-        actionSheetController.addAction(thirdtion)
-        actionSheetController.addAction(secondAction)
         actionSheetController.addAction(firstAction)
+        actionSheetController.addAction(secondAction)
+        actionSheetController.addAction(thirdtion)
+        actionSheetController.addAction(fourthAction)
         actionSheetController.addAction(cancelAction)
         
         actionSheetController.popoverPresentationController?.sourceView = view
@@ -254,9 +257,9 @@ class MarksTVC: UITableViewController {
             button.setTitle("2", for: .normal)
         }
         
-        let nbAction: UIAlertAction = UIAlertAction(title: "Н/Б", style: .default) { action -> Void in
-            self.marksObject[childId] = "Н/Б"
-            button.setTitle("Н/Б", for: .normal)
+        let nbAction: UIAlertAction = UIAlertAction(title: "н", style: .default) { action -> Void in
+            self.marksObject[childId] = "н"
+            button.setTitle("н", for: .normal)
         }
         
         let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in

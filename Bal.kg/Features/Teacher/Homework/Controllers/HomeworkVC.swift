@@ -38,9 +38,7 @@ class HomeworkVC: UIViewController, UITextFieldDelegate {
         guard let date = self.dateField.text else {return}
         guard let text = self.homeworkTextView.text else {return}
         
-        print(classId)
-        print(subjectId)
-        
+
         if date == "ДАТА:" {
             HUD.hide()
             Alert.displayAlert(title: "", message: "Выберите дату", vc: self)
@@ -72,7 +70,11 @@ class HomeworkVC: UIViewController, UITextFieldDelegate {
         
         self.homeworkVM.errorBehaviorRelay.skip(1).subscribe(onNext: { (error) in
             HUD.hide()
+            UserDefaults.standard.removeObject(forKey: "token")
+            UserDefaults.standard.removeObject(forKey: "userType")
             Alert.displayAlert(title: "", message: error.localizedDescription, vc: self)
+            LoginLogoutManager.instance.updateRootVC()
+            
         }).disposed(by: disposeBag)
         
     }

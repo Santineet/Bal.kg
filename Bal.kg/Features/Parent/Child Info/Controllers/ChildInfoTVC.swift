@@ -39,13 +39,17 @@ class ChildInfoTVC: UITableViewController {
             
             HUD.hide()
             self.childInfo = info
+            self.navigationItem.title = self.childInfo.firstName
             self.tableView.reloadData()
-            
         }).disposed(by: disposeBag)
         
         self.childInfoVM.errorBehaviorRelay.skip(1).subscribe(onNext: { (error) in
+            
             HUD.hide()
+            UserDefaults.standard.removeObject(forKey: "token")
+            UserDefaults.standard.removeObject(forKey: "userType")
             Alert.displayAlert(title: "", message: error.localizedDescription, vc: self)
+            LoginLogoutManager.instance.updateRootVC()
             
         }).disposed(by: disposeBag)
         
@@ -71,7 +75,7 @@ class ChildInfoTVC: UITableViewController {
         cell.schoolName.text = self.childInfo.school
         cell.moveAbout.text = self.childInfo.move_about
         
-        print("self.childInfo.move_status \(self.childInfo.move_status)")
+//        print("self.childInfo.move_status \(self.childInfo.move_status)")
         
         if self.childInfo.move_status == 0 {
             cell.moveAbout.textColor = UIColor.black
@@ -121,7 +125,7 @@ class ChildInfoTVC: UITableViewController {
         let timetablevc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MyChildsTimetableCVC") as! MyChildsTimetableCVC
         
         timetablevc.id = self.childInfo.id
-        print(self.childInfo.id)
+//        print(self.childInfo.id)
         timetablevc.isMarksVC = true
         timetablevc.title = "Оценки"
         navigationController?.pushViewController(timetablevc, animated: true)

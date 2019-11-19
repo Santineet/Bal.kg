@@ -17,7 +17,7 @@ class ParentRepository: NSObject {
             ServiceManager.sharedInstance.logout(completion: { (responseJSON, error) in
                 
                 if error != nil {
-                    observer.onError(error ?? Constant.BACKEND_ERROR)
+                    observer.onError(Constant.BACKEND_ERROR)
                 } else {
                     guard let jsonArray = responseJSON as? [String:Any] else { return }
                     guard let result = Mapper<LogInModel>().map(JSON: jsonArray) else {
