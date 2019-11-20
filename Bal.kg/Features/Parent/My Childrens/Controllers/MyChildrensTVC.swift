@@ -21,12 +21,11 @@ class MyChildrensTVC: UITableViewController {
         super.viewDidLoad()
         
         navigationItem.title = "Родитель"
-//        
-//        let token = UserDefaults.standard.value(forKey: "token") as! String
-//        print("token \(token)")
+        
+        let token = UserDefaults.standard.value(forKey: "token") as! String
+        print("token \(token)")
         getMyhChildrens()
         self.tableView.tableFooterView = UIView()
-
         self.tableView.allowsSelection = false
     }
 

@@ -389,6 +389,26 @@ class ServiceManager: NSObject {
         }
     }
     
+    //MARK: Get My Marks
+    func getMarksTimetable(id: String, completion: @escaping Completion){
+        guard let url = URL(string: "https://bal.kg/api/marks" ) else { return }
+        
+        let token = UserDefaults.standard.value(forKey: "token") as! String
+        let header: HTTPHeaders = ["token": "\(token)"]
+        
+        let params = ["token": token, "id": id] as [String:Any]
+        Alamofire.request(url, method: .get, parameters: params, encoding: URLEncoding.default, headers: header).responseJSON
+            { responseJSON in
+                switch responseJSON.result {
+                case .success:
+                    completion(responseJSON.result.value, nil)
+                case .failure(let error):
+                    completion(nil, error)
+                }
+        }
+    }
+    
+    
     //MARK: get My Homework
     
     func getMyHomework(id: String, subject_id: String, completion: @escaping Completion){

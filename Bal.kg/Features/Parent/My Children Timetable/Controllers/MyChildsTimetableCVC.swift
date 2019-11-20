@@ -18,13 +18,13 @@ class MyChildsTimetableCVC: UICollectionViewController, UICollectionViewDelegate
     let disposeBag = DisposeBag()
     var subjectList = [TimetableModel]()
     var id: String = ""
-    var isMarksVC = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         getChildTimetable(id: id)
         
+        collectionView.allowsSelection = false
     }
     
 
@@ -77,11 +77,7 @@ class MyChildsTimetableCVC: UICollectionViewController, UICollectionViewDelegate
         cell.tableView.tag = indexPath.row
         cell.tableView.tableFooterView = UIView()
         cell.tableView.isScrollEnabled = false
-        cell.tableView.allowsSelection = self.isMarksVC
-        
-        if subject.subjects.count == 0 {
-            cell.tableView.allowsSelection = self.isMarksVC
-        }
+        cell.tableView.allowsSelection = false
         return cell
     }
 
@@ -169,20 +165,20 @@ extension MyChildsTimetableCVC: UITableViewDelegate, UITableViewDataSource {
         return 68
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        tableView.deselectRow(at: indexPath, animated: true)
-        
-        let subject = subjectList[tableView.tag].subjects[indexPath.row]
-    
-        let myMark = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MyMarksTVC") as! MyMarksTVC
-        
-        myMark.title = subject.nameSubject
-        myMark.id = self.id
-        myMark.subject_id = subject.id
-        
-        navigationController?.pushViewController(myMark, animated: true)
-        
-    }
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//
+//        tableView.deselectRow(at: indexPath, animated: true)
+//
+//        let subject = subjectList[tableView.tag].subjects[indexPath.row]
+//
+//        let myMark = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MyMarksTVC") as! MyMarksTVC
+//
+//        myMark.title = subject.nameSubject
+//        myMark.id = self.id
+//        myMark.subject_id = subject.id
+//
+//        navigationController?.pushViewController(myMark, animated: true)
+//
+//    }
     
 }

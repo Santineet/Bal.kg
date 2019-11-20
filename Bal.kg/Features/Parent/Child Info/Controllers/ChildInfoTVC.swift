@@ -125,13 +125,11 @@ class ChildInfoTVC: UITableViewController {
     }
     
     @objc func marksButtonPressed(){
-        let timetablevc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MyChildsTimetableCVC") as! MyChildsTimetableCVC
+        let markTimetablevc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MyMarksTimetableCVC") as! MyMarksTimetableCVC
         
-        timetablevc.id = self.childInfo.id
-//        print(self.childInfo.id)
-        timetablevc.isMarksVC = true
-        timetablevc.title = "Оценки"
-        navigationController?.pushViewController(timetablevc, animated: true)
+        markTimetablevc.id = self.childInfo.id
+        markTimetablevc.title = "Оценки"
+        navigationController?.pushViewController(markTimetablevc, animated: true)
         
     }
 

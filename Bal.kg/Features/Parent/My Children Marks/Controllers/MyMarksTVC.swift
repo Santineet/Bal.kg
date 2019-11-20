@@ -30,10 +30,10 @@ class MyMarksTVC: UITableViewController {
     
     func getMyMarks(id: String, subject_id: String){
         HUD.show(.progress)
-
-        let token = UserDefaults.standard.value(forKey: "token")
-        print(token)
-        print("id \(id)")
+//
+//        let token = UserDefaults.standard.value(forKey: "token")
+//        print(token)
+//        print("id \(id)")
         self.myMarksVM.getMyMarks(id: id, subject_id: subject_id) { (error) in
             if let error = error {
                 HUD.hide()
@@ -41,8 +41,8 @@ class MyMarksTVC: UITableViewController {
             }
         }
         
-        self.myMarksVM.myMarksTimetableBehaviorRelay.skip(1).subscribe(onNext: { (myMarks) in
-            self.myMarks = myMarks
+        self.myMarksVM.myMarksBehaviorRelay.skip(1).subscribe(onNext: { (myMarks) in
+            self.myMarks = myMarks 
             self.tableView.reloadData()
             HUD.hide()
         }).disposed(by: disposeBag)

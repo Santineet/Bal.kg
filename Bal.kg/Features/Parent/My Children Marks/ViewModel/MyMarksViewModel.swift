@@ -13,16 +13,20 @@ import RxCocoa
 class MyMarksViewModel: NSObject {
     
     var errorBehaviorRelay = BehaviorRelay<Error>(value: NSError.init(message: ""))
-    var myMarksTimetableBehaviorRelay = BehaviorRelay<[MyMarksModel]>(value: [])
+    var myMarksBehaviorRelay = BehaviorRelay<[MyMarksModel]>(value: [])
+    var myMarksTimetableBehaviorRelay = BehaviorRelay<[MyMarksTimetableModel]>(value: [])
+    var errorTimetableBehaviorRelay = BehaviorRelay<Error>(value: NSError.init(message: ""))
+
     var reachability:Reachability?
     
     private let disposeBag = DisposeBag()
     private let repository = MyMarksRepository()
     
+    //MARK: - get marks
     func getMyMarks(id: String, subject_id: String, completion: @escaping (Error?) -> ()) {
         if self.isConnnected() == true {
             self.repository.getMyMarks(id: id, subject_id: subject_id) .subscribe(onNext: { (myMarks) in
-                self.myMarksTimetableBehaviorRelay.accept(myMarks)
+                self.myMarksBehaviorRelay.accept(myMarks)
             }, onError: { (error) in
                 self.errorBehaviorRelay.accept(error)
             }).disposed(by: disposeBag)
@@ -31,6 +35,18 @@ class MyMarksViewModel: NSObject {
         }
     }
     
+    //MARK: - get mark Timetable
+       func getMarksTimetable(id: String, completion: @escaping (Error?) -> ()) {
+           if self.isConnnected() == true {
+            self.repository.getMarksTimetable(id: id).subscribe(onNext: { (markTimetable) in
+                   self.myMarksTimetableBehaviorRelay.accept(markTimetable)
+               }, onError: { (error) in
+                   self.errorTimetableBehaviorRelay.accept(error)
+               }).disposed(by: disposeBag)
+           } else {
+               completion(NSError.init(message: "Для получения данных требуется подключение к интернету"))
+           }
+       }
     
     func isConnnected() -> Bool{
         do {

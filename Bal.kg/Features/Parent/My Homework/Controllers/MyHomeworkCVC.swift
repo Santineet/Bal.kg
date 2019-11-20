@@ -39,6 +39,7 @@ class MyHomeworkCVC: UICollectionViewController, UICollectionViewDelegateFlowLay
                 Alert.displayAlert(title: "", message: error.localizedDescription, vc: self)
             }
         }
+       
         self.myHomeworkVM.shedulesHomeworkBehaviorRelay.skip(1).subscribe(onNext: { (homework) in
             HUD.hide()
             self.homeworkList = homework

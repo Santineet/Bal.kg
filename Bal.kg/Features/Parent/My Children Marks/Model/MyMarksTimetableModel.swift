@@ -1,17 +1,17 @@
 //
-//  TimetableModel.swift
+//  MyMarksTimetableModel.swift
 //  Bal.kg
 //
-//  Created by Mairambek on 9/20/19.
+//  Created by Mairambek on 11/20/19.
 //  Copyright © 2019 Sunrise. All rights reserved.
 //
 
 import ObjectMapper
 
-class TimetableModel: NSObject, Mappable {
+class MyMarksTimetableModel: NSObject, Mappable {
     
     var dayName: String = ""
-    var subjects = [SubjectsModel]()
+    var subjects = [MarkTimetableSubjectsModel]()
     
     required convenience init?(map: Map) {
         self.init()

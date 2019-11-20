@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		07068E52232FCA200053E04A /* SendDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07068E51232FCA200053E04A /* SendDataModel.swift */; };
 		24057D9ABBEE079352E1721B /* Pods_Bal_kg.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 613737279732F5F6665DE9BD /* Pods_Bal_kg.framework */; };
+		2E3F71D023854F6E0063EEFA /* MyMarksTimetableTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3F71CF23854F6E0063EEFA /* MyMarksTimetableTVCell.swift */; };
+		2E3F71D223854F870063EEFA /* MyMarksTimetableCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3F71D123854F870063EEFA /* MyMarksTimetableCVC.swift */; };
+		2E3F71D42385505D0063EEFA /* MyMarksTimetableCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3F71D32385505D0063EEFA /* MyMarksTimetableCVCell.swift */; };
+		2E3F71D8238554820063EEFA /* MyMarksTimetableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3F71D7238554820063EEFA /* MyMarksTimetableModel.swift */; };
+		2E3F71DA238554FB0063EEFA /* MarkTimetableSubjectsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3F71D9238554FB0063EEFA /* MarkTimetableSubjectsModel.swift */; };
 		2E41638C237EB05A001F896F /* HomeworkListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E41638B237EB05A001F896F /* HomeworkListModel.swift */; };
 		2E4C68D523391542000BF437 /* MarksTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4C68D423391542000BF437 /* MarksTVC.swift */; };
 		2E4C68DB233915B0000BF437 /* MarkCommentTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4C68DA233915AF000BF437 /* MarkCommentTVCell.swift */; };
@@ -119,6 +124,11 @@
 
 /* Begin PBXFileReference section */
 		07068E51232FCA200053E04A /* SendDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendDataModel.swift; sourceTree = "<group>"; };
+		2E3F71CF23854F6E0063EEFA /* MyMarksTimetableTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMarksTimetableTVCell.swift; sourceTree = "<group>"; };
+		2E3F71D123854F870063EEFA /* MyMarksTimetableCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMarksTimetableCVC.swift; sourceTree = "<group>"; };
+		2E3F71D32385505D0063EEFA /* MyMarksTimetableCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMarksTimetableCVCell.swift; sourceTree = "<group>"; };
+		2E3F71D7238554820063EEFA /* MyMarksTimetableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMarksTimetableModel.swift; sourceTree = "<group>"; };
+		2E3F71D9238554FB0063EEFA /* MarkTimetableSubjectsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkTimetableSubjectsModel.swift; sourceTree = "<group>"; };
 		2E41638B237EB05A001F896F /* HomeworkListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkListModel.swift; sourceTree = "<group>"; };
 		2E4C68D423391542000BF437 /* MarksTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarksTVC.swift; sourceTree = "<group>"; };
 		2E4C68DA233915AF000BF437 /* MarkCommentTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkCommentTVCell.swift; sourceTree = "<group>"; };
@@ -465,6 +475,7 @@
 			isa = PBXGroup;
 			children = (
 				2E557E3823424F4A005C0D0D /* MyMarksTVC.swift */,
+				2E3F71D123854F870063EEFA /* MyMarksTimetableCVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -489,6 +500,8 @@
 			isa = PBXGroup;
 			children = (
 				2E557E3E23424F9F005C0D0D /* MyMarksTVCell.swift */,
+				2E3F71CF23854F6E0063EEFA /* MyMarksTimetableTVCell.swift */,
+				2E3F71D32385505D0063EEFA /* MyMarksTimetableCVCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -928,7 +941,9 @@
 		2E8885ED23774AD100B9CB62 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2E3F71D7238554820063EEFA /* MyMarksTimetableModel.swift */,
 				2E557E402342556F005C0D0D /* MyMarksModel.swift */,
+				2E3F71D9238554FB0063EEFA /* MarkTimetableSubjectsModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1245,6 +1260,7 @@
 			files = (
 				2E557E3D23424F76005C0D0D /* MyMarksRepository.swift in Sources */,
 				2E6F500A2327F36400B737C0 /* LoginRepository.swift in Sources */,
+				2E3F71D8238554820063EEFA /* MyMarksTimetableModel.swift in Sources */,
 				07068E52232FCA200053E04A /* SendDataModel.swift in Sources */,
 				2E41638C237EB05A001F896F /* HomeworkListModel.swift in Sources */,
 				2E5091792334F261001FBD41 /* TimetableCV.swift in Sources */,
@@ -1284,6 +1300,7 @@
 				2ECB194C233E5E8D007B532D /* NotificationTVC.swift in Sources */,
 				2E6F501D23280CBB00B737C0 /* GuardViewModel.swift in Sources */,
 				2ECC87A62344B6B3006B04A2 /* HomeworkCommentTVCell.swift in Sources */,
+				2E3F71D223854F870063EEFA /* MyMarksTimetableCVC.swift in Sources */,
 				2E62315C2340D459009E27C7 /* ChildInfoTVC.swift in Sources */,
 				2E6FEFE323327C8300DAF611 /* TeacherListTVCell.swift in Sources */,
 				2E557E3F23424F9F005C0D0D /* MyMarksTVCell.swift in Sources */,
@@ -1306,8 +1323,10 @@
 				2E6C7F7A23439E41004278A2 /* MyHomeworkRepository.swift in Sources */,
 				2E6F4FFF2327DAC900B737C0 /* IQUIView+Hierarchy.swift in Sources */,
 				2E6F4FFE2327DAC900B737C0 /* IQUITextFieldView+Additions.swift in Sources */,
+				2E3F71D42385505D0063EEFA /* MyMarksTimetableCVCell.swift in Sources */,
 				2ECB1941233E2857007B532D /* MyChildrensModel.swift in Sources */,
 				2E557E3B23424F59005C0D0D /* MyMarksViewModel.swift in Sources */,
+				2E3F71DA238554FB0063EEFA /* MarkTimetableSubjectsModel.swift in Sources */,
 				2ECB193D233E20A9007B532D /* ParentRepository.swift in Sources */,
 				2E6F4FFC2327DAC900B737C0 /* IQUIScrollView+Additions.swift in Sources */,
 				2E6F4FFB2327DAC900B737C0 /* IQKeyboardManager.swift in Sources */,
@@ -1321,6 +1340,7 @@
 				2E6F4FFD2327DAC900B737C0 /* IQUIViewController+Additions.swift in Sources */,
 				2E4C68DF233917A0000BF437 /* ChildsModel.swift in Sources */,
 				2ECB193F233E20B5007B532D /* ParentViewModel.swift in Sources */,
+				2E3F71D023854F6E0063EEFA /* MyMarksTimetableTVCell.swift in Sources */,
 				2E6F50072327ED1200B737C0 /* LoginLogoutManager.swift in Sources */,
 				2E6F50022327EC5300B737C0 /* AuthVC.swift in Sources */,
 				2E557E202341F51B005C0D0D /* ChildMoveRepository.swift in Sources */,
@@ -1490,6 +1510,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = UA2Z42JU4S;
 				INFOPLIST_FILE = Bal.kg/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -1497,6 +1518,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.AlanaandNazar.Bal-kg";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1510,6 +1532,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = UA2Z42JU4S;
 				INFOPLIST_FILE = Bal.kg/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -1517,6 +1540,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.AlanaandNazar.Bal-kg";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

@@ -47,6 +47,38 @@ class MyMarksRepository: NSObject {
         })
     }
     
+    //MARK: - get mark Timetable
+    func getMarksTimetable(id: String) -> Observable<[MyMarksTimetableModel]> {
+           return Observable.create({ (observer) -> Disposable in
+            ServiceManager.sharedInstance.getMarksTimetable(id: id) { (response, error) in
+                            
+                   if error != nil {
+                       observer.onError(Constant.BACKEND_ERROR)
+                   } else {
+                     
+                       guard let jsonArray = response as? [[String:Any]] else { return }
+                       
+                       var markTimetable = [MyMarksTimetableModel]()
+                       for json in jsonArray{
+                           guard let object  = Mapper<MyMarksTimetableModel>().map(JSON: json) else {
+                               return
+                           }
+                           
+                           markTimetable.append(object)
+                           
+                           if markTimetable.count == jsonArray.count {
+                               observer.onNext(markTimetable)
+                               observer.onCompleted()
+                           }
+                       }
+                   }
+               }
+               
+               return Disposables.create()
+           })
+       }
+    
+    
     
     
     

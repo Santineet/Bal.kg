@@ -12,7 +12,6 @@ class MyChildTimetableTVCell: UITableViewCell {
 
     
     @IBOutlet weak var timeLabel: UILabel!
-    
     @IBOutlet weak var lessonName: UILabel!
     
     
